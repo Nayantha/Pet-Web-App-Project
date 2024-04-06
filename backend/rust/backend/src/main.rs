@@ -1,4 +1,6 @@
 use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+mod models;
+use models::user;
 
 #[get("/health")]
 async fn health_check() -> impl Responder {
