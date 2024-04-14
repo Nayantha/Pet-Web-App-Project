@@ -5,6 +5,8 @@
     <h1>Home Page</h1>
     <h3>Welcome</h3>
     <router-link to="/login">Login</router-link>
+    <br>
+    <router-link to="/register">Register</router-link>
 </template>
 
 <style scoped>
