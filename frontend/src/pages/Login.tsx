@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { login } from "../utils/Auth.tsx";
-import { UserRegisterData } from "../models/UserRegisterData.ts";
+import { UserLoginData } from "../models/UserLoginData.ts";
 
 
 function Login() {
@@ -11,7 +11,7 @@ function Login() {
 
     async function handleLogin(data: any) {
         setLoading( true );
-        await login( data as UserRegisterData );
+        await login( data as UserLoginData );
         setLoading( false );
     }
 

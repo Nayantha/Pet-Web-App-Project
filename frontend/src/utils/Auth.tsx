@@ -1,11 +1,11 @@
 import pb from "lib/pocketbase"
-import { UserRegisterData } from "models/UserRegisterData.ts";
+import { UserLoginData } from "models/UserLoginData.ts";
 
-export async function login(data: UserRegisterData) {
+export async function login(data: UserLoginData) {
     await loginToPB( data );
 }
 
-async function loginToPB(data: UserRegisterData) {
+async function loginToPB(data: UserLoginData) {
     try {
         await
             pb.collection( import.meta.env.VITE_PB_USER_TABLE )
