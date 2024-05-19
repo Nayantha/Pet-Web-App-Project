@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+/*custom css*/
+/*TextFields*/
+.MuiFormLabel-root.Mui-focused {
+  color: white !important;
+}
+.MuiFormLabel-root {
+  color: white !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
