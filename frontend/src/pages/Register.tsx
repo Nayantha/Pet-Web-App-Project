@@ -21,7 +21,6 @@ function Register() {
             {isLoading && <p>Loading....</p>}
             <form onSubmit={handleSubmit( handleRegister )}>
                 <input type="text" placeholder="name" {...register( "name", {required: true} )}/> <br/>
-                {/* check if the username is not in the db */}
                 <input type="text" placeholder="username" {...register( "username", {required: true} )}/> <br/>
                 <input type="email" placeholder="name@mail.com" {...register( "email", {
                     required: true,
