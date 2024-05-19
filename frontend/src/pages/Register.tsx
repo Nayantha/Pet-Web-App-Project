@@ -3,6 +3,7 @@ import { useState } from "react";
 import { registerUser } from "utils/Auth.tsx";
 import { UserRegisterData } from "models/UserRegisterData.ts";
 import { Link } from "react-router-dom";
+import { Grid, TextField, Typography} from "@mui/material";
 
 function Register() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -17,26 +18,48 @@ function Register() {
 
     return (
         <>
-            <div>Register</div>
+            <Typography variant="h4" gutterBottom>Register</Typography>
             {isLoading && <p>Loading....</p>}
             <form onSubmit={handleSubmit( handleRegister )}>
-                <input type="text" placeholder="name" {...register( "name", {required: true} )}/> <br/>
-                <input type="text" placeholder="username" {...register( "username", {required: true} )}/> <br/>
-                <input type="email" placeholder="name@mail.com" {...register( "email", {
-                    required: true,
-                    pattern: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim
-                } )}/><br/>
-                {errors.email && <span>Invalid email</span>}
-                <input type="password" placeholder="password" {...register( "password", {
-                    required: true,
-                    pattern: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim
-                } )}/><br/>
-                <input type="password" placeholder="retype password" {...register( "passwordConfirm", {
-                    required: true,
-                    pattern: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim
-                } )}/><br/>
-                <input type="file" placeholder=""
-                       accept="image/jpg, image/jpeg, image/png, image/webp" {...register( "avatar" )}/><br/>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                            <TextField label="name" margin="normal" type="text"
+                                       {...register( "name", {required: true} )} error={!!errors.name}
+                                       helperText={errors.name?.message}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="username" margin="normal"
+                                   type="text" {...register( "username", {required: true} )}
+                                   helperText={errors.username?.message}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="email" margin="normal"
+                                   type="email"  {...register( "email", {
+                            required: true,
+                            pattern: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim
+                        } )}
+                                   helperText={errors.email?.message}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="password" margin="normal" type="password" {...register( "password", {
+                            required: true,
+                            pattern: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim
+                        } )}
+                                   helperText={errors.password?.message}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="retype password" margin="normal"
+                                   type="password" {...register( "passwordConfirm", {
+                            required: true,
+                            pattern: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim
+                        } )}
+                                   helperText={errors.password?.message}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <input type="file"
+                               accept="image/jpg, image/jpeg, image/png, image/webp" {...register( "avatar" )}/>
+                    </Grid>
+                </Grid>
 
                 <button type="submit" disabled={isLoading}>
                     {isLoading ? "Loading" : "Register"}</button>
