@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Grid, TextField, Typography } from "@mui/material";
 
 function Register() {
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}, reset} = useForm();
     const [isLoading, setLoading] = useState( false );
 
     async function handleRegister(data: any) {
@@ -14,6 +14,7 @@ function Register() {
         setLoading( true );
         await registerUser( data as UserRegisterData );
         setLoading( false );
+        reset();
     }
 
     return (
