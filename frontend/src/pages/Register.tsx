@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { registerUser } from "utils/Auth.tsx";
+import { redirectAuthenticatedUserToHome, registerUser } from "utils/Auth.tsx";
 import { UserRegisterData } from "models/UserRegisterData.ts";
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Link as ChakraLink } from '@chakra-ui/react'
 
 function Register() {
+    redirectAuthenticatedUserToHome();
+
     const {register, handleSubmit, formState: {errors}} = useForm();
     const [isLoading, setLoading] = useState( false );
 

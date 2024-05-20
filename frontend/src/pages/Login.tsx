@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { login } from "../utils/Auth.tsx";
-import { UserLoginData } from "../models/UserLoginData.ts";
-
+import { login, redirectAuthenticatedUserToHome } from "utils/Auth.tsx";
+import { UserLoginData } from "models/UserLoginData.ts";
+import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 function Login() {
-    const {register, handleSubmit} = useForm();
+    redirectAuthenticatedUserToHome();
+
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const [isLoading, setLoading] = useState( false );
 
     async function handleLogin(data: any) {
@@ -20,13 +22,28 @@ function Login() {
             <div>Login</div>
             {isLoading && <p>Loading....</p>}
             <form onSubmit={handleSubmit( handleLogin )}>
-                <input type="email" placeholder="name@mail.com" {...register( "email" )}/>
-                <br/>
-                <input type="password" placeholder="password" {...register( "password" )}/>
-                <br/>
+                <FormControl isInvalid={errors.username}>
+                    <FormLabel htmlFor='username'>Username</FormLabel>
+                    <Input id="username" type="text" {...register( "username", {
+                        required: 'Username is required',
+                        minLength: {value: 8, message: 'Minimum length should be 8'},
+                        maxLength: {value: 20, message: 'Maximum length should be 20'},
+                    } )}/>
+                </FormControl>
 
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? "Loading" : "Login"}</button>
+                <FormControl isInvalid={errors.password}>
+                    <FormLabel htmlFor='password'>password</FormLabel>
+                    <Input id="password" type="password" {...register( "password", {
+                        required: 'Password is required',
+                        pattern: {
+                            value: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim,
+                            message: "invalid password"
+                        }
+                    } )}/>
+                </FormControl>
+
+                <Button type="submit" disabled={isLoading}>
+                    {isLoading ? "Loading" : "Login"}</Button>
             </form>
             <Link to={'/register'}>Register</Link>
         </>
