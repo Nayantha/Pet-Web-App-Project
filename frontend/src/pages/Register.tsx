@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { registerUser } from "utils/Auth.tsx";
 import { UserRegisterData } from "models/UserRegisterData.ts";
-import { Link } from "react-router-dom";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Link as ChakraLink } from '@chakra-ui/react'
 
 function Register() {
-    const {register, handleSubmit, formState: {errors}, reset} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const [isLoading, setLoading] = useState( false );
 
     async function handleRegister(data: any) {
@@ -14,55 +14,81 @@ function Register() {
         setLoading( true );
         await registerUser( data as UserRegisterData );
         setLoading( false );
-        reset();
     }
 
     return (
         <>
-            <Typography variant="h4" gutterBottom>Register</Typography>
+            <h4>Register</h4>
             {isLoading && <p>Loading....</p>}
             <form onSubmit={handleSubmit( handleRegister )}>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                        <TextField label="name" margin="normal" type="text"
-                                   {...register( "name", {required: true} )} error={!!errors.name}/>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="username" margin="normal"
-                                   type="text" {...register( "username", {required: true} )}/>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="email" margin="normal"
-                                   type="email"  {...register( "email", {
-                            required: true,
-                            pattern: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim
-                        } )}/>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="password" margin="normal" type="password" {...register( "password", {
-                            required: true,
-                            pattern: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim
-                        } )}/>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="retype password" margin="normal"
-                                   type="password" {...register( "passwordConfirm", {
-                            required: true,
-                            pattern: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim
-                        } )}/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <input type="file"
-                               accept="image/jpg, image/jpeg, image/png, image/webp" {...register( "avatar" )}/>
-                    </Grid>
-                </Grid>
+                <FormControl isInvalid={errors.name}>
+                    <FormLabel htmlFor='name'>Name</FormLabel>
+                    <Input id="name" type="text" {...register( "name", {
+                        required: 'Name is required',
+                        minLength: {value: 8, message: 'Minimum length should be 8'},
+                        maxLength: {value: 20, message: 'Maximum length should be 20'},
+                    } )}/>
+                    <FormErrorMessage>
+                        {errors.name && errors.name.message}
+                    </FormErrorMessage>
+                </FormControl>
 
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? "Loading" : "Register"}</button>
+                <FormControl isInvalid={errors.username}>
+                    <FormLabel htmlFor='username'>Username</FormLabel>
+                    <Input id="username" type="text" {...register( "username", {
+                        required: 'Username is required',
+                        minLength: {value: 8, message: 'Minimum length should be 8'},
+                        maxLength: {value: 20, message: 'Maximum length should be 20'},
+                    } )}/>
+                </FormControl>
+
+                <FormControl isInvalid={errors.email}>
+                    <FormLabel htmlFor='email'>Email</FormLabel>
+                    <Input id="email" type="email"  {...register( "email", {
+                        required: 'Email is required',
+                        pattern: {
+                            value: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
+                            message: "invalid email address"
+                        }
+                    } )}/>
+                </FormControl>
+
+                <FormControl isInvalid={errors.password}>
+                    <FormLabel htmlFor='password'>password</FormLabel>
+                    <Input id="password" type="password" {...register( "password", {
+                        required: 'Password is required',
+                        pattern: {
+                            value: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim,
+                            message: "invalid password"
+                        }
+                    } )}/>
+                </FormControl>
+
+                <FormControl isInvalid={errors.passwordConfirm}>
+                    <FormLabel htmlFor='passwordConfirm'>Confirm Password</FormLabel>
+                    <Input id="passwordConfirm" type="password" {...register( "passwordConfirm", {
+                        required: 'Password Confirm is required',
+                        pattern: {
+                            value: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim,
+                            message: "invalid password"
+                        }
+                    } )}/>
+                </FormControl>
+
+                <FormControl isInvalid={errors.avatar}>
+                    <FormLabel htmlFor='name'>Avatar</FormLabel>
+                    <Input type="file" accept="image/jpg, image/jpeg, image/png, image/webp" {...register( "avatar", {
+                        required: 'Avatar is required',
+                    } )}/>
+                </FormControl>
+
+                <Button type="submit" disabled={isLoading}>
+                    {isLoading ? "Loading" : "Register"}</Button>
             </form>
-            <Link to={'/login'}>Login</Link>
+            <ChakraLink as={ReactRouterLink} to={'/login'}>Login</ChakraLink>
         </>
     )
+
 }
 
 export default Register;
