@@ -29,6 +29,7 @@ export async function registerUser(data: UserRegisterData) {
 async function register(data: UserRegisterData) {
     try {
         await pb.collection( import.meta.env.VITE_PB_USER_TABLE ).create( data );
+        await loginToPB( data );
         window.location.href = "/";
     } catch (e) {
         console.error(e)
