@@ -11,7 +11,6 @@ function Profile(){
         return (
             <div>
                 <img src={pb.files.getUrl(userModel, userModel.avatar)} alt={"profile pic of user" + userModel.username}/>
-                <div>Avatar : {userModel?.avatar}</div>
                 <div>Email : {userModel?.email}</div>
                 <div>Name : {userModel?.name}</div>
                 <div>UserName : {userModel?.username}</div>
