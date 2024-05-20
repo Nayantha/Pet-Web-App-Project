@@ -43,6 +43,9 @@
 
 /*custom css*/
 /*TextFields*/
+input {
+  color: white !important;
+}
 .MuiFormLabel-root.Mui-focused {
   color: white !important;
 }
