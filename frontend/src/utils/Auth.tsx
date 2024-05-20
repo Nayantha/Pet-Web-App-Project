@@ -32,7 +32,14 @@ async function register(data: UserRegisterData) {
         await loginToPB( data );
         window.location.href = "/";
     } catch (e) {
-        console.error(e)
+        console.error( e )
         alert( e )
+    }
+}
+
+export function redirectAuthenticatedUserToHome() {
+    const isLogged = pb.authStore.isValid;
+    if ( isLogged ) {
+        window.location.href = "/";
     }
 }
