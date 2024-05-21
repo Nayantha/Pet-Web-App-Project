@@ -1,13 +1,10 @@
 import 'App.css';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Navigate,
-} from "react-router-dom";
+import {BrowserRouter as Router, Navigate, Route, Routes,} from "react-router-dom";
 import Home from "pages/Home.tsx";
 import Login from "pages/Login.tsx";
 import Register from "pages/Register.tsx";
+import PetPage from "./pages/PetPage.tsx";
+import PetList from "./pages/PetList.tsx";
 
 function App() {
 
@@ -15,10 +12,12 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Home />}/>
-                    <Route path="/login" element={<Login />}/>
-                    <Route path="/register" element={<Register />}/>
-                    <Route path="*" element={<Navigate to="/" />}/>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route path="/pet" element={<PetPage/>}/>
+                    <Route path="/pets" element={<PetList/>}/>
+                    <Route path="*" element={<Navigate to="/"/>}/>
                 </Routes>
             </Router>
         </>
