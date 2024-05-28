@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserLoginData } from "models/UserLoginData.ts";
-import { Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Link as ChakraLink } from "@chakra-ui/react";
 import useLogin from "../hooks/useLogin.ts";
 
 function Login() {
@@ -52,7 +52,7 @@ function Login() {
                 <Button type="submit" disabled={ isLoading }>
                     { isLoading ? "Loading" : "Login" }</Button>
             </form>
-            <Link to={ '/register' }>Register</Link>
+            <ChakraLink as={ ReactRouterLink } to={ '/register' }>Register</ChakraLink>
         </>
     )
 }
