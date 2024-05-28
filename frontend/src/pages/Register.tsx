@@ -8,34 +8,34 @@ import { Button, FormControl, FormErrorMessage, FormLabel, Input, Link as Chakra
 function Register() {
     redirectAuthenticatedUserToHome();
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    const [isLoading, setLoading] = useState( false );
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [isLoading, setLoading] = useState(false);
 
     async function handleRegister(data: any) {
         data.avatar = data.avatar[0];
-        setLoading( true );
-        await registerUser( data as UserRegisterData );
-        setLoading( false );
+        setLoading(true);
+        await registerUser(data as UserRegisterData);
+        setLoading(false);
     }
 
     return (
         <>
             <h4>Register</h4>
-            {isLoading && <p>Loading....</p>}
-            <form onSubmit={handleSubmit( handleRegister )}>
-                <FormControl isInvalid={errors.name}>
+            { isLoading && <p>Loading....</p> }
+            <form onSubmit={ handleSubmit(handleRegister) }>
+                <FormControl isInvalid={ !!errors.name }>
                     <FormLabel htmlFor='name'>Name</FormLabel>
-                    <Input id="name" type="text" {...register( "name", {
+                    <Input id="name" type="text" { ...register("name", {
                         required: 'Name is required',
-                        minLength: {value: 8, message: 'Minimum length should be 8'},
-                        maxLength: {value: 20, message: 'Maximum length should be 20'},
-                    } )}/>
+                        minLength: { value: 8, message: 'Minimum length should be 8' },
+                        maxLength: { value: 20, message: 'Maximum length should be 20' },
+                    }) }/>
                     <FormErrorMessage>
-                        {errors.name && errors.name.message}
+                        { errors.name && <p>errors.name.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={ errors.username }>
+                <FormControl isInvalid={ !!errors.username }>
                     <FormLabel htmlFor='username'>Username</FormLabel>
                     <Input id="username" type="text" { ...register("username", {
                         required: 'Username is required',
@@ -43,11 +43,11 @@ function Register() {
                         maxLength: { value: 20, message: 'Maximum length should be 20' },
                     }) }/>
                     <FormErrorMessage>
-                        { errors.username && errors.username.message }
+                        { errors.username && <p>errors.username.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={ errors.email }>
+                <FormControl isInvalid={ !!errors.email }>
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     <Input id="email" type="email"  { ...register("email", {
                         required: 'Email is required',
@@ -57,11 +57,11 @@ function Register() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.email && errors.email.message }
+                        { errors.email && <p>errors.email.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={ errors.password }>
+                <FormControl isInvalid={ !!errors.password }>
                     <FormLabel htmlFor='password'>password</FormLabel>
                     <Input id="password" type="password" { ...register("password", {
                         required: 'Password is required',
@@ -71,11 +71,11 @@ function Register() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.password && errors.password.message }
+                        { errors.password && <p>errors.password.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={ errors.passwordConfirm }>
+                <FormControl isInvalid={ !!errors.passwordConfirm }>
                     <FormLabel htmlFor='passwordConfirm'>Confirm Password</FormLabel>
                     <Input id="passwordConfirm" type="password" { ...register("passwordConfirm", {
                         required: 'Password Confirm is required',
@@ -85,24 +85,24 @@ function Register() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.passwordConfirm && errors.passwordConfirm.message }
+                        { errors.passwordConfirm && <p>errors.passwordConfirm.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={ errors.avatar }>
+                <FormControl isInvalid={ !!errors.avatar }>
                     <FormLabel htmlFor='name'>Avatar</FormLabel>
                     <Input type="file" accept="image/jpg, image/jpeg, image/png, image/webp" { ...register("avatar", {
                         required: 'Avatar is required',
                     }) }/>
                     <FormErrorMessage>
-                        { errors.avatar && errors.avatar.message }
+                        { errors.avatar && <p>errors.avatar.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Loading" : "Register"}</Button>
+                <Button type="submit" disabled={ isLoading }>
+                    { isLoading ? "Loading" : "Register" }</Button>
             </form>
-            <ChakraLink as={ReactRouterLink} to={'/login'}>Login</ChakraLink>
+            <ChakraLink as={ ReactRouterLink } to={ '/login' }>Login</ChakraLink>
         </>
     )
 
