@@ -6,6 +6,7 @@ import PetComponent from "../components/PetComponent.tsx";
 
 export default function PetPage() {
     const [pet, setPet] = useState<PetInterface>({
+        adopted: false,
         baseColor: "",
         breed: "",
         gender: "",
