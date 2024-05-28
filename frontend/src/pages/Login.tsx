@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserLoginData } from "models/UserLoginData.ts";
-import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Button, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
 import useLogin from "../hooks/useLogin.ts";
 
 function Login() {
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const { login, isLoading } = useLogin();
 
@@ -20,16 +20,21 @@ function Login() {
             <div>Login</div>
             { isLoading && <p>Loading....</p> }
             <form onSubmit={ handleSubmit(handleLogin) }>
-                <FormControl>
+                <FormControl isInvalid={ errors.email }>
                     <FormLabel htmlFor='email'>Email</FormLabel>
-                    <Input id="email" type="text" { ...register("email", {
-                        required: 'email is required',
-                        minLength: { value: 8, message: 'Minimum length should be 8' },
-                        maxLength: { value: 20, message: 'Maximum length should be 20' },
+                    <Input id="email" type="email"  { ...register("email", {
+                        required: 'Email is required',
+                        pattern: {
+                            value: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
+                            message: "invalid email address"
+                        }
                     }) }/>
+                    <FormErrorMessage>
+                        { errors.email && errors.email.message }
+                    </FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={ errors.password }>
                     <FormLabel htmlFor='password'>password</FormLabel>
                     <Input id="password" type="password" { ...register("password", {
                         required: 'Password is required',
@@ -38,6 +43,9 @@ function Login() {
                             message: "invalid password"
                         }
                     }) }/>
+                    <FormErrorMessage>
+                        { errors.password && errors.password.message }
+                    </FormErrorMessage>
                 </FormControl>
 
                 <Button type="submit" disabled={ isLoading }>
