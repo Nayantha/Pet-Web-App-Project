@@ -8,7 +8,7 @@ export default function PetList() {
     const [pets, setPets] = useState<PetInterface[]>([]);
 
     async function getPets() {
-        const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(1, 10);
+        const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(1, import.meta.env.VITE_PB_PET_LIST_SIZE);
 
         const petList = resultList.items.map(function (pet) {
             // @ts-ignore
