@@ -1,5 +1,4 @@
 import pb from "lib/pocketbase.ts";
-import { logout } from "../utils/Auth.tsx";
 import { Link } from "react-router-dom";
 import { RecordModel } from "pocketbase";
 import {
@@ -13,8 +12,10 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import { useRef } from "react";
+import useLogout from "../hooks/useLogout.ts";
 
 function Profile() {
+    const logout = useLogout();
     const isLoggedIn = pb.authStore.isValid;
     const userModel: RecordModel = pb.authStore.model as RecordModel;
     const {isOpen, onOpen, onClose} = useDisclosure()
