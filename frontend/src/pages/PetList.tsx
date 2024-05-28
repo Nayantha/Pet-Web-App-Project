@@ -14,7 +14,7 @@ export default function PetList() {
             // @ts-ignore
             return pet as PetInterface;
         })
-        console.log(petList);
+
         setPets(petList);
     }
 
@@ -25,7 +25,7 @@ export default function PetList() {
     return (
         <>
             {pets.map((pet) => (
-                <PetComponent pet={pet}/>
+                <PetComponent key={ pet.id } pet={ pet }/>
             ))}
         </>
     )
