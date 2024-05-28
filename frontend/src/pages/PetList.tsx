@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination.tsx";
 import { useLocation } from "react-router-dom";
 import { ListResult, RecordModel } from "pocketbase";
 import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
+import { SimpleGrid } from "@chakra-ui/react";
 
 export default function PetList() {
     const [pets, setPets] = useState<PetInterface[]>([]);
@@ -55,9 +56,11 @@ export default function PetList() {
     return (
         <>
             <Pagination metadata={ metadata }/>
-            { pets.map((pet) => (
-                <PetComponent key={ pet.id } pet={ pet }/>
-            )) }
+            <SimpleGrid columns={ 2 } spacing={ 10 }>
+                { pets.map((pet) => (
+                    <PetComponent key={ pet.id } pet={ pet }/>
+                )) }
+            </SimpleGrid>
         </>
     )
 }
