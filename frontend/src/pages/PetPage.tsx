@@ -7,7 +7,7 @@ import { useQuery } from "react-query";
 export default function PetPage() {
     const { id } = useParams();
 
-    const { data, isLoading, isError, error } = useQuery(['post', id], () => fetchPet(id));
+    const { data, isLoading, isError, error } = useQuery('pet', () => fetchPet(id));
 
     async function fetchPet(id: string | undefined) {
 
