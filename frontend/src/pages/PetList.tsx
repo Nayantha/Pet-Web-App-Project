@@ -23,15 +23,14 @@ export default function PetList() {
             Object.values(resultList).every((value) => value === 0);
 
         if (isResultListEmpty) {
-            // Set default metadata if resultList is empty or all properties are 0
+            // Set default metadata if the resultList is empty or all properties are 0
             setMetadata({ page: 0, perPage: 0, totalItems: 0, totalPages: 0 } as ListMetadata);
         } else {
             setMetadata(resultList as ListMetadata);
         }
     }
 
-    async function getPets() {
-
+    function getCurrentPageNumberFromQueryParameters(): number {
         const queryParams = new URLSearchParams(location.search);
         let page: number;
 
@@ -42,14 +41,20 @@ export default function PetList() {
             page = 1;
         }
 
-        // Check if page is less than or equal to zero, or larger than totalPages
+        // Check if the page is less than or equal to zero, or larger than totalPages
         if (page <= 0 || page > metadata.totalPages) {
             page = 1; // Set page to one if it's invalid
         }
+        return page;
+    }
+
+    async function getPets() {
+
+        const page = getCurrentPageNumberFromQueryParameters();
 
         const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE);
 
-        // using this we can only set the metadata values once and use on all pages.
+        // using this, we can only set the metadata values once and use on all pages.
         setMetadataIfEmpty(resultList);
 
         const petList = resultList.items.map(function (pet) {
