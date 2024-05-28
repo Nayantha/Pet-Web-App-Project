@@ -7,4 +7,5 @@ export interface Pet {
     species: string;
     gender: string;
     name: string;
+    adopted: boolean;
 }
