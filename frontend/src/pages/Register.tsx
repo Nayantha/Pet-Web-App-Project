@@ -1,27 +1,26 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { redirectAuthenticatedUserToHome, registerUser } from "utils/Auth.tsx";
 import { UserRegisterData } from "models/UserRegisterData.ts";
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Link as ChakraLink } from '@chakra-ui/react'
+import useRegister from "../hooks/useRegister.ts";
 
 function Register() {
-    redirectAuthenticatedUserToHome();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const [isLoading, setLoading] = useState(false);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+    const { mutate: registerUser, isLoading, isError } = useRegister();
 
     async function handleRegister(data: any) {
         data.avatar = data.avatar[0];
-        setLoading(true);
         await registerUser(data as UserRegisterData);
-        setLoading(false);
+        reset();
     }
 
     return (
         <>
             <h4>Register</h4>
             { isLoading && <p>Loading....</p> }
+            { isError && <p>Invalid details</p> }
             <form onSubmit={ handleSubmit(handleRegister) }>
                 <FormControl isInvalid={ !!errors.name }>
                     <FormLabel htmlFor='name'>Name</FormLabel>
