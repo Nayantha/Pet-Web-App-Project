@@ -8,7 +8,7 @@ function Login() {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { login, isLoading } = useLogin();
+    const { mutate: login, isLoading, isError } = useLogin();
 
     async function handleLogin(data: any) {
         await login(data as UserLoginData);
@@ -19,6 +19,7 @@ function Login() {
         <>
             <div>Login</div>
             { isLoading && <p>Loading....</p> }
+            { isError && <p>Invalid email or password</p> }
             <form onSubmit={ handleSubmit(handleLogin) }>
                 <FormControl isInvalid={ errors.email }>
                     <FormLabel htmlFor='email'>Email</FormLabel>
