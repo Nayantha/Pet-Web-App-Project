@@ -22,13 +22,13 @@ function Login() {
             <div>Login</div>
             {isLoading && <p>Loading....</p>}
             <form onSubmit={handleSubmit( handleLogin )}>
-                <FormControl isInvalid={errors.username}>
-                    <FormLabel htmlFor='username'>Username</FormLabel>
-                    <Input id="username" type="text" {...register( "username", {
-                        required: 'Username is required',
-                        minLength: {value: 8, message: 'Minimum length should be 8'},
-                        maxLength: {value: 20, message: 'Maximum length should be 20'},
-                    } )}/>
+                <FormControl isInvalid={ errors.username }>
+                    <FormLabel htmlFor='email'>Email</FormLabel>
+                    <Input id="email" type="text" { ...register("email", {
+                        required: 'email is required',
+                        minLength: { value: 8, message: 'Minimum length should be 8' },
+                        maxLength: { value: 20, message: 'Maximum length should be 20' },
+                    }) }/>
                 </FormControl>
 
                 <FormControl isInvalid={errors.password}>
