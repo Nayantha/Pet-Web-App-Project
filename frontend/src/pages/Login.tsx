@@ -22,7 +22,7 @@ function Login() {
             <div>Login</div>
             {isLoading && <p>Loading....</p>}
             <form onSubmit={handleSubmit( handleLogin )}>
-                <FormControl isInvalid={ errors.username }>
+                <FormControl>
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     <Input id="email" type="text" { ...register("email", {
                         required: 'email is required',
@@ -31,15 +31,15 @@ function Login() {
                     }) }/>
                 </FormControl>
 
-                <FormControl isInvalid={errors.password}>
+                <FormControl>
                     <FormLabel htmlFor='password'>password</FormLabel>
-                    <Input id="password" type="password" {...register( "password", {
+                    <Input id="password" type="password" { ...register("password", {
                         required: 'Password is required',
                         pattern: {
                             value: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim,
                             message: "invalid password"
                         }
-                    } )}/>
+                    }) }/>
                 </FormControl>
 
                 <Button type="submit" disabled={isLoading}>
