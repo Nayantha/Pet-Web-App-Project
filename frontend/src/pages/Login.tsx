@@ -1,27 +1,25 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { login, redirectAuthenticatedUserToHome } from "utils/Auth.tsx";
 import { UserLoginData } from "models/UserLoginData.ts";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import useLogin from "../hooks/useLogin.ts";
 
 function Login() {
-    redirectAuthenticatedUserToHome();
 
-    const { register, handleSubmit } = useForm();
-    const [isLoading, setLoading] = useState(false);
+    const { register, handleSubmit, reset } = useForm();
+
+    const { login, isLoading } = useLogin();
 
     async function handleLogin(data: any) {
-        setLoading( true );
-        await login( data as UserLoginData );
-        setLoading( false );
+        await login(data as UserLoginData);
+        reset();
     }
 
     return (
         <>
             <div>Login</div>
-            {isLoading && <p>Loading....</p>}
-            <form onSubmit={handleSubmit( handleLogin )}>
+            { isLoading && <p>Loading....</p> }
+            <form onSubmit={ handleSubmit(handleLogin) }>
                 <FormControl>
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     <Input id="email" type="text" { ...register("email", {
@@ -42,10 +40,10 @@ function Login() {
                     }) }/>
                 </FormControl>
 
-                <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Loading" : "Login"}</Button>
+                <Button type="submit" disabled={ isLoading }>
+                    { isLoading ? "Loading" : "Login" }</Button>
             </form>
-            <Link to={'/register'}>Register</Link>
+            <Link to={ '/register' }>Register</Link>
         </>
     )
 }
