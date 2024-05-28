@@ -6,6 +6,7 @@ import PetComponent from "../components/PetComponent.tsx";
 import Pagination from "../components/Pagination.tsx";
 import { useLocation } from "react-router-dom";
 import { ListResult, RecordModel } from "pocketbase";
+import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
 
 export default function PetList() {
     const [pets, setPets] = useState<PetInterface[]>([]);
@@ -30,27 +31,9 @@ export default function PetList() {
         }
     }
 
-    function getCurrentPageNumberFromQueryParameters(): number {
-        const queryParams = new URLSearchParams(location.search);
-        let page: number;
-
-        const pageParam = queryParams.get('p');
-        if (pageParam !== null && pageParam !== undefined) {
-            page = +pageParam || 1;
-        } else {
-            page = 1;
-        }
-
-        // Check if the page is less than or equal to zero, or larger than totalPages
-        if (page <= 0 || page > metadata.totalPages) {
-            page = 1; // Set page to one if it's invalid
-        }
-        return page;
-    }
-
     async function getPets() {
 
-        const page = getCurrentPageNumberFromQueryParameters();
+        const page = getCurrentPageNumberFromQueryParameters(metadata);
 
         const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE);
 
