@@ -21,7 +21,7 @@ function Login() {
             { isLoading && <p>Loading....</p> }
             { isError && <p>Invalid email or password</p> }
             <form onSubmit={ handleSubmit(handleLogin) }>
-                <FormControl isInvalid={ errors.email }>
+                <FormControl isInvalid={ !!errors.email }>
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     <Input id="email" type="email"  { ...register("email", {
                         required: 'Email is required',
@@ -31,11 +31,11 @@ function Login() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.email && errors.email.message }
+                        { errors.email && <p>errors.email.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormControl isInvalid={ errors.password }>
+                <FormControl isInvalid={ !!errors.password }>
                     <FormLabel htmlFor='password'>password</FormLabel>
                     <Input id="password" type="password" { ...register("password", {
                         required: 'Password is required',
@@ -45,7 +45,7 @@ function Login() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.password && errors.password.message }
+                        { errors.password && <p>errors.password.message</p> }
                     </FormErrorMessage>
                 </FormControl>
 
