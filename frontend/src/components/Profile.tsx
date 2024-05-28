@@ -18,8 +18,8 @@ function Profile() {
     const logout = useLogout();
     const isLoggedIn = pb.authStore.isValid;
     const userModel: RecordModel = pb.authStore.model as RecordModel;
-    const {isOpen, onOpen, onClose} = useDisclosure()
-    const btnRef = useRef()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const btnRef = useRef<HTMLButtonElement | null>(null);
     if ( isLoggedIn )
         return (
             <>
