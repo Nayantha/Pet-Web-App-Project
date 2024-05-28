@@ -8,8 +8,8 @@ import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 function Login() {
     redirectAuthenticatedUserToHome();
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    const [isLoading, setLoading] = useState( false );
+    const { register, handleSubmit } = useForm();
+    const [isLoading, setLoading] = useState(false);
 
     async function handleLogin(data: any) {
         setLoading( true );
