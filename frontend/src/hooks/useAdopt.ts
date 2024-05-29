@@ -7,12 +7,16 @@ export default function useAdopt() {
             fields: 'adopted',
         });
 
+        if (adoptedState.adopted) {
+            throw new Error('Pet is already adopted by another user.');
+        }
+
         const resultList = await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).getFullList({
             filter: 'pet = "' + adoptData.petId + '"',
         });
 
         if (resultList.length > 0) {
-            throw new Error('Pet is already adopted by another user');
+            throw new Error('Pet is already adopted by another user.');
         }
 
         if (!adoptedState.adopted && resultList.length === 0) {
