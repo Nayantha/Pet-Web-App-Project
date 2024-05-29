@@ -30,7 +30,8 @@ function Register() {
                         maxLength: { value: 20, message: 'Maximum length should be 20' },
                     }) }/>
                     <FormErrorMessage>
-                        { errors.name && <p>errors.name.message</p> }
+                        { errors.name && // @ts-ignore
+                            <p>{ errors.name.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 
@@ -42,7 +43,8 @@ function Register() {
                         maxLength: { value: 20, message: 'Maximum length should be 20' },
                     }) }/>
                     <FormErrorMessage>
-                        { errors.username && <p>errors.username.message</p> }
+                        { errors.username && // @ts-ignore
+                            <p>{ errors.username.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 
@@ -56,7 +58,8 @@ function Register() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.email && <p>errors.email.message</p> }
+                        { errors.email && // @ts-ignore
+                            <p>{ errors.email.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 
@@ -70,7 +73,8 @@ function Register() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.password && <p>errors.password.message</p> }
+                        { errors.password && // @ts-ignore
+                            <p>{ errors.password.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 
@@ -84,7 +88,8 @@ function Register() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.passwordConfirm && <p>errors.passwordConfirm.message</p> }
+                        { errors.passwordConfirm && // @ts-ignore
+                            <p>{ errors.passwordConfirm.messag }e</p> }
                     </FormErrorMessage>
                 </FormControl>
 
@@ -94,7 +99,8 @@ function Register() {
                         required: 'Avatar is required',
                     }) }/>
                     <FormErrorMessage>
-                        { errors.avatar && <p>errors.avatar.message</p> }
+                        { errors.avatar && // @ts-ignore
+                            <p>{ errors.avatar.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 

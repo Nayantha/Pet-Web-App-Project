@@ -31,7 +31,8 @@ function Login() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.email && <p>errors.email.message</p> }
+                        { errors.email && // @ts-ignore
+                            <p>{ errors.email.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 
@@ -45,7 +46,8 @@ function Login() {
                         }
                     }) }/>
                     <FormErrorMessage>
-                        { errors.password && <p>errors.password.message</p> }
+                        { errors.password && // @ts-ignore
+                            <p>{ errors.password.message }</p> }
                     </FormErrorMessage>
                 </FormControl>
 
