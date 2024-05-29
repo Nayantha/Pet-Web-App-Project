@@ -5,7 +5,9 @@ import { useQuery } from 'react-query';
 import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
 
 async function getPets(page: number) {
-    const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE);
+    const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE, {
+        filter: 'adopted = False'
+    });
 
     const listMetadata = resultList as ListMetadata;
 
