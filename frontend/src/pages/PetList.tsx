@@ -1,11 +1,11 @@
-import PetComponent from "../components/PetComponent.tsx";
 import Pagination from "../components/Pagination.tsx";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SimpleGrid } from "@chakra-ui/react";
 import usePets from "../hooks/usePets.ts";
+import PetListItem from "../components/PetListItem.tsx";
 
 export default function PetList() {
-    // injected into the request query parameter finding function
+    // auto injected into the request query parameter finding function
     // @ts-ignore
     const location = useLocation();
     const { data, isError, isLoading } = usePets();
@@ -20,7 +20,9 @@ export default function PetList() {
             <Pagination metadata={ data?.listMetadata ?? { totalItems: 0, totalPages: 0, perPage: 0, page: 0 } }/>
             <SimpleGrid columns={ 2 } spacing={ 10 }>
                 { data?.petList.map((pet) => (
-                    <PetComponent key={ pet.id } pet={ pet }/>
+                    <Link to={ `/pets/${ pet.id }` }>
+                        <PetListItem key={ pet.id } pet={ pet }/>
+                    </Link>
                 )) }
             </SimpleGrid>
         </>
