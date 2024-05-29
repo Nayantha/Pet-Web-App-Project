@@ -3,6 +3,7 @@ import { Pet as PetInterface } from "../models/Pet.ts";
 import PetComponent from "../components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import { Spinner } from "@chakra-ui/react";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -21,7 +22,7 @@ export default function PetPage() {
 
     }
 
-    if (isLoading) return <div>Loading post...</div>;
+    if (isLoading) return <Spinner/>;
     if (isError) { // @ts-ignore
         return <div>Error: { error.message }</div>;
     }
