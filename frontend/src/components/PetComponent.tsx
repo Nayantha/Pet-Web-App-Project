@@ -13,6 +13,7 @@ import {
     CloseButton,
     Flex,
     Spacer,
+    Spinner,
     Text,
     useDisclosure
 } from '@chakra-ui/react';
@@ -28,7 +29,7 @@ export default function PetComponent({ pet }: { pet: PetInterface }) {
         adopt({ petId: pet.id, userId: pb.authStore.model?.id } as AdoptionData);
     }
 
-    if (isLoading) return <div>Loading post...</div>;
+    if (isLoading) return <Spinner/>;
 
     return (
         <>
