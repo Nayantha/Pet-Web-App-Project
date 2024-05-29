@@ -1,11 +1,28 @@
 import { Pet as PetInterface } from "../models/Pet.ts";
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Spacer, Text } from '@chakra-ui/react';
+import {
+    Alert,
+    AlertDescription,
+    AlertIcon,
+    AlertTitle,
+    Box,
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    CloseButton,
+    Flex,
+    Spacer,
+    Text,
+    useDisclosure
+} from '@chakra-ui/react';
 import useAdopt from "../hooks/useAdopt.ts";
 import pb from "../lib/pocketbase.ts";
 
 export default function PetComponent({ pet }: { pet: PetInterface }) {
 
     const { mutate: adopt, isLoading, isError, error } = useAdopt();
+    const { onClose } = useDisclosure({ defaultIsOpen: false });
 
     function triggerAdopt() {
         adopt({ petId: pet.id, userId: pb.authStore.model?.id } as AdoptionData);
@@ -15,8 +32,23 @@ export default function PetComponent({ pet }: { pet: PetInterface }) {
 
     return (
         <>
-            { isError && // @ts-ignore
-                <div>Error: { error.message }</div>
+            { isError &&
+                <Alert status='error'>
+                    <AlertIcon/>
+                    <Box>
+                        <AlertTitle>Error in adoption process!</AlertTitle>
+                        <AlertDescription>{ // @ts-ignore
+                            error.message }
+                        </AlertDescription>
+                    </Box>
+                    <CloseButton
+                        alignSelf='flex-start'
+                        position='relative'
+                        right={ -1 }
+                        top={ -1 }
+                        onClick={ onClose }
+                    />
+                </Alert>
             }
             <Card direction={ { base: 'column', sm: 'row' } }>
                 <CardHeader>
