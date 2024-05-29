@@ -9,7 +9,7 @@ export default function PetListItem({ pet }: { pet: PetInterface }) {
                     { pet.name }
                 </CardHeader>
                 <CardBody>
-                    <Flex justify="center" align="stretch">
+                    <Flex justify="center" align="stretch" direction="row">
                         <Box w="250px">
 
                             <Text>{ pet.breed }</Text>
