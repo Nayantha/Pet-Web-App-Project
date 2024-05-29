@@ -1,54 +1,25 @@
-import pb from "lib/pocketbase.ts";
-
-import { useEffect, useState } from "react";
-import { Pet as PetInterface } from "../models/Pet.ts";
 import PetComponent from "../components/PetComponent.tsx";
 import Pagination from "../components/Pagination.tsx";
 import { useLocation } from "react-router-dom";
-import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
 import { SimpleGrid } from "@chakra-ui/react";
+import usePets from "../hooks/usePets.ts";
 
 export default function PetList() {
-    const [pets, setPets] = useState<PetInterface[]>([]);
-    const [metadata, setMetadata] = useState<ListMetadata>({
-        page: 0,
-        perPage: 0,
-        totalItems: 0,
-        totalPages: 0
-    });
+    // injected into the request query parameter finding function
+    // @ts-ignore
     const location = useLocation();
+    const { data, isError, isLoading } = usePets();
 
-    async function getPets() {
-
-        const page = getCurrentPageNumberFromQueryParameters(metadata);
-
-        const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE);
-
-        const listMetadata = resultList as ListMetadata;
-
-        const petList = resultList.items.map(function (pet) {
-            // @ts-ignore
-            return pet as PetInterface;
-        })
-
-        return { petList, listMetadata }
+    if (isLoading) return <div>Loading post...</div>;
+    if (isError) { // @ts-ignore
+        return <div>Error: { error.message }</div>;
     }
-
-    useEffect(() => {
-
-        (async () => {
-            const { petList, listMetadata } = await getPets();
-            setPets(petList);
-            setMetadata(listMetadata);
-        })();
-
-    }, [location.search])
 
     return (
         <>
-            <Pagination metadata={ metadata }/>
+            <Pagination metadata={ data?.listMetadata ?? { totalItems: 0, totalPages: 0, perPage: 0, page: 0 } }/>
             <SimpleGrid columns={ 2 } spacing={ 10 }>
-                { pets.map((pet) => (
+                { data?.petList.map((pet) => (
                     <PetComponent key={ pet.id } pet={ pet }/>
                 )) }
             </SimpleGrid>
