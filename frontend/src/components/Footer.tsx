@@ -6,21 +6,21 @@ const Footer = () => {
             <div className="links">
                 <strong><a href="/">Pet Shop</a> </strong>
                 <div className="social-links">
-                    <strong>Contact</strong>
+                    <div className="title">Contact</div>
                     <a className="social-link" href="#" target="_blank">Instagram</a>
                     <a className="social-link" href="#" target="_blank">Facebook</a>
                     <a className="social-link" href="#" target="_blank">Pinterest</a>
                     <a className="social-link" href="#" target="_blank">YouTube</a>
                 </div>
                 <div className="resource-links">
-                    <strong>Resources</strong>
+                    <div className="title">Resources</div>
                     <a className="resource-link" href="#" target="_blank">Return Policy</a>
                     <a className="resource-link" href="#" target="_blank">Track Your Order</a>
                     <a className="resource-link" href="#" target="_blank">FAQs</a>
                     <a className="resource-link" href="#" target="_blank">Privacy Policy</a>
                 </div>
                 <div className="about-links">
-                    <strong>Contact</strong>
+                    <div className="title">Contact</div>
                     <a className="about-link" href="#" target="_blank">Our Mission</a>
                     <a className="about-link" href="#" target="_blank">Join Our Community</a>
                     <a className="about-link" href="#" target="_blank">Press Release</a>
