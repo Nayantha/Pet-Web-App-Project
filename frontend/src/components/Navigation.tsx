@@ -2,7 +2,7 @@ import Profile from "components/Profile.tsx";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 
-function Home() {
+function Navigation() {
 
     return (
         <>
@@ -15,4 +15,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default Navigation;
