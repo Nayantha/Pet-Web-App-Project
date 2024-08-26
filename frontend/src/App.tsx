@@ -1,4 +1,3 @@
-import 'App.css';
 import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Spinner } from "@chakra-ui/react";
