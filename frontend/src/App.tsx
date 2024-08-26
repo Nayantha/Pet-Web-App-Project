@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-
 import { lazy, Suspense } from "react";
 import { Spinner } from "@chakra-ui/react";
 import Navigation from "./components/Navigation.tsx";
+import Footer from "./components/Footer.tsx";
 
 const Home = lazy(() => import("pages/Home.tsx"));
 const Login = lazy(() => import("pages/Login.tsx"));
@@ -25,6 +26,7 @@ function App() {
                         <Route path="*" element={ <Navigate to="/"/> }/>
                     </Routes>
                 </Suspense>
+                <Footer/>
             </Router>
         </>
     )
