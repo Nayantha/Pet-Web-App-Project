@@ -6,11 +6,13 @@ function Navigation() {
 
     return (
         <>
-            <strong className="logo">Pet Shop</strong>
-            <div className="nav-links">
-                <ChakraLink className="nav-link" as={ ReactRouterLink } to={ '/pets' }>Pets</ChakraLink>
-            </div>
-            <Profile/>
+            <nav>
+                <strong className="logo">Pet Shop</strong>
+                <div className="nav-links">
+                    <ChakraLink className="nav-link" as={ ReactRouterLink } to={ '/pets' }>Pets</ChakraLink>
+                </div>
+                <Profile/>
+            </nav>
         </>
     )
 }
