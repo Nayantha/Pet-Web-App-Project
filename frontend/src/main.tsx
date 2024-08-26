@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import "./index.css";
 import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
