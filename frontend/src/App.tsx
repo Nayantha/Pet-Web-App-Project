@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Spinner } from "@chakra-ui/react";
+import Navigation from "./components/Navigation.tsx";
 
 const Home = lazy(() => import("pages/Home.tsx"));
 const Login = lazy(() => import("pages/Login.tsx"));
@@ -13,6 +14,7 @@ function App() {
     return (
         <>
             <Router>
+                <Navigation/>
                 <Suspense fallback={ <Spinner/> }>
                     <Routes>
                         <Route path="/" element={ <Home/> }/>
