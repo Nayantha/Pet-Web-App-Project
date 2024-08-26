@@ -1,15 +1,12 @@
-import Profile from "components/Profile.tsx";
-import { Link as ReactRouterLink } from "react-router-dom";
-import { Link as ChakraLink } from "@chakra-ui/react";
+import Navigation from "../components/Navigation.tsx";
+import Hero from "../components/Hero.tsx";
 
 function Home() {
 
     return (
         <>
-            <div>Home</div>
-            <Profile/>
-            <br/>
-            <ChakraLink as={ ReactRouterLink } to={ '/pets' }>Pets</ChakraLink>
+            <Navigation/>
+            <Hero/>
         </>
     )
 }
