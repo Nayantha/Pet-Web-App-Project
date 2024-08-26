@@ -4,3 +4,38 @@ footer {
 
     padding: 10px;
 }
+
+.links {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding: 20px 0;
+}
+
+.links .title {
+    color: darkgray;
+}
+
+.links a {
+    display: block;
+
+    margin-left: 25px;
+}
+
+.links div a:hover {
+    color: darkgray;
+}
+
+.copyright-text {
+    text-align: center;
+}
+
+.copyright-text a {
+    padding-left: 10px;
+}
+
+.copyright-text a:hover {
+    text-decoration: underline;
+}
