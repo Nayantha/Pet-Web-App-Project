@@ -6,9 +6,9 @@ import useLogin from "../hooks/useLogin.ts";
 
 function Login() {
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const {register, handleSubmit, reset, formState: {errors}} = useForm();
 
-    const { mutate: login, isLoading, isError } = useLogin();
+    const {mutate: login, isLoading, isError} = useLogin();
 
     async function handleLogin(data: any) {
         await login(data as UserLoginData);
@@ -16,7 +16,7 @@ function Login() {
     }
 
     return (
-        <>
+        <div id="login">
             <div>Login</div>
             { isLoading && <p>Loading....</p> }
             { isError && <p>Invalid email or password</p> }
@@ -55,7 +55,7 @@ function Login() {
                     { isLoading ? "Loading" : "Login" }</Button>
             </form>
             <ChakraLink as={ ReactRouterLink } to={ '/register' }>Register</ChakraLink>
-        </>
+        </div>
     )
 }
 
