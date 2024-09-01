@@ -1,3 +1,5 @@
-#root {
-    margin: 0 35px;
+#layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
 }
