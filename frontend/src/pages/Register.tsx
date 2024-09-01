@@ -1,3 +1,4 @@
+import "../assets/Login.css";
 import { useForm } from "react-hook-form";
 import { UserRegisterData } from "models/UserRegisterData.ts";
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -17,17 +18,17 @@ function Register() {
     }
 
     return (
-        <>
-            <h4>Register</h4>
+        <div id="auth-form-container">
             { isLoading && <p>Loading....</p> }
             { isError && <p>Invalid details</p> }
             <form onSubmit={ handleSubmit(handleRegister) }>
+                <h1>Register</h1>
                 <FormControl isInvalid={ !!errors.name }>
                     <FormLabel htmlFor='name'>Name</FormLabel>
                     <Input id="name" type="text" { ...register("name", {
                         required: 'Name is required',
-                        minLength: { value: 8, message: 'Minimum length should be 8' },
-                        maxLength: { value: 20, message: 'Maximum length should be 20' },
+                        minLength: {value: 8, message: 'Minimum length should be 8'},
+                        maxLength: {value: 20, message: 'Maximum length should be 20'},
                     }) }/>
                     <FormErrorMessage>
                         { errors.name && // @ts-ignore
@@ -104,11 +105,13 @@ function Register() {
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button type="submit" disabled={ isLoading }>
-                    { isLoading ? "Loading" : "Register" }</Button>
+                <div>
+                    <Button type="submit" disabled={ isLoading }>
+                        { isLoading ? "Loading" : "Register" }</Button>
+                    <ChakraLink as={ ReactRouterLink } to={ '/login' }>Login</ChakraLink>
+                </div>
             </form>
-            <ChakraLink as={ ReactRouterLink } to={ '/login' }>Login</ChakraLink>
-        </>
+        </div>
     )
 
 }
