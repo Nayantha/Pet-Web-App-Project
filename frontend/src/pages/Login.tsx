@@ -1,3 +1,4 @@
+import "../assets/Login.css";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserLoginData } from "models/UserLoginData.ts";
@@ -17,10 +18,10 @@ function Login() {
 
     return (
         <div id="login">
-            <div>Login</div>
             { isLoading && <p>Loading....</p> }
             { isError && <p>Invalid email or password</p> }
             <form onSubmit={ handleSubmit(handleLogin) }>
+                <h1>Login</h1>
                 <FormControl isInvalid={ !!errors.email }>
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     <Input id="email" type="email"  { ...register("email", {
@@ -37,7 +38,7 @@ function Login() {
                 </FormControl>
 
                 <FormControl isInvalid={ !!errors.password }>
-                    <FormLabel htmlFor='password'>password</FormLabel>
+                    <FormLabel htmlFor='password'>Password</FormLabel>
                     <Input id="password" type="password" { ...register("password", {
                         required: 'Password is required',
                         pattern: {
@@ -51,10 +52,12 @@ function Login() {
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button type="submit" disabled={ isLoading }>
-                    { isLoading ? "Loading" : "Login" }</Button>
+                <div>
+                    <Button type="submit" disabled={ isLoading }>
+                        { isLoading ? "Loading" : "Login" }</Button>
+                    <ChakraLink as={ ReactRouterLink } to={ '/register' }>Register</ChakraLink>
+                </div>
             </form>
-            <ChakraLink as={ ReactRouterLink } to={ '/register' }>Register</ChakraLink>
         </div>
     )
 }
