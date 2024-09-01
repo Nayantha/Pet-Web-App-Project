@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navigation from "./Navigation.tsx";
 import Footer from "./Footer.tsx";
+import "../assets/Layout.css";
 
 function Layout() {
     return (
