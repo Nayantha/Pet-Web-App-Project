@@ -66,21 +66,7 @@ function Profile() {
         )
 
     return (
-        <>
-            <Button ref={ btnRef } colorScheme='teal' onClick={ onOpen }>
-                Open
-            </Button>
-            <DrawerComponent>
-                <DrawerHeader>
-                    Login or Register
-                </DrawerHeader>
-                <DrawerBody>
-                    <Link to="/login">Login</Link>
-                    <br/>
-                    <Link to="/register">Register</Link>
-                </DrawerBody>
-            </DrawerComponent>
-        </>
+        <Button as={ Link } to="/login" colorScheme='teal'>Login</Button>
     )
 }
 
