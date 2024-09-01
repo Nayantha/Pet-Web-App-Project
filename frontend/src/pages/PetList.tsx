@@ -17,7 +17,6 @@ export default function PetList() {
 
     return (
         <>
-            <Pagination metadata={ data?.listMetadata ?? { totalItems: 0, totalPages: 0, perPage: 0, page: 0 } }/>
             <SimpleGrid columns={ 2 } spacing={ 10 }>
                 { data?.petList.map((pet) => (
                     <Link to={ `/pets/${ pet.id }` }>
@@ -25,6 +24,8 @@ export default function PetList() {
                     </Link>
                 )) }
             </SimpleGrid>
+
+            <Pagination metadata={ data?.listMetadata ?? {totalItems: 0, totalPages: 0, perPage: 0, page: 0} }/>
         </>
     )
 }
