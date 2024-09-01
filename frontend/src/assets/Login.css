@@ -1,4 +1,4 @@
-#login {
+#auth-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,16 +12,16 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#login h1 {
+#auth-form-container h1 {
     font-weight: bold;
     font-size: 1.5rem;
 }
 
-#login h2 {
+#auth-form-container h2 {
     margin-bottom: 20px;
 }
 
-#login form {
+#auth-form-container form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,27 +29,27 @@
     width: 100%;
 }
 
-#login form div {
+#auth-form-container form div {
     margin-bottom: 20px;
     width: 100%;
 }
 
-#login form div:last-child {
+#auth-form-container form div:last-child {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-#login form button {
+#auth-form-container form button {
     margin-right: 10px;
 }
 
-#login form a {
+#auth-form-container form a {
     text-decoration: none;
     color: #337ab7;
 }
 
-#login form a:hover {
+#auth-form-container form a:hover {
     color: #23527c;
 }

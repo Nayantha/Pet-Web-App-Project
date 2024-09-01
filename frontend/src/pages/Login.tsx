@@ -17,7 +17,7 @@ function Login() {
     }
 
     return (
-        <div id="login">
+        <div id="auth-form-container">
             { isLoading && <p>Loading....</p> }
             { isError && <p>Invalid email or password</p> }
             <form onSubmit={ handleSubmit(handleLogin) }>
