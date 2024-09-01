@@ -23,7 +23,7 @@ function Profile() {
 
     const DrawerButton = () => (
         <Button ref={ btnRef } colorScheme='teal' onClick={ onOpen }>
-            Open
+            Profile
         </Button>
     );
 
