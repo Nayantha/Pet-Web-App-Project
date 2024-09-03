@@ -1,7 +1,7 @@
 import "../assets/Login.css";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { UserLoginData } from "models/UserLoginData.ts";
+import { LoginAuthData } from "models/LoginAuthData.ts";
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Link as ChakraLink } from "@chakra-ui/react";
 import useLogin from "../hooks/useLogin.ts";
 
@@ -12,7 +12,7 @@ function Login() {
     const {mutate: login, isLoading, isError} = useLogin();
 
     async function handleLogin(data: any) {
-        await login(data as UserLoginData);
+        await login(data as LoginAuthData);
         reset();
     }
 

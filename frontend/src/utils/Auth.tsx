@@ -1,19 +1,19 @@
 import pb from "lib/pocketbase"
-import { UserLoginData } from "models/UserLoginData.ts";
+import { LoginAuthData } from "models/LoginAuthData.ts";
 import { UserRegisterData } from "models/UserRegisterData.ts";
 
-export async function login(data: UserLoginData) {
-    await loginToPB( data );
+export async function login(data: LoginAuthData) {
+    await loginToPB(data);
 }
 
-async function loginToPB(data: UserLoginData) {
+async function loginToPB(data: LoginAuthData) {
     try {
         await
-            pb.collection( import.meta.env.VITE_PB_USER_TABLE )
-                .authWithPassword( data.email, data.password );
+            pb.collection(import.meta.env.VITE_PB_USER_TABLE)
+                .authWithPassword(data.email, data.password);
         window.location.href = "/";
     } catch (e) {
-        alert( e )
+        alert(e)
     }
 }
 
