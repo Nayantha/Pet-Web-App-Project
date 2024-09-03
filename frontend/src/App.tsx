@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-
 import { lazy, Suspense } from "react";
 import { Spinner } from "@chakra-ui/react";
 
+const AdminLogin = lazy(() => import("pages/AdminLogin.tsx"));
 const Layout = lazy(() => import("./components/Layout.tsx"));
 const Home = lazy(() => import("pages/Home.tsx"));
 const Login = lazy(() => import("pages/Login.tsx"));
@@ -19,6 +20,7 @@ function App() {
                         <Route path="/" element={ <Layout/> }>
                             <Route index element={ <Home/> }/>
                             <Route path="/login" element={ <Login/> }/>
+                            <Route path="/admin-login" element={ <AdminLogin/> }/>
                             <Route path="/register" element={ <Register/> }/>
                             <Route path="/pets/:id" element={ <PetPage/> }/>
                             <Route path="/pets" element={ <PetList/> }/>
