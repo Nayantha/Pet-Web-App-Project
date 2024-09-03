@@ -20,8 +20,8 @@ function App() {
                         <Route path="/" element={ <Layout/> }>
                             <Route index element={ <Home/> }/>
                             <Route path="/login" element={ <Login/> }/>
-                            <Route path="/admin-login" element={ <AdminLogin/> }/>
                             <Route path="/register" element={ <Register/> }/>
+                            <Route path="/admin-login" element={ <AdminLogin/> }/>
                             <Route path="/pets/:id" element={ <PetPage/> }/>
                             <Route path="/pets" element={ <PetList/> }/>
                             <Route path="*" element={ <Navigate to="/"/> }/>
