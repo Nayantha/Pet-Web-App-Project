@@ -9,6 +9,7 @@ const Login = lazy(() => import("pages/Login.tsx"));
 const Register = lazy(() => import("pages/Register.tsx"));
 const PetPage = lazy(() => import("./pages/PetPage.tsx"));
 const PetList = lazy(() => import("./pages/PetList.tsx"));
+const RequireAuth = lazy(() => import("components/RequireAuth.tsx"));
 
 function App() {
 
@@ -22,8 +23,10 @@ function App() {
                             <Route path="/login" element={ <Login/> }/>
                             <Route path="/register" element={ <Register/> }/>
                             <Route path="/admin-login" element={ <AdminLogin/> }/>
-                            <Route path="/pets/:id" element={ <PetPage/> }/>
-                            <Route path="/pets" element={ <PetList/> }/>
+                            <Route element={ <RequireAuth/> }>
+                                <Route path="/pets/:id" element={ <PetPage/> }/>
+                                <Route path="/pets" element={ <PetList/> }/>
+                            </Route>
                             <Route path="*" element={ <Navigate to="/"/> }/>
                         </Route>
                     </Routes>
