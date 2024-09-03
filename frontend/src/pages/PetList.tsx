@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { SimpleGrid } from "@chakra-ui/react";
 import usePets from "../hooks/usePets.ts";
 import PetListItem from "../components/PetListItem.tsx";
+import "assets/PetList.css";
 
 export default function PetList() {
     // auto injected into the request query parameter finding function
@@ -16,7 +17,7 @@ export default function PetList() {
     }
 
     return (
-        <>
+        <div className="pet-list">
             <SimpleGrid columns={ 2 } spacing={ 10 }>
                 { data?.petList.map((pet) => (
                     <Link to={ `/pets/${ pet.id }` }>
@@ -26,6 +27,6 @@ export default function PetList() {
             </SimpleGrid>
 
             <Pagination metadata={ data?.listMetadata ?? {totalItems: 0, totalPages: 0, perPage: 0, page: 0} }/>
-        </>
+        </div>
     )
 }
