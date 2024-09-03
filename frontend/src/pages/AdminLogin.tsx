@@ -10,7 +10,7 @@ export default function AdminLogin() {
         register,
         handleSubmit,
         reset,
-        formState: {errors}
+        formState: {errors, isSubmitSuccessful}
     } = useForm();
     const {mutate: adminLogin, isLoading, isError} = useAdminLogin();
 
@@ -43,13 +43,14 @@ export default function AdminLogin() {
 
                 <FormControl isInvalid={ !!errors.password }>
                     <FormLabel htmlFor='password'>Password</FormLabel>
-                    <Input id="password" type="password" { ...register("password", {
-                        required: 'Password is required',
-                        pattern: {
-                            value: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim,
-                            message: "invalid password"
-                        }
-                    }) }/>
+                    <Input id="password" type="password"
+                           { ...register("password", {
+                               required: 'Password is required',
+                               pattern: {
+                                   value: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,16})\S$/gim,
+                                   message: "invalid password"
+                               }
+                           }) }/>
                     <FormErrorMessage>
                         { errors.password && // @ts-ignore
                             <p>{ errors.password.message }</p> }
@@ -57,7 +58,7 @@ export default function AdminLogin() {
                 </FormControl>
 
                 <div>
-                    <Button type="submit" disabled={ isLoading }>
+                    <Button type="submit" disabled={ isLoading || isSubmitSuccessful }>
                         { isLoading ? "Loading" : "Login" }</Button>
                 </div>
             </form>
