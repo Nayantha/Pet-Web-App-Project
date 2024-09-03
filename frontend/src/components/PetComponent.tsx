@@ -51,7 +51,7 @@ export default function PetComponent({ pet }: { pet: PetInterface }) {
                     />
                 </Alert>
             }
-            <Card direction={ { base: 'column', sm: 'row' } }>
+            <Card direction="column" alignItems="center">
                 <CardHeader>
                     { pet.name }
                 </CardHeader>
@@ -83,11 +83,12 @@ export default function PetComponent({ pet }: { pet: PetInterface }) {
                                 <Spacer/>
                                 <Text>{ pet.baseColor }</Text>
                             </Flex>
-                            { !pet.adopted && <Button onClick={ triggerAdopt }>Adopt</Button> }
                         </Box>
                     </Flex>
                 </CardBody>
-                <CardFooter></CardFooter>
+                <CardFooter>
+                    { !pet.adopted && <Button onClick={ triggerAdopt }>Adopt</Button> }
+                </CardFooter>
             </Card>
 
         </>
