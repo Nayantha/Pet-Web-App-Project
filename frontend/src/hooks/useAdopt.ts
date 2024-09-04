@@ -26,6 +26,9 @@ export default function useAdopt() {
                 user: adoptData.userId
             }
             await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).create(data);
+            await pb.collection(import.meta.env.VITE_PB_PET_TABLE).update(adoptData.petId, {
+                adopted: true,
+            });
         }
 
     }
