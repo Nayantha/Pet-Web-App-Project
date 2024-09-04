@@ -27,6 +27,7 @@ export default function PetComponent({ pet }: { pet: PetInterface }) {
 
     async function triggerAdopt() {
         await adopt({petId: pet.id, userId: pb.authStore.model?.id} as AdoptionData);
+        pet.adopted = true;
     }
 
     if (isLoading) return <Spinner/>;
