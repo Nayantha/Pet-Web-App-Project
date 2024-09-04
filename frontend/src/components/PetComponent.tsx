@@ -87,7 +87,11 @@ export default function PetComponent({ pet }: { pet: PetInterface }) {
                     </Flex>
                 </CardBody>
                 <CardFooter>
-                    { !pet.adopted && <Button onClick={ triggerAdopt }>Adopt</Button> }
+                    { pet.adopted ? (
+                        <div>Adopted</div>
+                    ) : (
+                        <Button onClick={ triggerAdopt }>Adopt</Button>
+                    ) }
                 </CardFooter>
             </Card>
 
