@@ -22,11 +22,11 @@ import pb from "../lib/pocketbase.ts";
 
 export default function PetComponent({ pet }: { pet: PetInterface }) {
 
-    const { mutate: adopt, isLoading, isError, error } = useAdopt();
-    const { onClose } = useDisclosure({ defaultIsOpen: false });
+    const {mutate: adopt, isLoading, isError, error} = useAdopt();
+    const {onClose} = useDisclosure({defaultIsOpen: false});
 
-    function triggerAdopt() {
-        adopt({ petId: pet.id, userId: pb.authStore.model?.id } as AdoptionData);
+    async function triggerAdopt() {
+        await adopt({petId: pet.id, userId: pb.authStore.model?.id} as AdoptionData);
     }
 
     if (isLoading) return <Spinner/>;
