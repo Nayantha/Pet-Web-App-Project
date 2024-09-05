@@ -1,5 +1,5 @@
 import pb from "lib/pocketbase.ts";
-import { Pet as PetInterface } from "../models/Pet.ts";
+import Pet from "../models/Pet.ts";
 import PetComponent from "../components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -41,14 +41,14 @@ export default function PetPage() {
         return {} as AdoptedData;
     }
 
-    async function fetchPet(petId: string): Promise<PetInterface> {
+    async function fetchPet(petId: string): Promise<Pet> {
 
         try {
             return await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(petId as string);
         } catch (e: any) {
             console.log(e.message);
         }
-        return {} as PetInterface;
+        return {} as Pet;
     }
 
     if (isLoading) return <Spinner/>;
@@ -58,7 +58,7 @@ export default function PetPage() {
 
     return (
         <>
-            <PetComponent pet={ adoptionData?.pet ?? {} as PetInterface }/>
+            <PetComponent pet={ adoptionData?.pet ?? {} as Pet }/>
         </>
     )
 }
