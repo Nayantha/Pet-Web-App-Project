@@ -14,7 +14,16 @@ export default function PetPage() {
 
     const petId = String(id);
 
-    const { data, isLoading, isError, error } = useQuery<PetInterface>(`pet-${ petId }`, () => fetchPet(petId));
+    const {
+        data,
+        isLoading,
+        isError,
+        error
+    } = useQuery(`pet-${ petId }`, () => fetchData(petId, pb.authStore.model?.id));
+
+    async function fetchData(petId: string, userId: string) {
+        return await fetchPet(petId);
+    }
 
     async function fetchPet(petId: string): Promise<PetInterface> {
 
