@@ -19,8 +19,11 @@ import {
 } from '@chakra-ui/react';
 import useAdopt from "../hooks/useAdopt.ts";
 import pb from "../lib/pocketbase.ts";
+import AdoptedData from "../models/AdoptedData.ts";
 
-export default function PetComponent({ pet }: { pet: Pet }) {
+export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
+
+    const pet: Pet = adoptedData.pet;
 
     const { mutate: adopt, isLoading, isError, error } = useAdopt();
     const { onClose } = useDisclosure({ defaultIsOpen: false });
