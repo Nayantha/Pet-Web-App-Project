@@ -57,7 +57,7 @@ export default function PetPage() {
 
     return (
         <>
-            <PetComponent pet={ adoptionData?.pet ?? {} as Pet }/>
+            <PetComponent adoptedData={ adoptionData ?? {} as AdoptedData }/>
         </>
     )
 }
