@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
 import AdoptedData from "../models/AdoptedData.ts";
+import { ClientResponseError } from "pocketbase";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -34,8 +35,14 @@ export default function PetPage() {
             return await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).getFirstListItem(`pet = "${ petId }" && user = "${ userId }"`) as AdoptedData;
 
         } catch (e: any) {
-            console.error(e.message);
-            window.location.href = "/";
+            console.error(e);
+            if (e instanceof ClientResponseError) {
+                const newAdoptionData = {} as AdoptedData;
+                newAdoptionData.verified = false;
+                return newAdoptionData;
+            } else {
+                window.location.href = "/";
+            }
         }
         return {} as AdoptedData;
     }
@@ -46,6 +53,7 @@ export default function PetPage() {
             return await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(petId as string);
         } catch (e: any) {
             console.log(e.message);
+            window.location.href = "/";
         }
         return {} as Pet;
     }
