@@ -1,7 +1,9 @@
 // this interface holds data / record from pet adoption table
-interface AdoptedData {
+import { Pet } from "./Pet.ts";
+
+export interface AdoptedData {
     id: string;
-    pet: string;
+    pet: Pet;
     updated: Date;
     created: Date;
     user: string;
