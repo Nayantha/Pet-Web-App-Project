@@ -1,16 +1,16 @@
 import pb from "lib/pocketbase.ts";
-import { Pet as PetInterface } from "../models/Pet.ts";
+import {Pet as PetInterface} from "../models/Pet.ts";
 import PetComponent from "../components/PetComponent.tsx";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import { Spinner } from "@chakra-ui/react";
+import {useParams} from "react-router-dom";
+import {useQuery} from "react-query";
+import {Spinner} from "@chakra-ui/react";
 
 export default function PetPage() {
     const {id} = useParams();
 
-    const {data, isLoading, isError, error} = useQuery('pet', () => fetchPet(id));
+    const {data, isLoading, isError, error} = useQuery<PetInterface>('pet', () => fetchPet(id));
 
-    async function fetchPet(id: string | undefined): Promise<PetInterface | undefined> {
+    async function fetchPet(id: string | undefined): Promise<PetInterface> {
 
         try {
             if (id === null || id === "") {
@@ -20,7 +20,7 @@ export default function PetPage() {
         } catch (e) {
             window.location.href = "/";
         }
-
+        return {} as PetInterface;
     }
 
     if (isLoading) return <Spinner/>;
