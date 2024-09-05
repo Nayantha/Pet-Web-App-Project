@@ -6,19 +6,22 @@ import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
 
 export default function PetPage() {
-    const {id} = useParams();
+    const { id } = useParams();
 
-    const { data, isLoading, isError, error } = useQuery<PetInterface>(`pet-${ id }`, () => fetchPet(id));
+    if (!id) {
+        window.location.href = "/";
+    }
 
-    async function fetchPet(id: string | undefined): Promise<PetInterface> {
+    const petId = String(id);
+
+    const { data, isLoading, isError, error } = useQuery<PetInterface>(`pet-${ petId }`, () => fetchPet(petId));
+
+    async function fetchPet(petId: string): Promise<PetInterface> {
 
         try {
-            if (id === null || id === "") {
-                Error("null id error");
-            }
-            return await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(id as string);
-        } catch (e) {
-            window.location.href = "/";
+            return await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(petId as string);
+        } catch (e: any) {
+            console.log(e.message);
         }
         return {} as PetInterface;
     }
