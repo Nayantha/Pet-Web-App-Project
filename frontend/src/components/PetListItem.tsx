@@ -1,7 +1,7 @@
-import { Pet as PetInterface } from "../models/Pet.ts";
+import Pet from "../models/Pet.ts";
 import { Box, Card, CardBody, CardFooter, CardHeader, Flex, Text } from '@chakra-ui/react'
 
-export default function PetListItem({ pet }: { pet: PetInterface }) {
+export default function PetListItem({ pet }: { pet: Pet }) {
     return (
         <>
             <Card>
