@@ -96,8 +96,10 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                     ) : (
                         <Button onClick={ triggerAdopt }>Adopt</Button>
                     ) }
-                    { !adoptedData.verified && <Button onClick={ () => {
-                    } }>Un Adopt</Button> }
+                    { (!adoptedData.verified && pet.adopted) &&
+                        <Button onClick={
+                            () => {
+                            } }>Un Adopt</Button> }
                 </CardFooter>
             </Card>
 
