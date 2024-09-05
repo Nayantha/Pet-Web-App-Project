@@ -1,4 +1,4 @@
-import { Pet as PetInterface } from "../models/Pet.ts";
+import Pet from "../models/Pet.ts";
 import {
     Alert,
     AlertDescription,
@@ -20,13 +20,13 @@ import {
 import useAdopt from "../hooks/useAdopt.ts";
 import pb from "../lib/pocketbase.ts";
 
-export default function PetComponent({ pet }: { pet: PetInterface }) {
+export default function PetComponent({ pet }: { pet: Pet }) {
 
-    const {mutate: adopt, isLoading, isError, error} = useAdopt();
-    const {onClose} = useDisclosure({defaultIsOpen: false});
+    const { mutate: adopt, isLoading, isError, error } = useAdopt();
+    const { onClose } = useDisclosure({ defaultIsOpen: false });
 
     async function triggerAdopt() {
-        await adopt({petId: pet.id, userId: pb.authStore.model?.id} as AdoptionData);
+        await adopt({ petId: pet.id, userId: pb.authStore.model?.id } as AdoptionData);
         pet.adopted = true;
     }
 
