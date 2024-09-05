@@ -90,7 +90,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                         </Box>
                     </Flex>
                 </CardBody>
-                <CardFooter>
+                <CardFooter style={ { display: 'flex', gap: 50 } }>
                     { pet.adopted ? (
                         <Button onClick={ triggerAdopt } disabled={ true }>Adopted</Button>
                     ) : (
