@@ -1,9 +1,9 @@
 export default interface User {
-    avatar: string;
-    created: Date;
-    email: string;
     id: string;
+    avatar: string;
+    email: string;
     name: string;
-    updated: Date;
     username: string;
+    created: Date;
+    updated: Date;
 }
