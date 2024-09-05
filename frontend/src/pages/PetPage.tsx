@@ -26,7 +26,6 @@ export default function PetPage() {
         const pet = await fetchPet(petId);
         const adoptionData = await fetchAdoptData(petId, userId);
         adoptionData.pet = pet;
-        console.log(pb.authStore.model)
         return adoptionData;
     }
 
