@@ -92,7 +92,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                 </CardBody>
                 <CardFooter>
                     { pet.adopted ? (
-                        <div>Adopted</div>
+                        <Button disabled={ true }>Adopted</Button>
                     ) : (
                         <Button onClick={ triggerAdopt }>Adopt</Button>
                     ) }
