@@ -4,7 +4,7 @@ import PetComponent from "../components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
-import { AdoptedData } from "../models/AdoptedData.ts";
+import AdoptedData from "../models/AdoptedData.ts";
 
 export default function PetPage() {
     const { id } = useParams();
