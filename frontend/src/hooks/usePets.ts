@@ -1,5 +1,5 @@
 import pb from "../lib/pocketbase.ts";
-import { Pet as PetInterface } from "../models/Pet.ts";
+import Pet from "../models/Pet.ts";
 
 import { useQuery } from 'react-query';
 import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
@@ -13,7 +13,7 @@ async function getPets(page: number) {
 
     const petList = resultList.items.map(function (pet) {
         // @ts-ignore
-        return pet as PetInterface;
+        return pet as Pet;
     })
 
     return { petList, listMetadata }
