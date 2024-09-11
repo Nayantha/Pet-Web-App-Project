@@ -8,9 +8,9 @@ export default function PetSpeciesList() {
     const { species } = useParams();
     const petSpecies = String(species);
 
-    // auto injected into the request query parameter finding function
+    // auto-injected into the request query parameter finding function
     // @ts-ignore
-    const location = useLocation();
+    useLocation();
     const { data, isError, isLoading, error } = usePetSpecies();
 
     const defaultData = {

@@ -5,9 +5,9 @@ import PetListWithPagination from "../../components/PetListWithPagination.tsx";
 import Pet from "../../models/Pet.ts";
 
 export default function PetList() {
-    // auto injected into the request query parameter finding function
+    // auto-injected into the request query parameter finding function
     // @ts-ignore
-    const location = useLocation();
+    useLocation();
     const { data, isError, isLoading, error } = usePets();
 
     const defaultData = {
