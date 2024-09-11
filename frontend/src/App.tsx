@@ -7,8 +7,8 @@ const Layout = lazy(() => import("./components/Layout.tsx"));
 const Home = lazy(() => import("pages/Home.tsx"));
 const Login = lazy(() => import("pages/Login.tsx"));
 const Register = lazy(() => import("pages/Register.tsx"));
-const PetPage = lazy(() => import("./pages/PetPage.tsx"));
-const PetList = lazy(() => import("./pages/PetList.tsx"));
+const PetPage = lazy(() => import("./pages/Pet/PetPage.tsx"));
+const PetList = lazy(() => import("./pages/Pet/PetList.tsx"));
 const RequireAuth = lazy(() => import("components/RequireAuth.tsx"));
 
 function App() {

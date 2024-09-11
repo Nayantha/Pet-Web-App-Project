@@ -1,10 +1,10 @@
 import pb from "lib/pocketbase.ts";
-import Pet from "../models/Pet.ts";
-import PetComponent from "../components/PetComponent.tsx";
+import Pet from "../../models/Pet.ts";
+import PetComponent from "../../components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
-import AdoptedData from "../models/AdoptedData.ts";
+import AdoptedData from "../../models/AdoptedData.ts";
 import { ClientResponseError } from "pocketbase";
 
 export default function PetPage() {

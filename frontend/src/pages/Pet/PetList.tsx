@@ -1,8 +1,8 @@
-import Pagination from "../components/Pagination.tsx";
+import Pagination from "../../components/Pagination.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { SimpleGrid } from "@chakra-ui/react";
-import usePets from "../hooks/usePets.ts";
-import PetListItem from "../components/PetListItem.tsx";
+import usePets from "../../hooks/usePets.ts";
+import PetListItem from "../../components/PetListItem.tsx";
 import "assets/PetList.css";
 
 export default function PetList() {
