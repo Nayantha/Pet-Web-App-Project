@@ -10,7 +10,7 @@ export default function Pagination({ metadata }: { metadata: ListMetadata }) {
                 <Flex gap={ 2 } justify="center">
 
                     { metadata.page > 1 && (
-                        <Link to={ `/pets/?p=${ metadata.page - 1 }` }>
+                        <Link to={ `${ metadata.baseURL }/?p=${ metadata.page - 1 }` }>
                             <IconButton aria-label="Previous Page" icon={ <ArrowBackIcon/> } mr={ 2 }/>
                         </Link>
                     ) }
@@ -19,7 +19,8 @@ export default function Pagination({ metadata }: { metadata: ListMetadata }) {
                             const isFirstPage = no === 1;
                             const isCurrentPage = no === metadata.page;
                             return (
-                                <Link key={ no } to={ isFirstPage ? "/pets" : `/pets/?p=${ no }` }
+                                <Link key={ no }
+                                      to={ isFirstPage ? `${ metadata.baseURL }` : `${ metadata.baseURL }/?p=${ no }` }
                                       className={ isCurrentPage ? "disabled" : "" }><Button>{ no }</Button></Link>
                             )
                         }
