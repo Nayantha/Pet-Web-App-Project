@@ -25,7 +25,7 @@ export default function PetSpeciesList() {
             <div className="title">Pet Species : { petSpecies }</div>
             <SimpleGrid columns={ 2 } spacing={ 10 }>
                 { data?.petList.map((pet) => (
-                    <Link to={ `/pets/${ pet.id }` }>
+                    <Link to={ `/pets/${ pet.id }` } key={ pet.id }>
                         <PetListItem key={ pet.id } pet={ pet }/>
                     </Link>
                 )) }
