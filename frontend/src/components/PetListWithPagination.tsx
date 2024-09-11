@@ -27,7 +27,13 @@ const PetListWithPagination: React.FC<PetListWithPaginationProps> = ({ title, da
             </SimpleGrid>
 
             <Pagination
-                metadata={ data?.listMetadata ?? { totalItems: 0, totalPages: 0, perPage: 0, page: 0 } }
+                metadata={ data?.listMetadata ?? {
+                    totalItems: 0,
+                    totalPages: 0,
+                    perPage: 0,
+                    page: 0,
+                    baseURL: "/pets"
+                } }
             />
         </div>
     );
