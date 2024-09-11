@@ -9,6 +9,7 @@ const Login = lazy(() => import("pages/Login.tsx"));
 const Register = lazy(() => import("pages/Register.tsx"));
 const PetPage = lazy(() => import("./pages/Pet/PetPage.tsx"));
 const PetList = lazy(() => import("./pages/Pet/PetList.tsx"));
+const PetSpeciesList = lazy(() => import("./pages/Pet/PetSpeciesList.tsx"));
 const RequireAuth = lazy(() => import("components/RequireAuth.tsx"));
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                             <Route path="/admin-login" element={ <AdminLogin/> }/>
                             <Route element={ <RequireAuth/> }>
                                 <Route path="/pets/:id" element={ <PetPage/> }/>
+                                <Route path="/pets/species/:species" element={ <PetSpeciesList/> }/>
                                 <Route path="/pets" element={ <PetList/> }/>
                             </Route>
                             <Route path="*" element={ <Navigate to="/"/> }/>
