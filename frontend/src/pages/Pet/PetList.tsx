@@ -1,9 +1,8 @@
-import Pagination from "../../components/Pagination.tsx";
-import { Link, useLocation } from "react-router-dom";
-import { SimpleGrid } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 import usePets from "../../hooks/usePets.ts";
-import PetListItem from "../../components/PetListItem.tsx";
 import "assets/PetList.css";
+import PetListWithPagination from "../../components/PetListWithPagination.tsx";
+import Pet from "../../models/Pet.ts";
 
 export default function PetList() {
     // auto injected into the request query parameter finding function
@@ -11,22 +10,24 @@ export default function PetList() {
     const location = useLocation();
     const { data, isError, isLoading, error } = usePets();
 
+    const defaultData = {
+        petList: [] as Pet[],
+        listMetadata: {
+            totalItems: 0,
+            totalPages: 0,
+            perPage: 10,
+            page: 1,
+        } as ListMetadata,
+    };
+
     if (isLoading) return <div>Loading post...</div>;
     if (isError) { // @ts-ignore
         return <div>Error: { error.message }</div>;
     }
 
     return (
-        <div className="pet-list">
-            <SimpleGrid columns={ 2 } spacing={ 10 }>
-                { data?.petList.map((pet) => (
-                    <Link to={ `/pets/${ pet.id }` } key={ pet.id }>
-                        <PetListItem key={ pet.id } pet={ pet }/>
-                    </Link>
-                )) }
-            </SimpleGrid>
-
-            <Pagination metadata={ data?.listMetadata ?? {totalItems: 0, totalPages: 0, perPage: 0, page: 0} }/>
-        </div>
+        <>
+            <PetListWithPagination data={ data ?? defaultData } title={ "Pets" }/>
+        </>
     )
 }
