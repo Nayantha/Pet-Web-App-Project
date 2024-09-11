@@ -9,7 +9,7 @@ export default function PetList() {
     // auto injected into the request query parameter finding function
     // @ts-ignore
     const location = useLocation();
-    const { data, isError, isLoading } = usePets();
+    const { data, isError, isLoading, error } = usePets();
 
     if (isLoading) return <div>Loading post...</div>;
     if (isError) { // @ts-ignore
