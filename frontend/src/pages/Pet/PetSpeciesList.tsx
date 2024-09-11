@@ -20,8 +20,13 @@ export default function PetSpeciesList() {
             totalPages: 0,
             perPage: 10,
             page: 1,
+            baseURL: `/pets/species/${ petSpecies }`
         } as ListMetadata,
     };
+
+    if (data?.listMetadata) {
+        data.listMetadata.baseURL = defaultData.listMetadata.baseURL;
+    }
 
     if (isLoading) return <div>Loading post...</div>;
     if (isError) { // @ts-ignore
