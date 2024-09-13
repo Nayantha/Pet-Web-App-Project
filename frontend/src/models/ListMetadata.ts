@@ -3,5 +3,5 @@ interface ListMetadata {
     perPage: number;
     totalPages: number;
     totalItems: number;
-    baseURL: string;
+    baseURL?: string;
 }
