@@ -8,4 +8,5 @@ export default interface Pet {
     gender: string;
     name: string;
     adopted: boolean;
+    avatar: string;
 }
