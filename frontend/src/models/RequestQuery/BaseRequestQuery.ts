@@ -35,7 +35,7 @@ export default class BaseRequestQuery {
         return queryParts.join(' && ');
     }
 
-    public addField(fieldName: string, value: any, operator: string) {
+    protected addField(fieldName: string, value: any, operator: string) {
         this.queryFields[fieldName] = { fieldName, value, operator };
     }
 }
