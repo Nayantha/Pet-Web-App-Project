@@ -1,5 +1,5 @@
-import { pet } from './db/pet.ts';
+import { pets } from './db/pets.ts';
 
 export const db = {
-    pet,
+    pets,
 };

@@ -5,7 +5,7 @@ import { db } from "lib/db.ts";
 import { extractPetListAndListMetadata } from "../lib/petConverters.ts";
 
 async function getPetsBelongToSpecies(page: number, species: string) {
-    return extractPetListAndListMetadata(await db.pet.get(page, species));
+    return extractPetListAndListMetadata(await db.pets.get(page, species));
 }
 
 export default function usePetSpecies() {
