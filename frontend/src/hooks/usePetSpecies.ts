@@ -1,11 +1,12 @@
 import { useQuery } from 'react-query';
-import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
+import { getCurrentPageNumberFromQueryParameters } from "utils/ListPages.ts";
 import { useParams } from "react-router-dom";
 import { db } from "lib/db.ts";
-import { extractPetListAndListMetadata } from "../lib/petConverters.ts";
+import { extractPetListAndListMetadata } from "lib/petConverters.ts";
+import PetRequestQuery from "models/RequestQuery/PetRequestQuery.ts";
 
-async function getPetsBelongToSpecies(page: number, species: string) {
-    return extractPetListAndListMetadata(await db.pets.get(page, species));
+async function getPetsBelongToSpecies(page: number, petRequestQuery: PetRequestQuery) {
+    return extractPetListAndListMetadata(await db.pets.get(page, petRequestQuery));
 }
 
 export default function usePetSpecies() {
@@ -14,5 +15,9 @@ export default function usePetSpecies() {
     const page = getCurrentPageNumberFromQueryParameters({});
     const { species } = useParams();
     const petSpecies = String(species);
-    return useQuery([`pets-${ species }`, page], () => getPetsBelongToSpecies(page, petSpecies));
+    const petRequestQuery = new PetRequestQuery({
+        adopted: { value: false, operator: '=' },
+        species: { value: petSpecies, operator: '~' }
+    });
+    return useQuery([`pets-${ species }`, page], () => getPetsBelongToSpecies(page, petRequestQuery));
 }
