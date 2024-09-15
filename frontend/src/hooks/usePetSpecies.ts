@@ -14,5 +14,5 @@ export default function usePetSpecies() {
     const page = getCurrentPageNumberFromQueryParameters({});
     const { species } = useParams();
     const petSpecies = String(species);
-    return useQuery(['pets', page], () => getPetsBelongToSpecies(page, petSpecies));
+    return useQuery([`pets-${ species }`, page], () => getPetsBelongToSpecies(page, petSpecies));
 }
