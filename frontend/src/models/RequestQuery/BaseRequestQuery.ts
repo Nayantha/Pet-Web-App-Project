@@ -1,13 +1,15 @@
+import { ComparisonOperators } from "./ComparisonOperators.ts";
+
 interface QueryField {
     fieldName: string;
     value: any;
-    operator: string;
+    operator: ComparisonOperators;
 }
 
 export default class BaseRequestQuery {
     protected queryFields: { [key: string]: QueryField } = {};
 
-    constructor(fields?: { [key: string]: { value: any, operator: string } }) {
+    constructor(fields?: { [key: string]: { value: any, operator: ComparisonOperators } }) {
         if (fields) {
             for (const [fieldName, fieldDetails] of Object.entries(fields)) {
                 this.queryFields[fieldName] = {
@@ -35,7 +37,7 @@ export default class BaseRequestQuery {
         return queryParts.join(' && ');
     }
 
-    protected addField(fieldName: string, value: any, operator: string) {
+    protected addField(fieldName: string, value: any, operator: ComparisonOperators) {
         this.queryFields[fieldName] = { fieldName, value, operator };
     }
 }
