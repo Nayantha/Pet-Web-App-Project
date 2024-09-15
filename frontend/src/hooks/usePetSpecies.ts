@@ -1,23 +1,11 @@
-import pb from "../lib/pocketbase.ts";
-import Pet from "../models/Pet.ts";
-
 import { useQuery } from 'react-query';
 import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
 import { useParams } from "react-router-dom";
+import { db } from "lib/db.ts";
+import { extractPetListAndListMetadata } from "../lib/petConverters.ts";
 
 async function getPetsBelongToSpecies(page: number, species: string) {
-    const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE, {
-        filter: `adopted = False && species ~ '${ species }'`
-    });
-
-    const listMetadata = resultList as ListMetadata;
-
-    const petList = resultList.items.map(function (pet) {
-        // @ts-ignore
-        return pet as Pet;
-    })
-
-    return { petList, listMetadata }
+    return extractPetListAndListMetadata(await db.pet.get(page, species));
 }
 
 export default function usePetSpecies() {
