@@ -6,10 +6,6 @@ import { extractPetListAndListMetadata } from "lib/petConverters.ts";
 import PetRequestQuery from "models/RequestQuery/PetRequestQuery.ts";
 import { ComparisonOperators } from "../models/RequestQuery/ComparisonOperators.ts";
 
-async function getPetsBelongToSpecies(page: number, petRequestQuery: PetRequestQuery) {
-    return extractPetListAndListMetadata(await db.pets.get(page, petRequestQuery));
-}
-
 export default function usePetSpecies() {
     // Do not initialize metadata instance which will lead to a not data fetching in the hook when page changes
     // @ts-ignore
@@ -20,5 +16,7 @@ export default function usePetSpecies() {
         adopted: { value: false, operator: ComparisonOperators.Equal },
         species: { value: petSpecies, operator: ComparisonOperators.Like_OR_Contains }
     });
-    return useQuery([`pets-${ species }`, page], () => getPetsBelongToSpecies(page, petRequestQuery));
+    return useQuery([`pets-${ species }`, page], async () => {
+        extractPetListAndListMetadata(await db.pets.get(page, petRequestQuery))
+    });
 }
