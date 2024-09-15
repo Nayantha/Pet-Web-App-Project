@@ -1,27 +1,18 @@
-import pb from "../lib/pocketbase.ts";
-import Pet from "../models/Pet.ts";
-
 import { useQuery } from 'react-query';
-import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
-
-async function getPets(page: number) {
-    const resultList = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getList(page, import.meta.env.VITE_PB_PET_LIST_SIZE, {
-        filter: 'adopted = False'
-    });
-
-    const listMetadata = resultList as ListMetadata;
-
-    const petList = resultList.items.map(function (pet) {
-        // @ts-ignore
-        return pet as Pet;
-    })
-
-    return { petList, listMetadata }
-}
+import { getCurrentPageNumberFromQueryParameters } from "utils/ListPages.ts";
+import { extractPetListAndListMetadata } from "lib/petConverters.ts";
+import { db } from "lib/db.ts";
+import PetRequestQuery from "models/RequestQuery/PetRequestQuery.ts";
+import { ComparisonOperators } from "models/RequestQuery/ComparisonOperators.ts";
 
 export default function usePets() {
     // Do not initialize metadata instance which will lead to a not data fetching in the hook when page changes
     // @ts-ignore
     const page = getCurrentPageNumberFromQueryParameters({});
-    return useQuery(['pets', page], () => getPets(page));
+    const petRequestQuery = new PetRequestQuery({
+        adopted: { value: false, operator: ComparisonOperators.Equal }
+    });
+    return useQuery(['pets', page], async () => {
+        return extractPetListAndListMetadata(await db.pets.get(page, petRequestQuery))
+    });
 }
