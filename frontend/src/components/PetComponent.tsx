@@ -12,6 +12,7 @@ import {
     CardHeader,
     CloseButton,
     Flex,
+    Image,
     Spacer,
     Spinner,
     Text,
@@ -60,6 +61,12 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                     { pet.name }
                 </CardHeader>
                 <CardBody>
+                    <Image
+                        src={ pb.files.getUrl(pet, pet.avatar) }
+                        alt="Description of the image"
+                        boxSize="200px"
+                        objectFit="cover"
+                    />
                     <Flex justify="center" align="stretch" direction="row">
                         <Box w="250px">
                             <Flex>
