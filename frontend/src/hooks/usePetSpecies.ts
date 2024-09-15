@@ -17,6 +17,6 @@ export default function usePetSpecies() {
         species: { value: petSpecies, operator: ComparisonOperators.Like_OR_Contains }
     });
     return useQuery([`pets-${ species }`, page], async () => {
-        extractPetListAndListMetadata(await db.pets.get(page, petRequestQuery))
+        return extractPetListAndListMetadata(await db.pets.get(page, petRequestQuery))
     });
 }
