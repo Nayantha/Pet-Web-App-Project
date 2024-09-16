@@ -16,7 +16,7 @@ export interface RequestQueryArgs {
 }
 
 export interface Field {
-    [key: string]: QueryField;
+    [key: string]: { value: any; operator: ComparisonOperators; };
 }
 
 export default class BaseRequestQuery {
