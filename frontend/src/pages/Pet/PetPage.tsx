@@ -6,6 +6,8 @@ import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
 import AdoptedData from "../../models/AdoptedData.ts";
 import { ClientResponseError } from "pocketbase";
+import PetRequestQuery from "../../models/RequestQuery/PocketBaseRequestQuery.ts";
+import { db } from "../../lib/db.ts";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -48,9 +50,11 @@ export default function PetPage() {
     }
 
     async function fetchPet(petId: string): Promise<Pet> {
-
         try {
-            return await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(petId as string);
+            const petRequestQuery = new PetRequestQuery({
+                returnFields: "adopt"
+            });
+            return await db.pet.get(petId, petRequestQuery);
         } catch (e: any) {
             console.log(e.message);
             window.location.href = "/";
