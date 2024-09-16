@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
 import AdoptedData from "../../models/AdoptedData.ts";
-import { ClientResponseError } from "pocketbase";
 import PetRequestQuery from "../../models/RequestQuery/PocketBaseRequestQuery.ts";
 import { db } from "../../lib/db.ts";
+import { ComparisonOperators } from "../../models/RequestQuery/ComparisonOperators.ts";
+import { ClientResponseError } from "pocketbase";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -33,8 +34,13 @@ export default function PetPage() {
 
     async function fetchAdoptData(petId: string, userId: string) {
         try {
-            return await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).getFirstListItem(`pet = "${ petId }" && user = "${ userId }"`) as AdoptedData;
-
+            const petRequestQuery = new PetRequestQuery({
+                fields: {
+                    pet: { value: petId, operator: ComparisonOperators.Equal },
+                    user: { value: userId, operator: ComparisonOperators.Equal }
+                }
+            });
+            return await db.adopt.get(petRequestQuery);
         } catch (e: any) {
             console.error(e);
             if (e instanceof ClientResponseError) {
