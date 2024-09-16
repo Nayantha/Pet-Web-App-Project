@@ -20,7 +20,7 @@ export interface Field {
     [key: string]: { value: any; operator: ComparisonOperators; };
 }
 
-export default class BaseRequestQuery {
+export default class PocketBaseRequestQuery {
     public readonly page: number;
     public readonly perPage: number = import.meta.env.VITE_PB_PET_LIST_SIZE;
 
