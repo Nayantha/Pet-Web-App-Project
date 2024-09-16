@@ -5,5 +5,5 @@ import { adoption } from "./db/adoption.ts";
 export const db = {
     pets,
     pet,
-    adopt: adoption
+    adoption
 };
