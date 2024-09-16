@@ -56,10 +56,8 @@ export default function PetPage() {
             });
             return await db.pet.get(petId, petRequestQuery);
         } catch (e: any) {
-            console.log(e.message);
-            window.location.href = "/";
+            throw Error(e.message);
         }
-        return {} as Pet;
     }
 
     if (isLoading) return <Spinner/>;
