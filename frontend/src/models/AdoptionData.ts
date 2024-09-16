@@ -1,4 +1,4 @@
 interface AdoptionData {
-    petId: string,
-    userId: string;
+    pet: string,
+    user: string;
 }
