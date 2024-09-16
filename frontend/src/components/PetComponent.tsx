@@ -30,7 +30,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
     const { onClose } = useDisclosure({ defaultIsOpen: false });
 
     async function triggerAdopt() {
-        await adopt({ petId: pet.id, userId: pb.authStore.model?.id } as AdoptionData);
+        await adopt({ pet: pet.id, user: pb.authStore.model?.id } as AdoptionData);
         pet.adopted = true;
     }
 

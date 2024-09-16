@@ -8,7 +8,7 @@ export default function useAdopt() {
         const petRequestQuery = new PocketBaseRequestQuery({
             returnFields: "adopt"
         });
-        const pet = await db.pet.get(adoptData.petId, petRequestQuery);
+        const pet = await db.pet.get(adoptData.pet, petRequestQuery);
 
         if (pet.adopted) {
             throw new Error('Pet is already adopted by another user.');
@@ -16,7 +16,7 @@ export default function useAdopt() {
 
         const adoptRequestQuery = new PocketBaseRequestQuery({
             fields: {
-                pet: { value: adoptData.petId, operator: ComparisonOperators.Equal }
+                pet: { value: adoptData.pet, operator: ComparisonOperators.Equal }
             }
         })
 
