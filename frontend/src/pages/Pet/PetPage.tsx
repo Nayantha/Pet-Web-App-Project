@@ -1,5 +1,4 @@
 import pb from "lib/pocketbase.ts";
-import Pet from "../../models/Pet.ts";
 import PetComponent from "../../components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -49,7 +48,7 @@ export default function PetPage() {
         return {} as AdoptedData;
     }
 
-    async function fetchPet(petId: string): Promise<Pet> {
+    async function fetchPet(petId: string) {
         try {
             const petRequestQuery = new PetRequestQuery({
                 returnFields: "adopt"
