@@ -14,8 +14,7 @@ export default function (adoptionData: AdoptionData) {
                 user: { value: adoptionData.userId, operator: ComparisonOperators.Equal }
             }
         });
-
-        const adoptedData = await db.adopt.get(adoptionRequestQuery);
+        const adoptedData = await db.adoption.getFirstOfList(adoptionRequestQuery);
         adoptedData.pet = pet;
         return adoptedData;
     });
