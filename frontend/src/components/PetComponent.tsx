@@ -12,6 +12,7 @@ import {
     CardHeader,
     CloseButton,
     Flex,
+    Heading,
     Image,
     Spacer,
     Spinner,
@@ -79,43 +80,45 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
             }
             <Card direction="column" alignItems="center" align="center" justify="center" size="sm">
                 <CardHeader>
-                    { pet.name }
+                    <Heading size={ 'lg' }>{ pet.name }</Heading>
                 </CardHeader>
                 <CardBody>
-                    <Image
-                        src={ pb.files.getUrl(pet, pet.avatar) }
-                        alt={ `${ pet.name }` }
-                        boxSize="500px"
-                        objectFit="cover"
-                    />
-                    <Flex justify="center" align="stretch" direction="row">
-                        <Box w="250px">
-                            <Flex>
-                                <Text>intake reason : </Text>
-                                <Spacer/>
-                                <Text>{ pet.intakeReason }</Text>
-                            </Flex>
-                            <Flex>
-                                <Text>breed : </Text>
-                                <Spacer/>
-                                <Text>{ pet.breed }</Text>
-                            </Flex>
-                            <Flex>
-                                <Text>species : </Text>
-                                <Spacer/>
-                                <Text>{ pet.species }</Text>
-                            </Flex>
-                            <Flex>
-                                <Text>gender : </Text>
-                                <Spacer/>
-                                <Text>{ pet.gender }</Text>
-                            </Flex>
-                            <Flex>
-                                <Text>base color : </Text>
-                                <Spacer/>
-                                <Text>{ pet.baseColor }</Text>
-                            </Flex>
-                        </Box>
+                    <Flex justify="center" align="center" gap={ 10 }>
+                        <Image
+                            src={ pb.files.getUrl(pet, pet.avatar) }
+                            alt={ `${ pet.name }` }
+                            boxSize="300px"
+                            objectFit="cover"
+                        />
+                        <Flex justify="center" align="stretch" direction="row">
+                            <Box w="250px">
+                                <Flex>
+                                    <Text>intake reason : </Text>
+                                    <Spacer/>
+                                    <Text>{ pet.intakeReason }</Text>
+                                </Flex>
+                                <Flex>
+                                    <Text>breed : </Text>
+                                    <Spacer/>
+                                    <Text>{ pet.breed }</Text>
+                                </Flex>
+                                <Flex>
+                                    <Text>species : </Text>
+                                    <Spacer/>
+                                    <Text>{ pet.species }</Text>
+                                </Flex>
+                                <Flex>
+                                    <Text>gender : </Text>
+                                    <Spacer/>
+                                    <Text>{ pet.gender }</Text>
+                                </Flex>
+                                <Flex>
+                                    <Text>base color : </Text>
+                                    <Spacer/>
+                                    <Text>{ pet.baseColor }</Text>
+                                </Flex>
+                            </Box>
+                        </Flex>
                     </Flex>
                 </CardBody>
                 <CardFooter style={ { display: 'flex', gap: 50 } }>
