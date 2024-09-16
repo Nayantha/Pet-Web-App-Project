@@ -27,15 +27,8 @@ export default function useAdopt() {
         }
 
         if (!pet.adopted && resultList.length === 0) {
-            //     // this conversion is required because the keywords used make sense in the database layer
-            //     const data = {
-            //         pet: adoptData.petId,
-            //         user: adoptData.userId
-            //     }
-            //     await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).create(data);
-            //     await pb.collection(import.meta.env.VITE_PB_PET_TABLE).update(adoptData.petId, {
-            //         adopted: true,
-            //     });
+            await db.adoption.post(adoptData);
+            await db.pet.updateAdoptionStateToTrue(adoptData.pet);
         }
     }
 
