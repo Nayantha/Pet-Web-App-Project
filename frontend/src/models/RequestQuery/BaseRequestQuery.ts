@@ -20,12 +20,12 @@ export interface Field {
 }
 
 export default class BaseRequestQuery {
-    protected queryFields: { [key: string]: QueryField } = {};
+    protected filterData: { [key: string]: QueryField } = {};
 
     constructor(fields?: { [key: string]: { value: any, operator: ComparisonOperators } }) {
         if (fields) {
             for (const [fieldName, fieldDetails] of Object.entries(fields)) {
-                this.queryFields[fieldName] = {
+                this.filterData[fieldName] = {
                     fieldName,
                     value: fieldDetails.value,
                     operator: fieldDetails.operator,
@@ -37,7 +37,7 @@ export default class BaseRequestQuery {
     public convertToQueryString(): string {
         const queryParts: string[] = [];
 
-        for (const { fieldName, value, operator } of Object.values(this.queryFields)) {
+        for (const { fieldName, value, operator } of Object.values(this.filterData)) {
             if (value !== null && value !== undefined) {
                 if (typeof value === 'string') {
                     queryParts.push(`${ fieldName } ${ operator } '${ value }'`);
@@ -51,6 +51,6 @@ export default class BaseRequestQuery {
     }
 
     protected addField(fieldName: string, value: any, operator: ComparisonOperators) {
-        this.queryFields[fieldName] = { fieldName, value, operator };
+        this.filterData[fieldName] = { fieldName, value, operator };
     }
 }
