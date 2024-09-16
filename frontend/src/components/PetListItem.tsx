@@ -1,11 +1,16 @@
 import Pet from "../models/Pet.ts";
-import { Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function PetListItem({ pet }: { pet: Pet }) {
     return (
         <>
             <Card align="center" justify="center" size="sm">
-                <CardHeader><Heading size={ 'sm' }>{ pet.name }</Heading></CardHeader>
+                <CardHeader>
+                    <Link as={ RouterLink } to={ `/pets/${ pet.id }` }>
+                        <Heading size={ 'sm' }>{ pet.name }</Heading>
+                    </Link>
+                </CardHeader>
                 <CardBody>
                     <Image
                         src={ pet.avatar }
@@ -20,7 +25,6 @@ export default function PetListItem({ pet }: { pet: Pet }) {
                     </Flex>
                 </CardFooter>
             </Card>
-
         </>
     )
 }
