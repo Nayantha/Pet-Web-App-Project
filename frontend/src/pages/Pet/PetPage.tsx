@@ -1,13 +1,9 @@
-import pb from "lib/pocketbase.ts";
 import PetComponent from "../../components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
 import { Spinner } from "@chakra-ui/react";
-import AdoptedData from "../../models/AdoptedData.ts";
-import PetRequestQuery from "../../models/RequestQuery/PocketBaseRequestQuery.ts";
-import { db } from "../../lib/db.ts";
-import { ComparisonOperators } from "../../models/RequestQuery/ComparisonOperators.ts";
-import { ClientResponseError } from "pocketbase";
+import AdoptedData from "models/AdoptedData.ts";
+import useGetAdoptedData from "hooks/useGetAdoptedData.ts";
+import pb from "lib/pocketbase.ts";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -17,51 +13,12 @@ export default function PetPage() {
     }
 
     const petId = String(id);
+    const userId = pb.authStore.model?.id;
 
     const {
-        data: adoptionData,
-        isLoading,
-        isError,
-        error
-    } = useQuery<AdoptedData>(`pet-${ petId }`, () => fetchData(petId, pb.authStore.model?.id));
+        data: adoptionData, isLoading, isError, error
+    } = useGetAdoptedData({ petId, userId });
 
-    async function fetchData(petId: string, userId: string) {
-        const pet = await fetchPet(petId);
-        const adoptionData = await fetchAdoptData(petId, userId);
-        adoptionData.pet = pet;
-        return adoptionData;
-    }
-
-    async function fetchAdoptData(petId: string, userId: string) {
-        try {
-            const petRequestQuery = new PetRequestQuery({
-                fields: {
-                    pet: { value: petId, operator: ComparisonOperators.Equal },
-                    user: { value: userId, operator: ComparisonOperators.Equal }
-                }
-            });
-            return await db.adopt.get(petRequestQuery);
-        } catch (e: any) {
-            if (e instanceof ClientResponseError) {
-                const newAdoptionData = {} as AdoptedData;
-                newAdoptionData.verified = false;
-                return newAdoptionData;
-            } else {
-                throw Error(e.message);
-            }
-        }
-    }
-
-    async function fetchPet(petId: string) {
-        try {
-            const petRequestQuery = new PetRequestQuery({
-                returnFields: "adopt"
-            });
-            return await db.pet.get(petId, petRequestQuery);
-        } catch (e: any) {
-            throw Error(e.message);
-        }
-    }
 
     if (isLoading) return <Spinner/>;
     if (isError) { // @ts-ignore
