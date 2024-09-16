@@ -20,6 +20,14 @@ export interface Field {
 }
 
 export default class BaseRequestQuery {
+    public readonly page: number;
+    public readonly perPage: number = import.meta.env.VITE_PB_PET_LIST_SIZE;
+
+    private readonly sort: string;
+    private readonly expand: string;
+    private readonly returnFields: string;
+    private readonly skipTotal: boolean;
+
     protected filterData: { [key: string]: QueryField } = {};
 
     constructor(fields?: { [key: string]: { value: any, operator: ComparisonOperators } }) {
