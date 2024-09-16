@@ -1,4 +1,5 @@
 import { ComparisonOperators } from "./ComparisonOperators.ts";
+import { RecordListOptions } from "pocketbase";
 
 interface QueryField {
     fieldName: string;
@@ -75,5 +76,15 @@ export default class BaseRequestQuery {
 
     protected addField(fieldName: string, value: any, operator: ComparisonOperators) {
         this.filterData[fieldName] = { fieldName, value, operator };
+    }
+
+    public exportDataToRecordListOptions(): RecordListOptions {
+        return {
+            sort: this.sort,
+            filter: this.convertToQueryString(),
+            expand: this.expand,
+            returnFields: this.returnFields,
+            skipTotal: this.skipTotal,
+        } as RecordListOptions;
     }
 }
