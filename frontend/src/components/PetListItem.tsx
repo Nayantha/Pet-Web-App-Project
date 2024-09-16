@@ -15,14 +15,15 @@ export default function PetListItem({ pet }: { pet: Pet }) {
                         boxSize="200px"
                         objectFit="cover"
                     />
+                </CardBody>
+                <CardFooter>
                     <Flex justify="center" align="stretch" direction="row">
                         <Box w="250px">
                             <Text>{ pet.breed }</Text>
                             <Text>{ pet.species }</Text>
                         </Box>
                     </Flex>
-                </CardBody>
-                <CardFooter></CardFooter>
+                </CardFooter>
             </Card>
 
         </>
