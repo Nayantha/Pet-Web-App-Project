@@ -17,7 +17,7 @@ export default function PetPage() {
 
     const {
         data: adoptionData, isLoading, isError, error
-    } = useGetAdoptedData({ petId, userId });
+    } = useGetAdoptedData({ pet: petId, user: userId });
 
 
     if (isLoading) return <Spinner/>;
