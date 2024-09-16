@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { db } from "lib/db.ts";
 import PocketBaseRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
-import pb from "../lib/pocketbase.ts";
+import { ComparisonOperators } from "../models/RequestQuery/ComparisonOperators.ts";
 
 export default function useAdopt() {
     async function adoptPet(adoptData: AdoptionData) {
@@ -14,9 +14,13 @@ export default function useAdopt() {
             throw new Error('Pet is already adopted by another user.');
         }
 
-        const resultList = await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).getFullList({
-            filter: 'pet = "' + adoptData.petId + '"',
-        });
+        const adoptRequestQuery = new PocketBaseRequestQuery({
+            fields: {
+                pet: { value: adoptData.petId, operator: ComparisonOperators.Equal }
+            }
+        })
+
+        const resultList = await db.adoption.getFullList(adoptRequestQuery);
 
         if (resultList.length > 0) {
             throw new Error('Pet is already adopted by another user.');
