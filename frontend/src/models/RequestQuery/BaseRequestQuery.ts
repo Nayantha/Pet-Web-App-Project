@@ -30,16 +30,19 @@ export default class BaseRequestQuery {
 
     protected filterData: { [key: string]: QueryField } = {};
 
-    constructor(fields?: { [key: string]: { value: any, operator: ComparisonOperators } }) {
-        if (fields) {
-            for (const [fieldName, fieldDetails] of Object.entries(fields)) {
-                this.filterData[fieldName] = {
-                    fieldName,
-                    value: fieldDetails.value,
-                    operator: fieldDetails.operator,
-                };
-            }
-        }
+    constructor({
+                    page = 1,
+                    sort = "-created",
+                    fields = { adopted: { value: false, operator: ComparisonOperators.Equal }, },
+                    expand = '',
+                    returnFields = '*',
+                    skipTotal = false
+                }: RequestQueryArgs) {
+        this.page = page;
+        this.sort = sort;
+        this.expand = expand;
+        this.returnFields = returnFields;
+        this.skipTotal = skipTotal;
     }
 
     public convertToQueryString(): string {
