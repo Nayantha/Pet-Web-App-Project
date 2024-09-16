@@ -21,6 +21,7 @@ import {
 import useAdopt from "../hooks/useAdopt.ts";
 import pb from "../lib/pocketbase.ts";
 import AdoptedData from "../models/AdoptedData.ts";
+import useUnAdopt from "../hooks/useUnAdopt.ts";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
@@ -32,6 +33,14 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
         isError: isAdoptionError,
         error: adoptionError
     } = useAdopt();
+
+    const {
+        mutate: unAdopt,
+        isLoading: isUnAdoptionProcessLoading,
+        isError: isUnAdoptionError,
+        error: unAdoptionError
+    } = useUnAdopt();
+
     const { onClose } = useDisclosure({ defaultIsOpen: false });
 
     async function triggerAdopt() {
@@ -39,17 +48,24 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
         pet.adopted = true;
     }
 
-    if (isAdoptionProcessLoading) return <Spinner/>;
+    async function triggerUnAdopt() {
+        await unAdopt({ pet: pet.id, user: pb.authStore.model?.id });
+        pet.adopted = false
+    }
+
+    if (isAdoptionProcessLoading || isUnAdoptionProcessLoading) return <Spinner/>;
 
     return (
         <>
-            { isAdoptionError &&
+            { isAdoptionError || isUnAdoptionError &&
                 <Alert status='error'>
                     <AlertIcon/>
                     <Box>
                         <AlertTitle>Error in adoption process!</AlertTitle>
                         <AlertDescription>{ // @ts-ignore
                             adoptionError.message }
+                            { // @ts-ignore
+                                unAdoptionError.message }
                         </AlertDescription>
                     </Box>
                     <CloseButton
@@ -109,9 +125,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                         <Button onClick={ triggerAdopt }>Adopt</Button>
                     ) }
                     { (!adoptedData.verified && pet.adopted) &&
-                        <Button onClick={
-                            () => {
-                            } }>Un Adopt</Button> }
+                        <Button onClick={ triggerUnAdopt }>Un Adopt</Button> }
                 </CardFooter>
             </Card>
 
