@@ -26,7 +26,12 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
 
     const pet: Pet = adoptedData.pet;
 
-    const { mutate: adopt, isLoading, isError, error } = useAdopt();
+    const {
+        mutate: adopt,
+        isLoading: isAdoptionProcessLoading,
+        isError: isAdoptionError,
+        error: adoptionError
+    } = useAdopt();
     const { onClose } = useDisclosure({ defaultIsOpen: false });
 
     async function triggerAdopt() {
@@ -34,17 +39,17 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
         pet.adopted = true;
     }
 
-    if (isLoading) return <Spinner/>;
+    if (isAdoptionProcessLoading) return <Spinner/>;
 
     return (
         <>
-            { isError &&
+            { isAdoptionError &&
                 <Alert status='error'>
                     <AlertIcon/>
                     <Box>
                         <AlertTitle>Error in adoption process!</AlertTitle>
                         <AlertDescription>{ // @ts-ignore
-                            error.message }
+                            adoptionError.message }
                         </AlertDescription>
                     </Box>
                     <CloseButton
