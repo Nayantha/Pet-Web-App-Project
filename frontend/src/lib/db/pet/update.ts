@@ -5,3 +5,9 @@ export async function updateAdoptionStateToTrue(petId: string) {
         adopted: true,
     });
 }
+
+export async function updateAdoptionStateToFalse(petId: string) {
+    await pb.collection(import.meta.env.VITE_PB_PET_TABLE).update(petId, {
+        adopted: false,
+    });
+}
