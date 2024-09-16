@@ -17,7 +17,7 @@ const PetListWithPagination: React.FC<PetListWithPaginationProps> = ({ title, da
     return (
         <div className="pet-list">
             <h1 className="title">{ title }</h1>
-            <SimpleGrid columns={ 2 } spacing={ 10 }>
+            <SimpleGrid columns={ 4 } spacing={ 5 }>
                 { data?.petList.map((pet) => (
                     // @ts-ignore
                     <Link to={ `/pets/${ pet.id }` } key={ pet.id }>
