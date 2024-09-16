@@ -43,6 +43,18 @@ export default class BaseRequestQuery {
         this.expand = expand;
         this.returnFields = returnFields;
         this.skipTotal = skipTotal;
+
+        this.createFieldDataUsingObject(fields);
+    }
+
+    private createFieldDataUsingObject(fields: Field) {
+        for (const [fieldName, fieldDetails] of Object.entries(fields)) {
+            this.filterData[fieldName] = {
+                fieldName,
+                value: fieldDetails.value,
+                operator: fieldDetails.operator,
+            };
+        }
     }
 
     public convertToQueryString(): string {
