@@ -1,13 +1,16 @@
-import pb from "../lib/pocketbase.ts";
 import { useMutation } from "react-query";
+import { db } from "lib/db.ts";
+import PocketBaseRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
+import pb from "../lib/pocketbase.ts";
 
 export default function useAdopt() {
     async function adoptPet(adoptData: AdoptionData) {
-        const adoptedState = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(adoptData.petId, {
-            fields: 'adopted',
+        const petRequestQuery = new PocketBaseRequestQuery({
+            returnFields: "adopt"
         });
+        const pet = await db.pet.get(adoptData.petId, petRequestQuery);
 
-        if (adoptedState.adopted) {
+        if (pet.adopted) {
             throw new Error('Pet is already adopted by another user.');
         }
 
@@ -19,18 +22,17 @@ export default function useAdopt() {
             throw new Error('Pet is already adopted by another user.');
         }
 
-        if (!adoptedState.adopted && resultList.length === 0) {
-            // this conversion is required because the keywords used make sense in the database layer
-            const data = {
-                pet: adoptData.petId,
-                user: adoptData.userId
-            }
-            await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).create(data);
-            await pb.collection(import.meta.env.VITE_PB_PET_TABLE).update(adoptData.petId, {
-                adopted: true,
-            });
+        if (!pet.adopted && resultList.length === 0) {
+            //     // this conversion is required because the keywords used make sense in the database layer
+            //     const data = {
+            //         pet: adoptData.petId,
+            //         user: adoptData.userId
+            //     }
+            //     await pb.collection(import.meta.env.VITE_PB_ADOPTION_TABLE).create(data);
+            //     await pb.collection(import.meta.env.VITE_PB_PET_TABLE).update(adoptData.petId, {
+            //         adopted: true,
+            //     });
         }
-
     }
 
     return useMutation(adoptPet);
