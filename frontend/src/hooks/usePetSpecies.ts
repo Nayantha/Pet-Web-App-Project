@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { db } from "lib/db.ts";
 import { extractPetListAndListMetadata } from "lib/petConverters.ts";
 import { ComparisonOperators } from "models/RequestQuery/ComparisonOperators.ts";
-import PocketBaseRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
+import PetRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
 
 export default function usePetSpecies() {
     // Do not initialize metadata instance which will lead to a not data fetching in the hook when page changes
@@ -12,7 +12,7 @@ export default function usePetSpecies() {
     const page = getCurrentPageNumberFromQueryParameters({});
     const { species } = useParams();
     const petSpecies = String(species);
-    const petRequestQuery = new PocketBaseRequestQuery({
+    const petRequestQuery = new PetRequestQuery({
         fields: {
             adopted: { value: false, operator: ComparisonOperators.Equal },
             species: { value: petSpecies, operator: ComparisonOperators.Like_OR_Contains }
