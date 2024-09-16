@@ -1,0 +1,8 @@
+import pb from "lib/pocketbase.ts";
+
+export default async function post(adoptData: AdoptionData) {
+    const adoptedState = await pb.collection(import.meta.env.VITE_PB_PET_TABLE).getOne(adoptData.petId, {
+        fields: 'adopted',
+    });
+    console.log(adoptedState);
+}
