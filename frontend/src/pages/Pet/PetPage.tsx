@@ -42,16 +42,14 @@ export default function PetPage() {
             });
             return await db.adopt.get(petRequestQuery);
         } catch (e: any) {
-            console.error(e);
             if (e instanceof ClientResponseError) {
                 const newAdoptionData = {} as AdoptedData;
                 newAdoptionData.verified = false;
                 return newAdoptionData;
             } else {
-                window.location.href = "/";
+                throw Error(e.message);
             }
         }
-        return {} as AdoptedData;
     }
 
     async function fetchPet(petId: string) {
