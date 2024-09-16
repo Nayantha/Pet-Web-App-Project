@@ -15,6 +15,10 @@ export interface RequestQueryArgs {
     skipTotal?: boolean;
 }
 
+export interface Field {
+    [key: string]: QueryField;
+}
+
 export default class BaseRequestQuery {
     protected queryFields: { [key: string]: QueryField } = {};
 
