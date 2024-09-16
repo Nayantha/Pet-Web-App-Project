@@ -1,27 +1,22 @@
 import Pet from "../models/Pet.ts";
-import { Box, Card, CardBody, CardFooter, CardHeader, Flex, Image, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, Flex, Heading, Image, Text } from '@chakra-ui/react'
 
 export default function PetListItem({ pet }: { pet: Pet }) {
     return (
         <>
-            <Card>
-                <CardHeader>
-                    { pet.name }
-                </CardHeader>
+            <Card align="center" justify="center" size="sm">
+                <CardHeader><Heading size={ 'sm' }>{ pet.name }</Heading></CardHeader>
                 <CardBody>
                     <Image
                         src={ pet.avatar }
-                        alt="Description of the image"
-                        boxSize="200px"
-                        objectFit="cover"
+                        alt={ pet.name }
+                        borderRadius='lg'
                     />
                 </CardBody>
                 <CardFooter>
-                    <Flex justify="center" align="stretch" direction="row">
-                        <Box w="250px">
-                            <Text>{ pet.breed }</Text>
-                            <Text>{ pet.species }</Text>
-                        </Box>
+                    <Flex justify="center" align="center" direction="column">
+                        <Text>{ pet.species }</Text>
+                        <Text>{ pet.breed }</Text>
                     </Flex>
                 </CardFooter>
             </Card>
