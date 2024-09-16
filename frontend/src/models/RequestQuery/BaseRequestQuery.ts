@@ -6,6 +6,15 @@ interface QueryField {
     operator: ComparisonOperators;
 }
 
+export interface RequestQueryArgs {
+    page?: number;
+    sort?: string;
+    fields?: { [key: string]: { value: any, operator: ComparisonOperators } };
+    expand?: string;
+    returnFields?: string;
+    skipTotal?: boolean;
+}
+
 export default class BaseRequestQuery {
     protected queryFields: { [key: string]: QueryField } = {};
 
