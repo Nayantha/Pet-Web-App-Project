@@ -77,15 +77,15 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                     />
                 </Alert>
             }
-            <Card direction="column" alignItems="center">
+            <Card direction="column" alignItems="center" align="center" justify="center" size="sm">
                 <CardHeader>
                     { pet.name }
                 </CardHeader>
                 <CardBody>
                     <Image
                         src={ pb.files.getUrl(pet, pet.avatar) }
-                        alt="Description of the image"
-                        boxSize="200px"
+                        alt={ `${ pet.name }` }
+                        boxSize="500px"
                         objectFit="cover"
                     />
                     <Flex justify="center" align="stretch" direction="row">
