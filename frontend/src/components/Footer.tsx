@@ -2,7 +2,7 @@ import "../assets/Footer.css";
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className="app-footer">
             <div className="links">
                 <strong><a href="/">Pet Shop</a> </strong>
                 <div className="social-links">
