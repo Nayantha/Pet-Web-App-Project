@@ -6,7 +6,6 @@ import Pet from "../../models/Pet.ts";
 
 export default function PetList() {
     // auto-injected into the request query parameter finding function
-    // @ts-ignore
     useLocation();
     const { data, isError, isLoading, error } = usePets();
 
