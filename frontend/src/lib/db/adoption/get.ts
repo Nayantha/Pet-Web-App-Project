@@ -17,3 +17,7 @@ export async function getFirstOfList(adoptRequestQuery: PocketBaseRequestQuery) 
 export async function getFullList(adoptRequestQuery: PocketBaseRequestQuery) {
     return await pb.collection(ADOPTION_TABLE).getFullList(adoptRequestQuery.exportDataToRecordListOptions()) as AdoptedData[];
 }
+
+export async function getList(adoptRequestQuery: PocketBaseRequestQuery) {
+    return await pb.collection(ADOPTION_TABLE).getList(adoptRequestQuery.page, 10, adoptRequestQuery.exportDataToRecordListOptions());
+}
