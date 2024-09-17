@@ -7,7 +7,6 @@ const TableHeadings = () => {
     return (
         <>
             <Tr>
-                <Th>ID</Th>
                 <Th>Name</Th>
                 <Th>Avatar</Th>
                 <Th>Adopted At</Th>
@@ -32,7 +31,6 @@ export default function ({ data }: {
                     <Tbody>
                         { data.expandedAdoptedDataList.map((item) => (
                             <Tr key={ item.id }>
-                                <Td>{ item.id }</Td>
                                 <Td>{ item.pet.name }</Td>
                                 <Td>
                                     <Avatar src={ item.pet.avatar } name={ item.pet.name }/>
