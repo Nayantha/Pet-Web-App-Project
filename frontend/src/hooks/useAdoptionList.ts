@@ -1,10 +1,10 @@
-import PocketBaseRequestQuery from "../models/RequestQuery/PocketBaseRequestQuery.ts";
+import PocketBaseRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
 import { getCurrentPageNumberFromQueryParameters } from "../utils/ListPages.ts";
-import { ComparisonOperators } from "../models/RequestQuery/ComparisonOperators.ts";
-import pb from "../lib/pocketbase.ts";
+import { ComparisonOperators } from "models/RequestQuery/ComparisonOperators.ts";
+import pb from "lib/pocketbase.ts";
 import { useQuery } from "react-query";
-import { db } from "../lib/db.ts";
-import { extractAdoptedDataListAndListMetadata } from "../lib/adoptionConverters.ts";
+import { db } from "lib/db.ts";
+import { extractAdoptedDataListAndListMetadata } from "lib/adoptionConverters.ts";
 
 export default function () {
     // Do not initialize metadata instance which will lead to a not data fetching in the hook when page changes
@@ -15,7 +15,7 @@ export default function () {
         page: page,
         expand: "pet"
     });
-    return useQuery(['adoptions', user], async () => {
+    return useQuery(['adoptions', user, page], async () => {
         return extractAdoptedDataListAndListMetadata(await db.adoption.getList(adoptionRequestQuery));
     });
 }
