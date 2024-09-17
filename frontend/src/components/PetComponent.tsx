@@ -45,8 +45,8 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
     }
 
     async function triggerUnAdopt() {
-        await unAdopt({ pet: pet.id, user: pb.authStore.model?.id });
-        pet.adopted = false
+        await unAdopt(adoptedData);
+        pet.adopted = false;
     }
 
     if (isAdoptionProcessLoading || isUnAdoptionProcessLoading) return <Spinner/>;
