@@ -16,6 +16,7 @@ import ExpandedAdoptedData from "../models/ExpandedAdoptedData.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
 import useUnAdopt from "../hooks/useUnAdopt.ts";
 import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
+import AdoptedData from "../models/AdoptedData.ts";
 
 const TableHeadings = () => {
     return (
@@ -43,6 +44,10 @@ export default function ({ data }: {
     } = useUnAdopt();
 
     if (isLoading) return <Spinner/>;
+
+    async function triggerUnAdopt(expandedAdoptedData: ExpandedAdoptedData) {
+        await unAdopt({ id: expandedAdoptedData.id, user: expandedAdoptedData.user } as AdoptedData);
+    }
 
     return (
         <>
@@ -72,8 +77,7 @@ export default function ({ data }: {
                                     { item.verified ? "Approved" : "Pending" }
                                 </Td>
                                 <Td>
-                                    <UnAdoptAlertDialog unAdoptFunction={ () => {
-                                    } }/>
+                                    <UnAdoptAlertDialog unAdoptFunction={ () => triggerUnAdopt(item) }/>
                                 </Td>
                             </Tr>
                         )) }
