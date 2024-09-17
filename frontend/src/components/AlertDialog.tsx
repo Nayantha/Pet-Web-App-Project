@@ -15,8 +15,11 @@ interface AlertDialog {
 }
 
 export default function ({ alertStatus, alertTitle, alertMessage }: AlertDialog) {
-    const { onClose } = useDisclosure({ defaultIsOpen: false });
-    return (
+    const {
+        isOpen: isVisible,
+        onClose,
+    } = useDisclosure({ defaultIsOpen: true })
+    return isVisible ? (
         <Alert status={ alertStatus }>
             <AlertIcon/>
             <Box>
@@ -33,5 +36,7 @@ export default function ({ alertStatus, alertTitle, alertMessage }: AlertDialog)
                 onClick={ onClose }
             />
         </Alert>
+    ) : (
+        <></>
     )
 }
