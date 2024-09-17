@@ -1,29 +1,24 @@
 import Pet from "models/Pet.ts";
 import {
-    Alert,
-    AlertDescription,
-    AlertIcon,
-    AlertTitle,
     Box,
     Button,
     Card,
     CardBody,
     CardFooter,
     CardHeader,
-    CloseButton,
     Flex,
     Heading,
     Image,
     Spacer,
     Spinner,
-    Text,
-    useDisclosure
+    Text
 } from '@chakra-ui/react';
 import useAdopt from "hooks/useAdopt.ts";
 import pb from "lib/pocketbase.ts";
 import AdoptedData from "models/AdoptedData.ts";
 import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
+import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
@@ -44,8 +39,6 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
         error: unAdoptionError
     } = useUnAdopt();
 
-    const { onClose } = useDisclosure({ defaultIsOpen: false });
-
     async function triggerAdopt() {
         await adopt({ pet: pet.id, user: pb.authStore.model?.id } as AdoptionData);
         pet.adopted = true;
@@ -60,25 +53,15 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
 
     return (
         <>
-            { isAdoptionError || isUnAdoptionError &&
-                <Alert status='error'>
-                    <AlertIcon/>
-                    <Box>
-                        <AlertTitle>Error in adoption process!</AlertTitle>
-                        <AlertDescription>{ // @ts-ignore
-                            adoptionError.message }
-                            { // @ts-ignore
-                                unAdoptionError.message }
-                        </AlertDescription>
-                    </Box>
-                    <CloseButton
-                        alignSelf='flex-start'
-                        position='relative'
-                        right={ -1 }
-                        top={ -1 }
-                        onClick={ onClose }
-                    />
-                </Alert>
+            { isAdoptionError &&
+                <AlertDialog alertStatus={ AlertStatus.ERROR } alertTitle="Error in adoption process!"
+                             alertMessage={ // @ts-ignore
+                                 adoptionError.message ?? "Error in adoption process!" }/>
+            }
+            { isUnAdoptionError &&
+                <AlertDialog alertStatus={ AlertStatus.ERROR } alertTitle="Error in un adoption process!"
+                             alertMessage={ // @ts-ignore
+                                 unAdoptionError.message ?? "Error in un adoption process!" }/>
             }
             <Card direction="column" alignItems="center" align="center" justify="center" size="sm">
                 <CardHeader>
