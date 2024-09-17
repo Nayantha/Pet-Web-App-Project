@@ -23,6 +23,7 @@ import useAdopt from "../hooks/useAdopt.ts";
 import pb from "../lib/pocketbase.ts";
 import AdoptedData from "../models/AdoptedData.ts";
 import useUnAdopt from "../hooks/useUnAdopt.ts";
+import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
@@ -129,7 +130,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                         <Button onClick={ triggerAdopt }>Adopt</Button>
                     ) }
                     { (!adoptedData.verified && pet.adopted && adoptedData.user == userID) &&
-                        <Button onClick={ triggerUnAdopt }>Un Adopt</Button> }
+                        <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }
                 </CardFooter>
             </Card>
 
