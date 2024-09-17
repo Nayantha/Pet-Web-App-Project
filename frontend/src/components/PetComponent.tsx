@@ -27,6 +27,7 @@ import useUnAdopt from "../hooks/useUnAdopt.ts";
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
     const pet: Pet = adoptedData.pet;
+    const userID = pb.authStore.model?.id ?? "";
 
     const {
         mutate: adopt,
@@ -127,7 +128,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                     ) : (
                         <Button onClick={ triggerAdopt }>Adopt</Button>
                     ) }
-                    { (!adoptedData.verified && pet.adopted) &&
+                    { (!adoptedData.verified && pet.adopted && adoptedData.user == userID) &&
                         <Button onClick={ triggerUnAdopt }>Un Adopt</Button> }
                 </CardFooter>
             </Card>
