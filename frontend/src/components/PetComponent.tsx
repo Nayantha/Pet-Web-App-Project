@@ -1,4 +1,4 @@
-import Pet from "../models/Pet.ts";
+import Pet from "models/Pet.ts";
 import {
     Alert,
     AlertDescription,
@@ -19,10 +19,10 @@ import {
     Text,
     useDisclosure
 } from '@chakra-ui/react';
-import useAdopt from "../hooks/useAdopt.ts";
-import pb from "../lib/pocketbase.ts";
-import AdoptedData from "../models/AdoptedData.ts";
-import useUnAdopt from "../hooks/useUnAdopt.ts";
+import useAdopt from "hooks/useAdopt.ts";
+import pb from "lib/pocketbase.ts";
+import AdoptedData from "models/AdoptedData.ts";
+import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
