@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import Pagination from './Pagination';
 import PetListItem from './PetListItem';
 import Pet from "../models/Pet.ts";
@@ -19,10 +19,7 @@ const PetListWithPagination: React.FC<PetListWithPaginationProps> = ({ title, da
             <h1 className="title">{ title }</h1>
             <SimpleGrid columns={ 4 } spacing={ 5 }>
                 { data?.petList.map((pet) => (
-                    // @ts-ignore
-                    <Link to={ `/pets/${ pet.id }` } key={ pet.id }>
-                        <PetListItem key={ pet.id } pet={ pet }/>
-                    </Link>
+                    <PetListItem key={ pet.id } pet={ pet }/>
                 )) }
             </SimpleGrid>
 
