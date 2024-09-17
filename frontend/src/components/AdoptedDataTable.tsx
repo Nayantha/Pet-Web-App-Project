@@ -1,7 +1,21 @@
-import { Avatar, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+import {
+    Avatar,
+    Spinner,
+    Table,
+    TableCaption,
+    TableContainer,
+    Tbody,
+    Td,
+    Tfoot,
+    Th,
+    Thead,
+    Tr
+} from "@chakra-ui/react";
 import Pagination from "./Pagination.tsx";
 import ExpandedAdoptedData from "../models/ExpandedAdoptedData.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
+import useUnAdopt from "../hooks/useUnAdopt.ts";
+import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
 
 const TableHeadings = () => {
     return (
@@ -20,8 +34,24 @@ const TableHeadings = () => {
 export default function ({ data }: {
     data: { expandedAdoptedDataList: ExpandedAdoptedData[], listMetadata: ListMetadata }
 }) {
+
+    const {
+        mutate: unAdopt,
+        isLoading,
+        isError,
+        error
+    } = useUnAdopt();
+
+    if (isLoading) return <Spinner/>;
+
     return (
         <>
+            { isError &&
+                <AlertDialog alertStatus={ AlertStatus.ERROR } alertTitle="Error in un adoption process!"
+                             alertMessage={ // @ts-ignore
+                                 error.message ?? "Error in un adoption process!" }/>
+            }
+
             <TableContainer>
                 <Table variant='simple'>
                     <TableCaption>Adopted Pets</TableCaption>
