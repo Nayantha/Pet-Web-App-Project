@@ -12,7 +12,7 @@ export function extractPetListAndListMetadata(resultList: ListResult<RecordModel
     return { petList, listMetadata }
 }
 
-export function recordModelToPet(recordModel: RecordModel) {
+export function recordModelToPet(recordModel: RecordModel | Pet) {
     const pet = recordModel as unknown as Pet;
     pet.avatar = pb.files.getUrl(recordModel, recordModel.avatar);
     return pet;
