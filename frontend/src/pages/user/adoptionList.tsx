@@ -1,42 +1,36 @@
-import { Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, } from '@chakra-ui/react'
+import { useLocation } from "react-router-dom";
+import AdoptedDataTable from "components/AdoptedDataTable.tsx";
+import useAdoptionList from "hooks/useAdoptionList.ts";
+import ExpandedAdoptedData from "models/ExpandedAdoptedData.ts";
 
 export default function () {
+    // auto-injected into the request query parameter finding function
+    useLocation();
+    const { data, isError, isLoading, error } = useAdoptionList();
+
+    const defaultData = {
+        expandedAdoptedDataList: [] as ExpandedAdoptedData[],
+        listMetadata: {
+            totalItems: 0,
+            totalPages: 0,
+            perPage: 12,
+            page: 1,
+            baseURL: '/adoptions'
+        } as ListMetadata,
+    };
+
+    if (data?.listMetadata) {
+        data.listMetadata.baseURL = defaultData.listMetadata.baseURL;
+    }
+
+    if (isLoading) return <div>Loading post...</div>;
+    if (isError) { // @ts-ignore
+        return <div>Error: { error.message }</div>;
+    }
+
     return (
-        <TableContainer>
-            <Table variant='simple'>
-                <TableCaption>Adopted Pets</TableCaption>
-                <Thead>
-                    <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    <Tr>
-                        <Td>inches</Td>
-                        <Td>millimetres (mm)</Td>
-                        <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>feet</Td>
-                        <Td>centimetres (cm)</Td>
-                        <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>yards</Td>
-                        <Td>metres (m)</Td>
-                        <Td isNumeric>0.91444</Td>
-                    </Tr>
-                </Tbody>
-                <Tfoot>
-                    <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
-                    </Tr>
-                </Tfoot>
-            </Table>
-        </TableContainer>
+        <>
+            <AdoptedDataTable data={ data ?? defaultData }/>
+        </>
     )
 }
