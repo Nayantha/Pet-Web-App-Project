@@ -85,7 +85,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                 <CardBody>
                     <Flex justify="center" align="center" gap={ 10 }>
                         <Image
-                            src={ pb.files.getUrl(pet, pet.avatar) }
+                            src={ pet.avatar }
                             alt={ `${ pet.name }` }
                             boxSize="300px"
                             objectFit="cover"
