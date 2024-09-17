@@ -1,6 +1,7 @@
 import AdoptedData from "models/AdoptedData.ts";
 import PocketBaseRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
 import pb from "lib/pocketbase.ts";
+import { recordModelToAdoptedData } from "../../adoptionConverters.ts";
 
 const ADOPTION_TABLE = import.meta.env.VITE_PB_ADOPTION_TABLE;
 
@@ -23,5 +24,5 @@ export async function getList(adoptRequestQuery: PocketBaseRequestQuery) {
 }
 
 export async function getOne(adoptId: string, adoptRequestQuery: PocketBaseRequestQuery) {
-    return await pb.collection(ADOPTION_TABLE).getOne(adoptId, adoptRequestQuery.exportDataToRecordListOptions()) as AdoptedData;
+    return recordModelToAdoptedData(await pb.collection(ADOPTION_TABLE).getOne(adoptId, adoptRequestQuery.exportDataToRecordListOptions()));
 }
