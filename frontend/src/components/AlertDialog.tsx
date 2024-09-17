@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, CloseButton, useDisclosure } from "@chakra-ui/react";
 
-enum AlertStatus {
+export enum AlertStatus {
     INFO = "info",
     WARNING = "warning",
     SUCCESS = "success",
