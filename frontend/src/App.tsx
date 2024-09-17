@@ -11,6 +11,7 @@ const PetPage = lazy(() => import("./pages/Pet/PetPage.tsx"));
 const PetList = lazy(() => import("./pages/Pet/PetList.tsx"));
 const PetSpeciesList = lazy(() => import("./pages/Pet/PetSpeciesList.tsx"));
 const RequireAuth = lazy(() => import("components/RequireAuth.tsx"));
+const AdoptionList = lazy(() => import("pages/user/adoptionList.tsx"));
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                                 <Route path="/pets/:id" element={ <PetPage/> }/>
                                 <Route path="/pets/species/:species" element={ <PetSpeciesList/> }/>
                                 <Route path="/pets" element={ <PetList/> }/>
+                                <Route path="/adoptions" element={ <AdoptionList/> }/>
                             </Route>
                             <Route path="*" element={ <Navigate to="/"/> }/>
                         </Route>
