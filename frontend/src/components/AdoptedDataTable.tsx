@@ -21,7 +21,6 @@ const TableHeadings = () => {
 export default function ({ data }: {
     data: { expandedAdoptedDataList: ExpandedAdoptedData[], listMetadata: ListMetadata }
 }) {
-    console.log(data);
     return (
         <>
             <TableContainer>
