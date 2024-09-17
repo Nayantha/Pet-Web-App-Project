@@ -26,7 +26,7 @@ const UnAdoptAlertDialog: FC<UnAdoptAlertDialogProps> = ({ unAdoptFunction }) =>
             </Button>
             <AlertDialog
                 isOpen={ isOpen }
-                leastDestructiveRef={ cancelRef }
+                leastDestructiveRef={ cancelRef as any }
                 onClose={ onClose }>
                 <AlertDialogOverlay>
                     <AlertDialogContent>
