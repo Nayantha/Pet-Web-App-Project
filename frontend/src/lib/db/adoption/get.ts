@@ -22,6 +22,6 @@ export async function getList(adoptRequestQuery: PocketBaseRequestQuery) {
     return await pb.collection(ADOPTION_TABLE).getList(adoptRequestQuery.page, 10, adoptRequestQuery.exportDataToRecordListOptions());
 }
 
-export async function getOne(adoptId: string) {
-    return await pb.collection(ADOPTION_TABLE).getOne(adoptId) as AdoptedData;
+export async function getOne(adoptId: string, adoptRequestQuery: PocketBaseRequestQuery) {
+    return await pb.collection(ADOPTION_TABLE).getOne(adoptId, adoptRequestQuery.exportDataToRecordListOptions()) as AdoptedData;
 }
