@@ -18,15 +18,18 @@ import pb from "lib/pocketbase.ts";
 import AdoptedData from "models/AdoptedData.ts";
 import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
-import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
+import AlertDialog, {AlertStatus} from "./AlertDialog.tsx";
+import {useState} from "react";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
     const pet: Pet = adoptedData.pet;
     const userID = pb.authStore.model?.id ?? "";
 
+    const [adoptedPetData, setAdoptedPetData] = useState(adoptedData);
+
     const {
-        mutate: adopt,
+        mutateAsync: adopt,
         isLoading: isAdoptionProcessLoading,
         isError: isAdoptionError,
         error: adoptionError
@@ -40,12 +43,12 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
     } = useUnAdopt();
 
     async function triggerAdopt() {
-        await adopt({ pet: pet.id, user: pb.authStore.model?.id } as AdoptionData);
+        setAdoptedPetData(await adopt({pet: pet.id, user: pb.authStore.model?.id} as AdoptionData) as AdoptedData);
         pet.adopted = true;
     }
 
     async function triggerUnAdopt() {
-        await unAdopt(adoptedData);
+        await unAdopt(adoptedPetData);
         pet.adopted = false;
     }
 
@@ -107,13 +110,13 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                     </Flex>
                 </CardBody>
                 <CardFooter style={ { display: 'flex', gap: 50 } }>
-                    { pet.adopted ? (
+                    {pet.adopted ? (
                         <Button isDisabled>Adopted</Button>
                     ) : (
-                        <Button onClick={ triggerAdopt }>Adopt</Button>
-                    ) }
-                    { (!adoptedData.verified && pet.adopted && adoptedData.user == userID) &&
-                        <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }
+                        <Button onClick={triggerAdopt}>Adopt</Button>
+                    )}
+                    {(!adoptedPetData.verified && pet.adopted && adoptedPetData.user == userID) &&
+                        <UnAdoptAlertDialog unAdoptFunction={triggerUnAdopt}/>}
                 </CardFooter>
             </Card>
 
