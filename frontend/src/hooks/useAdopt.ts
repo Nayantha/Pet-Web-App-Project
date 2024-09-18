@@ -1,7 +1,7 @@
-import { useMutation } from "react-query";
-import { db } from "lib/db.ts";
+import {useMutation} from "react-query";
+import {db} from "lib/db.ts";
 import PocketBaseRequestQuery from "models/RequestQuery/PocketBaseRequestQuery.ts";
-import { ComparisonOperators } from "../models/RequestQuery/ComparisonOperators.ts";
+import {ComparisonOperators} from "../models/RequestQuery/ComparisonOperators.ts";
 
 export default function useAdopt() {
     async function adoptPet(adoptData: AdoptionData) {
@@ -32,8 +32,12 @@ export default function useAdopt() {
 
         //<editor-fold desc="Change db / add record to db and update pet">
         if (!pet.adopted && resultList.length === 0) {
-            await db.adoption.post(adoptData);
+            const adoptRequestQuery = new PocketBaseRequestQuery({
+                expand: "pet"
+            })
+            const adoptedData = await db.adoption.post(adoptData, adoptRequestQuery);
             await db.pet.updateAdoptionStateToTrue(adoptData.pet);
+            return adoptedData;
         }
         //</editor-fold>
     }
