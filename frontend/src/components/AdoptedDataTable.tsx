@@ -46,6 +46,7 @@ export default function ({ data }: {
     if (isLoading) return <Spinner/>;
 
     async function triggerUnAdopt(expandedAdoptedData: ExpandedAdoptedData) {
+        data.expandedAdoptedDataList = data.expandedAdoptedDataList.filter((item) => item !== expandedAdoptedData);
         await unAdopt({ id: expandedAdoptedData.id, user: expandedAdoptedData.user } as AdoptedData);
     }
 
