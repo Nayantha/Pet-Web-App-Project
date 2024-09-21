@@ -22,7 +22,7 @@ function Profile() {
     const btnRef = useRef<HTMLButtonElement | null>(null);
 
     const DrawerButton = () => (
-        <Button ref={ btnRef } colorScheme='teal' onClick={ onOpen }>
+        <Button ref={ btnRef } colorScheme='teal' onClick={ onOpen } className="profile-btn drawer-btn">
             Profile
         </Button>
     );
