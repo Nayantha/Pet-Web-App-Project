@@ -11,4 +11,5 @@ Cypress.Commands.add('login', () => {
 Cypress.Commands.add('logout', () => {
     cy.get("button.profile-btn.drawer-btn").should('have.text', 'Profile').click();
     cy.get('button.logout-btn').click();
+    cy.get("a.login-btn").should('have.text', 'Login');
 });
