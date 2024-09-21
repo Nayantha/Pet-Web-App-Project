@@ -1,25 +1,12 @@
 import Pet from "models/Pet.ts";
-import {
-    Box,
-    Button,
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    Flex,
-    Heading,
-    Image,
-    Spacer,
-    Spinner,
-    Text
-} from '@chakra-ui/react';
+import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Image, Spacer, Spinner, Text } from '@chakra-ui/react';
 import useAdopt from "hooks/useAdopt.ts";
 import pb from "lib/pocketbase.ts";
 import AdoptedData from "models/AdoptedData.ts";
 import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
-import AlertDialog, {AlertStatus} from "./AlertDialog.tsx";
-import {useState} from "react";
+import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
+import { useState } from "react";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
@@ -68,7 +55,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
             }
             <Card direction="column" alignItems="center" align="center" justify="center" size="sm">
                 <CardHeader>
-                    <Heading size={ 'lg' }>{ pet.name }</Heading>
+                    <Heading size={ 'lg' } className="pet-name">{ pet.name }</Heading>
                 </CardHeader>
                 <CardBody>
                     <Flex justify="center" align="center" gap={ 10 }>
@@ -77,47 +64,48 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                             alt={ `${ pet.name }` }
                             boxSize="300px"
                             objectFit="cover"
+                            className="pet-avatar"
                         />
-                        <Flex justify="center" align="stretch" direction="row">
+                        <Flex align="center" direction="column" gap="5">
                             <Box w="250px">
                                 <Flex>
                                     <Text>intake reason : </Text>
                                     <Spacer/>
-                                    <Text>{ pet.intakeReason }</Text>
+                                    <Text className="pet-intake-reason">{ pet.intakeReason }</Text>
                                 </Flex>
                                 <Flex>
                                     <Text>breed : </Text>
                                     <Spacer/>
-                                    <Text>{ pet.breed }</Text>
+                                    <Text className="pet-breed">{ pet.breed }</Text>
                                 </Flex>
                                 <Flex>
                                     <Text>species : </Text>
                                     <Spacer/>
-                                    <Text>{ pet.species }</Text>
+                                    <Text className="pet-species">{ pet.species }</Text>
                                 </Flex>
                                 <Flex>
                                     <Text>gender : </Text>
                                     <Spacer/>
-                                    <Text>{ pet.gender }</Text>
+                                    <Text className="pet-gender">{ pet.gender }</Text>
                                 </Flex>
                                 <Flex>
                                     <Text>base color : </Text>
                                     <Spacer/>
-                                    <Text>{ pet.baseColor }</Text>
+                                    <Text className="pet-base-color">{ pet.baseColor }</Text>
                                 </Flex>
                             </Box>
+                            <Flex align="center" direction="row" gap="5">
+                                { pet.adopted ? (
+                                    <Button isDisabled>Adopted</Button>
+                                ) : (
+                                    <Button onClick={ triggerAdopt }>Adopt</Button>
+                                ) }
+                                { (!adoptedPetData.verified && pet.adopted && adoptedPetData.user == userID) &&
+                                    <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }
+                            </Flex>
                         </Flex>
                     </Flex>
                 </CardBody>
-                <CardFooter style={ { display: 'flex', gap: 50 } }>
-                    {pet.adopted ? (
-                        <Button isDisabled>Adopted</Button>
-                    ) : (
-                        <Button onClick={triggerAdopt}>Adopt</Button>
-                    )}
-                    {(!adoptedPetData.verified && pet.adopted && adoptedPetData.user == userID) &&
-                        <UnAdoptAlertDialog unAdoptFunction={triggerUnAdopt}/>}
-                </CardFooter>
             </Card>
 
         </>
