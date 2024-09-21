@@ -61,14 +61,14 @@ function Profile() {
                         <Button variant='outline' mr={ 3 } onClick={ onClose }>
                             Close
                         </Button>
-                        <Button colorScheme='blue' onClick={ logout }>Logout</Button>
+                        <Button className="logout-btn" colorScheme='blue' onClick={ logout }>Logout</Button>
                     </DrawerFooter>
                 </DrawerComponent>
             </>
         )
 
     return (
-        <Button as={ Link } to="/login" colorScheme='teal'>Login</Button>
+        <Button as={ Link } to="/login" colorScheme='teal' className="login-btn">Login</Button>
     )
 }
 
