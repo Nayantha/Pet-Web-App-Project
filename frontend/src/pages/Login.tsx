@@ -53,8 +53,8 @@ function Login() {
                 </FormControl>
 
                 <div>
-                    <Button type="submit" disabled={ isLoading }>
-                        { isLoading ? "Loading" : "Login" }</Button>
+                    { !isLoading && <Button type="submit">Login</Button> }
+                    { isLoading && <Button isDisabled>Login</Button> }
                     <ChakraLink as={ ReactRouterLink } to={ '/register' }>Register</ChakraLink>
                 </div>
             </form>
