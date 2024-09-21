@@ -48,12 +48,14 @@ function Profile() {
                 <DrawerComponent>
                     <DrawerHeader>
                         <img src={ pb.files.getUrl(userModel, userModel.avatar) }
-                             alt={ "profile pic of user" + userModel.username }/>
+                             alt={ "profile pic of user" + userModel.username }
+                             className="user-profile-pic"
+                        />
                     </DrawerHeader>
                     <DrawerBody>
-                        <div>Email : { userModel?.email }</div>
-                        <div>Name : { userModel?.name }</div>
-                        <div>UserName : { userModel?.username }</div>
+                        <div>Email : <div className="user-email">{ userModel?.email }</div></div>
+                        <div>Name : <div className="user-name">{ userModel?.name }</div></div>
+                        <div>UserName : <div className="username">{ userModel?.username }</div></div>
                     </DrawerBody>
                     <DrawerFooter bg='transparent'>
                         <Button variant='outline' mr={ 3 } onClick={ onClose }>
