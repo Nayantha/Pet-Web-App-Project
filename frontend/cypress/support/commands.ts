@@ -5,6 +5,8 @@ Cypress.Commands.add('login', () => {
     cy.get('input#email').type(Cypress.env('email'), { log: false });
     cy.get('input#password').type(Cypress.env('password'), { log: false });
     cy.get('button[type="submit"]').click();
+    cy.title().should('eq', 'PetStore');
+    cy.url().should('eq', Cypress.config('baseUrl') + '/');
 });
 
 // @ts-ignore
