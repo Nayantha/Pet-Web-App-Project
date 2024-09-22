@@ -11,13 +11,13 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import { ReactNode, useRef } from "react";
-import useLogout from "../hooks/useLogout.ts";
-import AuthenticatedUser from "../lib/userStore.ts";
+import useLogout from "hooks/useLogout.ts";
+import AuthenticatedUser from "lib/userStore.ts";
 
 function Profile() {
     const logout = useLogout();
     const isLoggedIn = pb.authStore.isValid;
-    const {isOpen, onOpen, onClose} = useDisclosure();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = useRef<HTMLButtonElement | null>(null);
 
     const DrawerButton = () => (
@@ -52,9 +52,9 @@ function Profile() {
                         />
                     </DrawerHeader>
                     <DrawerBody>
-                        <div>Email : <div className="user-email">{ AuthenticatedUser.email }</div></div>
-                        <div>Name : <div className="user-name">{ AuthenticatedUser.name }</div></div>
-                        <div>UserName : <div className="username">{ AuthenticatedUser.username }</div></div>
+                        <div>Email : <span className="user-email">{ AuthenticatedUser.email }</span></div>
+                        <div>Name : <span className="user-name">{ AuthenticatedUser.name }</span></div>
+                        <div>UserName : <span className="username">{ AuthenticatedUser.username }</span></div>
                     </DrawerBody>
                     <DrawerFooter bg='transparent'>
                         <Button variant='outline' mr={ 3 } onClick={ onClose }>
