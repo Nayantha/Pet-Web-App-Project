@@ -1,6 +1,5 @@
 import pb from "lib/pocketbase.ts";
 import { Link } from "react-router-dom";
-import { RecordModel } from "pocketbase";
 import {
     Button,
     Drawer,
@@ -13,11 +12,11 @@ import {
 } from '@chakra-ui/react'
 import { ReactNode, useRef } from "react";
 import useLogout from "../hooks/useLogout.ts";
+import AuthenticatedUser from "../lib/userStore.ts";
 
 function Profile() {
     const logout = useLogout();
     const isLoggedIn = pb.authStore.isValid;
-    const userModel: RecordModel = pb.authStore.model as RecordModel;
     const {isOpen, onOpen, onClose} = useDisclosure();
     const btnRef = useRef<HTMLButtonElement | null>(null);
 
@@ -47,15 +46,15 @@ function Profile() {
                 <DrawerButton/>
                 <DrawerComponent>
                     <DrawerHeader>
-                        <img src={ pb.files.getUrl(userModel, userModel.avatar) }
-                             alt={ "profile pic of user" + userModel.username }
+                        <img src={ AuthenticatedUser.avatar }
+                             alt={ "profile pic of user" + AuthenticatedUser.username }
                              className="user-profile-pic"
                         />
                     </DrawerHeader>
                     <DrawerBody>
-                        <div>Email : <div className="user-email">{ userModel?.email }</div></div>
-                        <div>Name : <div className="user-name">{ userModel?.name }</div></div>
-                        <div>UserName : <div className="username">{ userModel?.username }</div></div>
+                        <div>Email : <div className="user-email">{ AuthenticatedUser.email }</div></div>
+                        <div>Name : <div className="user-name">{ AuthenticatedUser.name }</div></div>
+                        <div>UserName : <div className="username">{ AuthenticatedUser.username }</div></div>
                     </DrawerBody>
                     <DrawerFooter bg='transparent'>
                         <Button variant='outline' mr={ 3 } onClick={ onClose }>
