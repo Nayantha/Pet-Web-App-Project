@@ -1,4 +1,3 @@
-import pb from "lib/pocketbase.ts";
 import { Link } from "react-router-dom";
 import {
     Button,
@@ -16,14 +15,13 @@ import {
 import { ReactNode, useRef } from "react";
 import useLogout from "hooks/useLogout.ts";
 import AuthenticatedUser from "lib/userStore.ts";
+import AuthStore from "lib/authStore.ts";
 
 function Profile() {
     const logout = useLogout();
-    const isLoggedIn = pb.authStore.isValid;
+    const isLoggedIn = AuthStore.isValid;
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = useRef<HTMLButtonElement | null>(null);
-
-    console.log(pb.authStore);
 
     const DrawerButton = () => (
         <Button ref={ btnRef } colorScheme='teal' onClick={ onOpen } className="profile-btn drawer-btn">
