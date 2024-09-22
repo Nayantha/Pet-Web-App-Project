@@ -8,6 +8,9 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
+    Flex,
+    Spacer,
+    Text,
     useDisclosure
 } from '@chakra-ui/react'
 import { ReactNode, useRef } from "react";
@@ -52,9 +55,21 @@ function Profile() {
                         />
                     </DrawerHeader>
                     <DrawerBody>
-                        <div>Email : <span className="user-email">{ AuthenticatedUser.email }</span></div>
-                        <div>Name : <span className="user-name">{ AuthenticatedUser.name }</span></div>
-                        <div>UserName : <span className="username">{ AuthenticatedUser.username }</span></div>
+                        <Flex>
+                            <Text>Email : </Text>
+                            <Spacer/>
+                            <Text className="user-email">{ AuthenticatedUser.email }</Text>
+                        </Flex>
+                        <Flex>
+                            <Text>Name : </Text>
+                            <Spacer/>
+                            <Text className="user-name">{ AuthenticatedUser.name }</Text>
+                        </Flex>
+                        <Flex>
+                            <Text>UserName : </Text>
+                            <Spacer/>
+                            <Text className="username">{ AuthenticatedUser.username }</Text>
+                        </Flex>
                     </DrawerBody>
                     <DrawerFooter bg='transparent'>
                         <Button variant='outline' mr={ 3 } onClick={ onClose }>
