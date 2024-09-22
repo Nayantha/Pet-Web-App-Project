@@ -6,7 +6,8 @@ import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
 import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
 import { useState } from "react";
-import AuthenticatedUser from "../lib/userStore.ts";
+import AuthenticatedUser from "lib/userStore.ts";
+import User from "models/User.ts";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
@@ -37,6 +38,14 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
     async function triggerUnAdopt() {
         await unAdopt(adoptedPetData);
         pet.adopted = false;
+    }
+
+    function isAdoptedUserSameTOAuthenticatedUser(adoptedUser: string | User, authenticatedUserID: string): boolean {
+        if (typeof adoptedUser === 'string') {
+            return adoptedUser === authenticatedUserID;
+        } else {
+            return adoptedUser.id === authenticatedUserID;
+        }
     }
 
     if (isAdoptionProcessLoading || isUnAdoptionProcessLoading) return <Spinner/>;
@@ -100,9 +109,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                                 ) : (
                                     <Button onClick={ triggerAdopt }>Adopt</Button>
                                 ) }
-                                { (!adoptedPetData.verified && pet.adopted &&
-                                        // @ts-ignore : adoptedPetData.user can be a string when its not exanpaded
-                                        adoptedPetData.user == userID) &&
+                                { (!adoptedPetData.verified && pet.adopted && isAdoptedUserSameTOAuthenticatedUser(adoptedPetData.user, userID)) &&
                                     <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }
                             </Flex>
                         </Flex>
