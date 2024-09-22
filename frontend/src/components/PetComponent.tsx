@@ -67,7 +67,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                     <Heading size={ 'lg' } className="pet-name">{ pet.name }</Heading>
                 </CardHeader>
                 <CardBody>
-                    <Flex justify="center" align="center" gap={ 10 }>
+                    <Flex justify="center" align="center" gap={ 10 } wrap="wrap">
                         <Image
                             src={ pet.avatar }
                             alt={ `${ pet.name }` }
