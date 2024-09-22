@@ -1,8 +1,8 @@
-import pb from "../lib/pocketbase.ts";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import AuthStore from "lib/authStore.ts";
 
 const RequireAdmin = () => {
-    const isAdmin = pb.authStore.isAdmin;
+    const isAdmin = AuthStore.isAdmin;
     const location = useLocation();
 
     if (!isAdmin) {

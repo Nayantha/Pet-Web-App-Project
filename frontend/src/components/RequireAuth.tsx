@@ -1,15 +1,14 @@
-import pb from "../lib/pocketbase.ts";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import AuthStore from "../lib/authStore.ts";
 
 const RequireAuth = () => {
     const location = useLocation();
 
-    if (!pb.authStore.isValid) {
+    if (!AuthStore.isValid) {
         return (
-            <Navigate to={ {pathname: "/register"} } state={ {location} } replace/>
+            <Navigate to={ { pathname: "/register" } } state={ { location } } replace/>
         );
     }
-
     return <Outlet/>;
 }
 export default RequireAuth;
