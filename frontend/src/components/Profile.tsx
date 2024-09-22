@@ -23,13 +23,15 @@ function Profile() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = useRef<HTMLButtonElement | null>(null);
 
+    console.log(pb.authStore);
+
     const DrawerButton = () => (
         <Button ref={ btnRef } colorScheme='teal' onClick={ onOpen } className="profile-btn drawer-btn">
             Profile
         </Button>
     );
 
-    const DrawerComponent = ({children}: { children: ReactNode }) => (
+    const DrawerComponent = ({ children }: { children: ReactNode }) => (
         <Drawer
             isOpen={ isOpen }
             placement='right'
