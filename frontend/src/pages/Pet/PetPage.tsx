@@ -1,9 +1,9 @@
 import PetComponent from "components/PetComponent.tsx";
-import {useParams} from "react-router-dom";
-import {Spinner} from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import { Spinner } from "@chakra-ui/react";
 import AdoptedData from "models/AdoptedData.ts";
 import useGetAdoptedData from "hooks/useGetAdoptedData.ts";
-import pb from "lib/pocketbase.ts";
+import AuthenticatedUser from "lib/userStore.ts";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -13,7 +13,7 @@ export default function PetPage() {
     }
 
     const petId = String(id);
-    const userId = pb.authStore.model?.id;
+    const userId = AuthenticatedUser.id;
 
     const {
         data: adoptedData, isLoading, isError, error
