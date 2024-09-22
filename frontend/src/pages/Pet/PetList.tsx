@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import usePets from "../../hooks/usePets.ts";
+import usePets from "hooks/usePets.ts";
 import "assets/PetList.css";
-import PetListWithPagination from "../../components/PetListWithPagination.tsx";
-import Pet from "../../models/Pet.ts";
+import PetListWithPagination from "components/PetListWithPagination.tsx";
+import Pet from "models/Pet.ts";
 
 export default function PetList() {
     // auto-injected into the request query parameter finding function
