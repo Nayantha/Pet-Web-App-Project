@@ -1,17 +1,17 @@
 import Pet from "models/Pet.ts";
 import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Image, Spacer, Spinner, Text } from '@chakra-ui/react';
 import useAdopt from "hooks/useAdopt.ts";
-import pb from "lib/pocketbase.ts";
 import AdoptedData from "models/AdoptedData.ts";
 import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
 import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
 import { useState } from "react";
+import AuthenticatedUser from "../lib/userStore.ts";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
     const pet: Pet = adoptedData.pet;
-    const userID = pb.authStore.model?.id ?? "";
+    const userID = AuthenticatedUser.id;
 
     const [adoptedPetData, setAdoptedPetData] = useState(adoptedData);
 
@@ -30,7 +30,7 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
     } = useUnAdopt();
 
     async function triggerAdopt() {
-        setAdoptedPetData(await adopt({pet: pet.id, user: pb.authStore.model?.id} as AdoptionData) as AdoptedData);
+        setAdoptedPetData(await adopt({ pet: pet.id, user: AuthenticatedUser?.id } as AdoptionData) as AdoptedData);
         pet.adopted = true;
     }
 
@@ -100,7 +100,9 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                                 ) : (
                                     <Button onClick={ triggerAdopt }>Adopt</Button>
                                 ) }
-                                { (!adoptedPetData.verified && pet.adopted && adoptedPetData.user == userID) &&
+                                { (!adoptedPetData.verified && pet.adopted &&
+                                        // @ts-ignore : adoptedPetData.user can be a string when its not exanpaded
+                                        adoptedPetData.user == userID) &&
                                     <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }
                             </Flex>
                         </Flex>
