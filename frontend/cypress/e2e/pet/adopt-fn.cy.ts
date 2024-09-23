@@ -14,4 +14,9 @@ describe("Test Adopt & Un Adopt Functions / Buttons", () => {
         cy.unAdoptPet(PET_PAGE_LINK);
     });
 
+    it("adopt and un adopt", () => {
+        cy.adoptPet(PET_PAGE_LINK);
+        cy.unAdoptPet(PET_PAGE_LINK);
+    });
+
 })
