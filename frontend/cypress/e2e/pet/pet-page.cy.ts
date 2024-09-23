@@ -4,13 +4,11 @@ describe("Pet Page", () => {
     const PET_PAGE_LINK = `/pets/${Cypress.env("petId")}`;
 
     it('redirects unauthenticated users to the register page', () => {
-        cy.visit(PET_PAGE_LINK);
-        cy.url().should('include', '/register');
+        cy.visitAndCheckRedirect(PET_PAGE_LINK, '/register');
     });
     it('allows authenticated users to access protected pages', () => {
         cy.login();
-        cy.visit(PET_PAGE_LINK);
-        cy.url().should('include', PET_PAGE_LINK);
+        cy.visitAndCheckRedirect(PET_PAGE_LINK, PET_PAGE_LINK);
     });
     it('pet component has data', () => {
         cy.login();
