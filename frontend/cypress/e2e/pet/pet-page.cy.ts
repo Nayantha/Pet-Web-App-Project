@@ -1,26 +1,28 @@
 /// <reference types="cypress" />
-
 describe("Pet Page", () => {
+
+    const PET_PAGE_LINK = `/pets/${Cypress.env("petId")}`;
+
     it('redirects unauthenticated users to the register page', () => {
-        cy.visit("/pets");
+        cy.visit(PET_PAGE_LINK);
         cy.url().should('include', '/register');
     });
     it('allows authenticated users to access protected pages', () => {
         // @ts-ignore
         cy.login();
-        cy.visit("/pets/" + Cypress.env("petId"));
-        cy.url().should('include', "/pets/" + Cypress.env("petId"));
+        cy.visit(PET_PAGE_LINK);
+        cy.url().should('include', PET_PAGE_LINK);
     });
     it('pet component has data', () => {
         // @ts-ignore
         cy.login();
-        cy.visit("/pets/" + Cypress.env("petId"));
-        cy.url().should('include', "/pets/" + Cypress.env("petId"));
+        cy.visit(PET_PAGE_LINK);
+        cy.url().should('include', PET_PAGE_LINK);
     });
     it('pet component has data', () => {
         // @ts-ignore
         cy.login();
-        cy.visit("/pets/" + Cypress.env("petId"));
+        cy.visit(PET_PAGE_LINK);
 
         cy.get("img.pet-avatar")
             .should('have.attr', 'src').and('not.be.empty');
