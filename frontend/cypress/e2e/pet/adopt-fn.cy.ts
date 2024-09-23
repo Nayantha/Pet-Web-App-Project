@@ -19,4 +19,12 @@ describe("Test Adopt & Un Adopt Functions / Buttons", () => {
         cy.unAdoptPet(PET_PAGE_LINK);
     });
 
+    it("adopt and un adopt several times", () => {
+        for (let i = 0; i < 5; i++) {
+            cy.log("\n" + "iteration : " + i + "\n")
+            cy.adoptPet(PET_PAGE_LINK);
+            cy.unAdoptPet(PET_PAGE_LINK);
+        }
+    });
+
 })
