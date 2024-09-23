@@ -19,6 +19,27 @@ Cypress.Commands.add('visitAndCheckRedirect', (link: string, redirectPath: strin
     cy.url().should('include', redirectPath);
 });
 
+Cypress.Commands.add("adoptPet", (pet_page_link: string) => {
+    cy.visit(pet_page_link);
+
+    cy.get("button.adopt-btn").should('have.text', "Adopt");
+    cy.get("button.adopt-btn").should('not.have.attr', "disabled");
+
+    cy.get("button.adopt-btn").click();
+
+    cy.get("button.adopt-btn").should('have.attr', "disabled");
+    cy.get("button.un-adopt-btn").should('have.text', "Un Adopt Pet");
+})
+
+Cypress.Commands.add("unAdoptPet", (pet_page_link: string) => {
+    cy.visit(pet_page_link);
+
+    cy.get("button.un-adopt-btn").click();
+    cy.get("button.un-adopt-alert-btn").click();
+
+    cy.get("button.adopt-btn").should('have.text', "Adopt");
+    cy.get("button.adopt-btn").should('not.have.attr', "disabled");
+})
 
 declare global {
     namespace Cypress {
@@ -28,6 +49,10 @@ declare global {
             login(): void;
 
             logout(): void;
+
+            adoptPet(pet_page_link: string): void;
+
+            unAdoptPet(pet_page_link: string): void;
         }
     }
 }
