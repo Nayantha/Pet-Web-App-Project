@@ -1,11 +1,11 @@
 import Pet from "models/Pet.ts";
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Image, Spacer, Spinner, Text } from '@chakra-ui/react';
+import {Box, Button, Card, CardBody, CardHeader, Flex, Heading, Image, Spacer, Spinner, Text} from '@chakra-ui/react';
 import useAdopt from "hooks/useAdopt.ts";
 import AdoptedData from "models/AdoptedData.ts";
 import useUnAdopt from "hooks/useUnAdopt.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
-import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
-import { useState } from "react";
+import AlertDialog, {AlertStatus} from "./AlertDialog.tsx";
+import {useState} from "react";
 import AuthenticatedUser from "lib/userStore.ts";
 import User from "models/User.ts";
 
@@ -105,9 +105,9 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                             </Box>
                             <Flex align="center" direction="row" gap="5">
                                 { pet.adopted ? (
-                                    <Button isDisabled>Adopted</Button>
+                                    <Button isDisabled className="adopt-btn">Adopted</Button>
                                 ) : (
-                                    <Button onClick={ triggerAdopt }>Adopt</Button>
+                                    <Button onClick={triggerAdopt} className="adopt-btn">Adopt</Button>
                                 ) }
                                 { (!adoptedPetData.verified && pet.adopted && isAdoptedUserSameTOAuthenticatedUser(adoptedPetData.user, userID)) &&
                                     <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }

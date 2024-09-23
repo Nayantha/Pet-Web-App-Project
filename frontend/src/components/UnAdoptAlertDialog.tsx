@@ -8,7 +8,7 @@ import {
     Button,
     useDisclosure
 } from "@chakra-ui/react";
-import { FC, useRef } from "react";
+import {FC, useRef} from "react";
 
 interface UnAdoptAlertDialogProps {
     unAdoptFunction: () => void;  // Define the function prop type
@@ -21,13 +21,13 @@ const UnAdoptAlertDialog: FC<UnAdoptAlertDialogProps> = ({ unAdoptFunction }) =>
     // @ts-ignore
     return (
         <>
-            <Button onClick={ onOpen }>
+            <Button onClick={onOpen} className="un-adopt-btn">
                 Un Adopt Pet
             </Button>
             <AlertDialog
-                isOpen={ isOpen }
-                leastDestructiveRef={ cancelRef as any }
-                onClose={ onClose }>
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef as any}
+                onClose={onClose}>
                 <AlertDialogOverlay>
                     <AlertDialogContent>
                         <AlertDialogHeader fontSize='lg' fontWeight='bold'>
@@ -39,10 +39,10 @@ const UnAdoptAlertDialog: FC<UnAdoptAlertDialogProps> = ({ unAdoptFunction }) =>
                         </AlertDialogBody>
 
                         <AlertDialogFooter>
-                            <Button colorScheme='red' onClick={ unAdoptFunction } ml={ 3 }>
+                            <Button colorScheme='red' onClick={unAdoptFunction} ml={3} className="un-adopt-alert-btn">
                                 Un Adopt Pet
                             </Button>
-                            <Button onClick={ onClose }>
+                            <Button onClick={onClose} className="un-adopt-cancel-btn">
                                 Cancel
                             </Button>
                         </AlertDialogFooter>
