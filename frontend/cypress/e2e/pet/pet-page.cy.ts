@@ -6,15 +6,12 @@ describe("Pet Page", () => {
     it('redirects unauthenticated users to the register page', () => {
         cy.visitAndCheckRedirect(PET_PAGE_LINK, '/register');
     });
+
     it('allows authenticated users to access protected pages', () => {
         cy.login();
         cy.visitAndCheckRedirect(PET_PAGE_LINK, PET_PAGE_LINK);
     });
-    it('pet component has data', () => {
-        cy.login();
-        cy.visit(PET_PAGE_LINK);
-        cy.url().should('include', PET_PAGE_LINK);
-    });
+
     it('pet component has data', () => {
         cy.login();
         cy.visit(PET_PAGE_LINK);
