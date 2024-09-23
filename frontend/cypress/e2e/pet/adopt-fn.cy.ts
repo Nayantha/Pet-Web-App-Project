@@ -18,4 +18,11 @@ describe("Test Adopt & Un Adopt Functions / Buttons", () => {
         cy.get("button.un-adopt-btn").should('have.text', "Un Adopt Pet");
     });
 
+    it('un adopt a pet', () => {
+        cy.visit(PET_PAGE_LINK);
+        cy.get("button.un-adopt-btn").click();
+        cy.get("button.un-adopt-alert-btn").click();
+        cy.get("button.adopt-btn").should('have.text', "Adopt");
+    });
+
 })
