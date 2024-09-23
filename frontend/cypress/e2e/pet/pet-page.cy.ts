@@ -8,22 +8,20 @@ describe("Pet Page", () => {
         cy.url().should('include', '/register');
     });
     it('allows authenticated users to access protected pages', () => {
-        // @ts-ignore
         cy.login();
         cy.visit(PET_PAGE_LINK);
         cy.url().should('include', PET_PAGE_LINK);
     });
     it('pet component has data', () => {
-        // @ts-ignore
         cy.login();
         cy.visit(PET_PAGE_LINK);
         cy.url().should('include', PET_PAGE_LINK);
     });
     it('pet component has data', () => {
-        // @ts-ignore
         cy.login();
         cy.visit(PET_PAGE_LINK);
 
+        // validate data
         cy.get("img.pet-avatar")
             .should('have.attr', 'src').and('not.be.empty');
         cy.get("img.pet-avatar")
