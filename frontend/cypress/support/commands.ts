@@ -15,3 +15,9 @@ Cypress.Commands.add('logout', () => {
     cy.get('button.logout-btn').click();
     cy.get("a.login-btn").should('have.text', 'Login');
 });
+
+// @ts-ignore
+Cypress.Commands.add('visitAndCheckRedirect', (link: string, redirectPath: string) => {
+    cy.visit(link);
+    cy.url().should('include', redirectPath);
+});
