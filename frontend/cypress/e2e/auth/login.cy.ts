@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 describe("Login", () => {
     beforeEach("Login Before", () => {
-        // @ts-ignore
         cy.login();
     });
     it('redirect to home page', () => {
