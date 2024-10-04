@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { Spinner } from "@chakra-ui/react";
 
+const CenteredSpinner = lazy(() => import("components/CenteredSpinner.tsx"));
 const AdminLogin = lazy(() => import("pages/AdminLogin.tsx"));
-const Layout = lazy(() => import("./components/Layout.tsx"));
+const Layout = lazy(() => import("components/Layout.tsx"));
 const Home = lazy(() => import("pages/Home.tsx"));
 const Login = lazy(() => import("pages/Login.tsx"));
 const Register = lazy(() => import("pages/Register.tsx"));
-const PetPage = lazy(() => import("./pages/Pet/PetPage.tsx"));
-const PetList = lazy(() => import("./pages/Pet/PetList.tsx"));
-const PetSpeciesList = lazy(() => import("./pages/Pet/PetSpeciesList.tsx"));
+const PetPage = lazy(() => import("pages/Pet/PetPage.tsx"));
+const PetList = lazy(() => import("pages/Pet/PetList.tsx"));
+const PetSpeciesList = lazy(() => import("pages/Pet/PetSpeciesList.tsx"));
 const RequireAuth = lazy(() => import("components/RequireAuth.tsx"));
 const AdoptionList = lazy(() => import("pages/user/adoptionList.tsx"));
 
@@ -18,7 +18,7 @@ function App() {
     return (
         <>
             <Router>
-                <Suspense fallback={ <Spinner/> }>
+                <Suspense fallback={ <CenteredSpinner/> }>
                     <Routes>
                         <Route path="/" element={ <Layout/> }>
                             <Route index element={ <Home/> }/>
