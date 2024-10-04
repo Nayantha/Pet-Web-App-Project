@@ -1,22 +1,11 @@
-import {
-    Avatar,
-    Spinner,
-    Table,
-    TableCaption,
-    TableContainer,
-    Tbody,
-    Td,
-    Tfoot,
-    Th,
-    Thead,
-    Tr
-} from "@chakra-ui/react";
+import { Avatar, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import Pagination from "./Pagination.tsx";
-import ExpandedAdoptedData from "../models/ExpandedAdoptedData.ts";
+import ExpandedAdoptedData from "models/ExpandedAdoptedData.ts";
 import UnAdoptAlertDialog from "./UnAdoptAlertDialog.tsx";
-import useUnAdopt from "../hooks/useUnAdopt.ts";
+import useUnAdopt from "hooks/useUnAdopt.ts";
 import AlertDialog, { AlertStatus } from "./AlertDialog.tsx";
-import AdoptedData from "../models/AdoptedData.ts";
+import AdoptedData from "models/AdoptedData.ts";
+import CenteredSpinner from "./CenteredSpinner.tsx";
 
 const TableHeadings = () => {
     return (
@@ -43,7 +32,7 @@ export default function ({ data }: {
         error
     } = useUnAdopt();
 
-    if (isLoading) return <Spinner/>;
+    if (isLoading) return <CenteredSpinner/>;
 
     async function triggerUnAdopt(expandedAdoptedData: ExpandedAdoptedData) {
         data.expandedAdoptedDataList = data.expandedAdoptedDataList.filter((item) => item !== expandedAdoptedData);

@@ -1,9 +1,9 @@
 import PetComponent from "components/PetComponent.tsx";
 import { useParams } from "react-router-dom";
-import { Spinner } from "@chakra-ui/react";
 import AdoptedData from "models/AdoptedData.ts";
 import useGetAdoptedData from "hooks/useGetAdoptedData.ts";
 import AuthenticatedUser from "lib/userStore.ts";
+import CenteredSpinner from "components/CenteredSpinner.tsx";
 
 export default function PetPage() {
     const { id } = useParams();
@@ -20,7 +20,7 @@ export default function PetPage() {
     } = useGetAdoptedData({ pet: petId, user: userId });
 
 
-    if (isLoading) return <Spinner/>;
+    if (isLoading) return <CenteredSpinner/>;
     if (isError) { // @ts-ignore
         return <div>Error: { error.message }</div>;
     }
