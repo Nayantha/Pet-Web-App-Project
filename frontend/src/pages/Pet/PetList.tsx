@@ -3,6 +3,7 @@ import usePets from "hooks/usePets.ts";
 import "assets/PetList.css";
 import PetListWithPagination from "components/PetListWithPagination.tsx";
 import Pet from "models/Pet.ts";
+import CenteredSpinner from "components/CenteredSpinner.tsx";
 
 export default function PetList() {
     // auto-injected into the request query parameter finding function
@@ -24,7 +25,7 @@ export default function PetList() {
         data.listMetadata.baseURL = defaultData.listMetadata.baseURL;
     }
 
-    if (isLoading) return <div>Loading post...</div>;
+    if (isLoading) return <CenteredSpinner/>;
     if (isError) { // @ts-ignore
         return <div>Error: { error.message }</div>;
     }
