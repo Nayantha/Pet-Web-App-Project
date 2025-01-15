@@ -5,7 +5,7 @@ import "./index.css";
 import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
-import { store } from "./lib/store.ts";
+import { store } from "./app/store.ts";
 
 const queryClient = new QueryClient();
 
