@@ -8,7 +8,9 @@ function Navigation() {
     return (
         <>
             <nav>
-                <strong className="logo">Pet Shop</strong>
+                <ChakraLink className="nav-link" as={ ReactRouterLink } to={ '/' }>
+                    <strong className="logo">Pet Shop</strong>
+                </ChakraLink>
                 <div className="nav-links">
                     <ChakraLink className="nav-link" as={ ReactRouterLink } to={ '/pets' }>Pets</ChakraLink>
                 </div>
