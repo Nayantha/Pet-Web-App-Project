@@ -11,7 +11,7 @@ export interface RequestQueryArgs {
     page?: number;
     sort?: string;
     fields?: { [key: string]: { value: any, operator: ComparisonOperators } };
-    expand?: string;
+    expand?: string | object;
     returnFields?: string;
     skipTotal?: boolean;
 }
@@ -25,7 +25,7 @@ export default class PocketBaseRequestQuery {
     public readonly perPage: number = import.meta.env.VITE_PB_PET_LIST_SIZE;
 
     private readonly sort: string;
-    private readonly expand: string;
+    private readonly expand: string | object;
     private readonly returnFields: string;
     private readonly skipTotal: boolean;
 
