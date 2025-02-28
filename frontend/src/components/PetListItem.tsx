@@ -24,7 +24,7 @@ export default function PetListItem({pet}: { pet: Pet }) {
                 </CardHeader>
                 <CardBody>
                     <Image
-                        src={ pet.avatar }
+                        src={ pet.avatar[0] }
                         alt={ pet.name }
                         borderRadius='lg'
                     />
