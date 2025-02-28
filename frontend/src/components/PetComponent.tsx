@@ -83,9 +83,9 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                         <Flex align="center" direction="column" gap="5">
                             <Box w="250px">
                                 <Flex>
-                                    <Text>intake reason : </Text>
+                                    <Text>Age : </Text>
                                     <Spacer/>
-                                    <Text className="pet-intake-reason">{ pet.intakeReason }</Text>
+                                    <Text className="pet-intake-reason">{ pet.age } years</Text>
                                 </Flex>
                                 <Flex>
                                     <Text>breed : </Text>
@@ -107,12 +107,17 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                                     <Spacer/>
                                     <Text className="pet-base-color">{ pet.baseColor }</Text>
                                 </Flex>
+                                <Flex>
+                                    <Text>Shelter : </Text>
+                                    <Spacer/>
+                                    <Text className="pet-intake-reason">{ adoptedData.shelter.name }</Text>
+                                </Flex>
                             </Box>
                             <Flex align="center" direction="row" gap="5">
                                 { pet.adopted ? (
                                     <Button isDisabled className="adopt-btn">Adopted</Button>
                                 ) : (
-                                    <Button onClick={triggerAdopt} className="adopt-btn">Adopt</Button>
+                                    <Button onClick={ triggerAdopt } className="adopt-btn">Adopt</Button>
                                 ) }
                                 { (!adoptedPetData.verified && pet.adopted && isAdoptedUserSameTOAuthenticatedUser(adoptedPetData.user, userID)) &&
                                     <UnAdoptAlertDialog unAdoptFunction={ triggerUnAdopt }/> }
