@@ -9,4 +9,5 @@ export default interface AdoptedData {
     created: Date;
     user: User;
     verified: boolean;
+    shelter: Shelter
 }
