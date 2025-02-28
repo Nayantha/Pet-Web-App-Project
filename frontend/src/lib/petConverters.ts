@@ -14,6 +14,8 @@ export function extractPetListAndListMetadata(resultList: ListResult<RecordModel
 
 export function recordModelToPet(recordModel: RecordModel | Pet) {
     const pet = recordModel as unknown as Pet;
-    pet.avatar = pb.files.getUrl(recordModel, recordModel.avatar);
+    pet.avatar.forEach((imageName: string, index: number, arr: string[]) => {
+        arr[index] = pb.files.getUrl(recordModel, imageName)
+    })
     return pet;
 }
