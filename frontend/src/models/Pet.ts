@@ -1,12 +1,13 @@
 export default interface Pet {
     id: string;
-    intakeReason: string;
-    intakeDate: string;
+    avatar: string[];
     breed: string;
     baseColor: string;
     species: string;
     gender: string;
     name: string;
     adopted: boolean;
-    avatar: string;
+    age: number;
+    shelter_id: string;
+    shelter: object;
 }
