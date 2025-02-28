@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import PetShelterList from "./pages/Shelters.tsx";
 
 const CenteredSpinner = lazy(() => import("components/CenteredSpinner.tsx"));
 const AdminLogin = lazy(() => import("pages/AdminLogin.tsx"));
@@ -29,6 +30,7 @@ function App() {
                                 <Route path="/pets/:id" element={ <PetPage/> }/>
                                 <Route path="/pets/species/:species" element={ <PetSpeciesList/> }/>
                                 <Route path="/pets" element={ <PetList/> }/>
+                                <Route path="/pet-shelters" element={ <PetShelterList/> }/>
                                 <Route path="/adoptions" element={ <AdoptionList/> }/>
                             </Route>
                             <Route path="*" element={ <Navigate to="/"/> }/>
