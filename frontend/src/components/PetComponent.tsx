@@ -1,5 +1,6 @@
 import Pet from "models/Pet.ts";
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Image, Spacer, Text } from '@chakra-ui/react';
+import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
+import SimpleImageSlider from "react-simple-image-slider";
 import useAdopt from "hooks/useAdopt.ts";
 import AdoptedData from "models/AdoptedData.ts";
 import useUnAdopt from "hooks/useUnAdopt.ts";
@@ -14,6 +15,9 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
 
     const pet: Pet = adoptedData.pet;
     const userID = AuthenticatedUser.id;
+    const images = pet.avatar.map((avatar) => {
+        return { url: avatar }
+    })
 
     const [adoptedPetData, setAdoptedPetData] = useState(adoptedData);
 
@@ -69,12 +73,12 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                 </CardHeader>
                 <CardBody>
                     <Flex justify="center" align="center" gap={ 10 } wrap="wrap">
-                        <Image
-                            src={ pet.avatar }
-                            alt={ `${ pet.name }` }
-                            boxSize="300px"
-                            objectFit="cover"
-                            className="pet-avatar"
+                        <SimpleImageSlider
+                            width={ 896 }
+                            height={ 504 }
+                            images={ images }
+                            showBullets={ true }
+                            showNavs={ true }
                         />
                         <Flex align="center" direction="column" gap="5">
                             <Box w="250px">
