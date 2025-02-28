@@ -33,8 +33,8 @@ export default class PocketBaseRequestQuery {
 
     constructor({
                     page = 1,
-                    sort = "-created",
-                    fields = { adopted: { value: false, operator: ComparisonOperators.Equal }, },
+                    sort = "",
+                    fields = {},
                     expand = '',
                     returnFields = '*',
                     skipTotal = false
