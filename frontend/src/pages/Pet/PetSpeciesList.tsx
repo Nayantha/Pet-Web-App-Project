@@ -2,7 +2,8 @@ import { useLocation, useParams } from "react-router-dom";
 import usePetSpecies from "hooks/usePetSpecies.ts"
 import "assets/PetList.css";
 import Pet from "../../models/Pet.ts";
-import PetListWithPagination from "../../components/PetListWithPagination.tsx";
+import ListWithPagination from "../../components/ListWithPagination.tsx";
+import PetListItem from "../../components/PetListItem.tsx";
 
 export default function PetSpeciesList() {
     const { species } = useParams();
@@ -13,29 +14,26 @@ export default function PetSpeciesList() {
     useLocation();
     const { data, isError, isLoading, error } = usePetSpecies();
 
-    const defaultData = {
-        petList: [] as Pet[],
-        listMetadata: {
-            totalItems: 0,
-            totalPages: 0,
-            perPage: 10,
-            page: 1,
-            baseURL: `/pets/species/${ petSpecies }`
-        } as ListMetadata,
-    };
-
-    if (data?.listMetadata) {
-        data.listMetadata.baseURL = defaultData.listMetadata.baseURL;
-    }
-
     if (isLoading) return <div>Loading post...</div>;
     if (isError) { // @ts-ignore
         return <div>Error: { error.message }</div>;
     }
 
+    const transformedData = {
+        items: data?.petList || [],
+        listMetadata: data?.listMetadata || {
+            totalItems: 0,
+            totalPages: 0,
+            perPage: 0,
+            page: 0,
+            baseURL: "/pets"
+        }
+    };
+
     return (
         <>
-            <PetListWithPagination data={ data ?? defaultData } title={ `Pet Species : ${ petSpecies }` }/>
+            <ListWithPagination data={ transformedData } title={ `Pet Species : ${ petSpecies }` }
+                                renderItem={ (pet: Pet) => <PetListItem key={ pet.id } pet={ pet }/> }/>
         </>
     )
 }
