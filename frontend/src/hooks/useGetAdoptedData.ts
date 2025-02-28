@@ -8,6 +8,8 @@ export default function (adoptionData: AdoptionData) {
     return useQuery([`pet-${ adoptionData.pet }`], async () => {
         const pet = await db.pet.get(adoptionData.pet, new PetRequestQuery({}));
 
+        const shelter = await db.shelter.get(pet.shelter_id);
+
         const adoptionRequestQuery = new RequestQuery({
             fields: {
                 pet: { value: adoptionData.pet, operator: ComparisonOperators.Equal },
@@ -16,6 +18,7 @@ export default function (adoptionData: AdoptionData) {
         });
         const adoptedData = await db.adoption.getFirstOfList(adoptionRequestQuery);
         adoptedData.pet = pet;
+        adoptedData.shelter = shelter;
         return adoptedData;
     });
 }
