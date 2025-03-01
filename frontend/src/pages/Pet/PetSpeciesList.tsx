@@ -6,6 +6,9 @@ import ListWithPagination from "../../components/ListWithPagination.tsx";
 import PetListItem from "../../components/PetListItem.tsx";
 import CenteredSpinner from "../../components/CenteredSpinner.tsx";
 
+const toTitleCase = (str: string) =>
+    str.replace(/\b\w/g, char => char.toUpperCase());
+
 export default function PetSpeciesList() {
     const { species } = useParams();
     const petSpecies = String(species);
@@ -33,7 +36,7 @@ export default function PetSpeciesList() {
 
     return (
         <>
-            <ListWithPagination data={ transformedData } title={ `Pet Species : ${ petSpecies }` }
+            <ListWithPagination data={ transformedData } title={ `Pet Species : ${ toTitleCase(petSpecies) }` }
                                 renderItem={ (pet: Pet) => <PetListItem key={ pet.id } pet={ pet }/> }/>
         </>
     )
