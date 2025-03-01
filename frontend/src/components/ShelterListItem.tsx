@@ -11,7 +11,8 @@ export default function ShelterListItem({ shelter }: { shelter: Shelter }) {
                 <CardBody>
                     <Flex justify="center" align="center" direction="row" gap="3">
                         <Box>
-                            <ChakraLink as={ ReactRouterLink } to={ `/pet-shelters/${ sluggedShelterName }` }
+                            <ChakraLink as={ ReactRouterLink }
+                                        to={ `/pet-shelters/${ sluggedShelterName }?id=${ shelter.id }` }
                                         state={ { id: shelter.id } }>
                                 <Text fontWeight="bold" color="blue.500">{ shelter.name }</Text>
                             </ChakraLink>
