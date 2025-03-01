@@ -1,6 +1,8 @@
-import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react';
+import { Box, Card, CardBody, Flex, Link as ChakraLink, Text } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export default function ShelterListItem({ shelter }: { shelter: Shelter }) {
+    const sluggedShelterName = shelter.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
     return (
         <>
             <Card align="center" justify="center" size="sm" className="list-item"
@@ -9,7 +11,10 @@ export default function ShelterListItem({ shelter }: { shelter: Shelter }) {
                 <CardBody>
                     <Flex justify="center" align="center" direction="row" gap="3">
                         <Box>
-                            <Text>{ shelter.name }</Text>
+                            <ChakraLink as={ ReactRouterLink } to={ `/pet-shelters/${ sluggedShelterName }` }
+                                        state={ { id: shelter.id } }>
+                                <Text fontWeight="bold" color="blue.500">{ shelter.name }</Text>
+                            </ChakraLink>
                             <Text>{ shelter.location }</Text>
                         </Box>
                     </Flex>
