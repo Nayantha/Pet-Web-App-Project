@@ -1,10 +1,10 @@
 import { useLocation, useParams } from "react-router-dom";
 import usePetSpecies from "hooks/usePetSpecies.ts"
 import "assets/PetList.css";
-import Pet from "../../models/Pet.ts";
-import ListWithPagination from "../../components/ListWithPagination.tsx";
-import PetListItem from "../../components/PetListItem.tsx";
-import CenteredSpinner from "../../components/CenteredSpinner.tsx";
+import Pet from "models/Pet.ts";
+import ListWithPagination from "components/ListWithPagination.tsx";
+import PetListItem from "components/PetListItem.tsx";
+import CenteredSpinner from "components/CenteredSpinner.tsx";
 
 const toTitleCase = (str: string) =>
     str.replace(/\b\w/g, char => char.toUpperCase());
