@@ -9,8 +9,17 @@ import PetListItem from "components/PetListItem.tsx";
 
 export default function ShelterPage() {
     const location = useLocation();
-    const shelterId = location.state?.id;
+    let shelterId = location.state?.id;
     const currentPath = location.pathname;
+
+    console.log(location.state);
+
+    if (!shelterId) {
+        const searchParams = new URLSearchParams(location.search);
+        shelterId = searchParams.get("id");
+    }
+
+    console.log(shelterId, currentPath);
 
     const {
         data: shelter,
