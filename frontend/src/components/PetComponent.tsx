@@ -1,5 +1,16 @@
 import Pet from "models/Pet.ts";
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    Card,
+    CardBody,
+    CardHeader,
+    Flex,
+    Heading,
+    Link as ChakraLink,
+    Spacer,
+    Text
+} from '@chakra-ui/react';
 import SimpleImageSlider from "react-simple-image-slider";
 import useAdopt from "hooks/useAdopt.ts";
 import AdoptedData from "models/AdoptedData.ts";
@@ -10,6 +21,8 @@ import { useState } from "react";
 import AuthenticatedUser from "lib/userStore.ts";
 import User from "models/User.ts";
 import CenteredSpinner from "./CenteredSpinner.tsx";
+import { Link as ReactRouterLink } from "react-router-dom";
+import "assets/Navigation.css";
 
 export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData }) {
 
@@ -95,7 +108,15 @@ export default function PetComponent({ adoptedData }: { adoptedData: AdoptedData
                                 <Flex>
                                     <Text>species : </Text>
                                     <Spacer/>
-                                    <Text className="pet-species">{ pet.species }</Text>
+                                    <Text className="pet-species">
+                                        <ChakraLink className="nav-link"
+                                                    as={ ReactRouterLink }
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    to={ `/pets/species/${ pet.species }` }>
+                                            { pet.species }
+                                        </ChakraLink>
+                                    </Text>
                                 </Flex>
                                 <Flex>
                                     <Text>gender : </Text>
