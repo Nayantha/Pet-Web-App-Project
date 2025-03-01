@@ -1,6 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import usePetSpecies from "hooks/usePetSpecies.ts"
-import "assets/PetList.css";
+import "assets/List.css";
 import Pet from "models/Pet.ts";
 import ListWithPagination from "components/ListWithPagination.tsx";
 import PetListItem from "components/PetListItem.tsx";

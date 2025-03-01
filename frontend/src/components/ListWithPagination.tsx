@@ -1,7 +1,7 @@
 import React from 'react';
 import { SimpleGrid } from '@chakra-ui/react';
 import Pagination from './Pagination';
-import "assets/PetList.css";
+import "assets/List.css";
 
 interface ListWithPaginationProps<T> {
     title: string;

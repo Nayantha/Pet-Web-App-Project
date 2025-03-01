@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import usePets from "hooks/usePets.ts";
-import "assets/PetList.css";
+import "assets/List.css";
 import ListWithPagination from "components/ListWithPagination.tsx";
 import Pet from "models/Pet.ts";
 import CenteredSpinner from "components/CenteredSpinner.tsx";
