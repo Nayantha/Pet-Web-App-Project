@@ -18,9 +18,9 @@ const ListWithPagination = <T extends { id: string | number }>({
                                                                    renderItem
                                                                }: ListWithPaginationProps<T>) => {
     return (
-        <div className="pet-list">
+        <div className="list">
             <h1 className="title">{ title }</h1>
-            <SimpleGrid columns={ { base: 1, md: 2, lg: 3 } } spacing={ 5 } className="pet-list">
+            <SimpleGrid columns={ { base: 1, md: 2, lg: 3 } } spacing={ 5 } className="list">
                 { data?.items.map((item) => (
                     <React.Fragment key={ item.id }>
                         { renderItem(item) }

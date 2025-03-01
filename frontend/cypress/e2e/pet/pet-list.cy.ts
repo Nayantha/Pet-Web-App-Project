@@ -6,7 +6,7 @@ describe('Pet List Page', () => {
 
     it('pet grid component has data', () => {
         cy.visit("/pets")
-        cy.get("div.pet-list .pet-list-item").should("have.length", 12);
-        cy.get("div.pet-list .title").should("have.text", "Pets");
+        cy.get("div.list.list-item").should("have.length", 12);
+        cy.get("div.list.title").should("have.text", "Pets");
     });
 })

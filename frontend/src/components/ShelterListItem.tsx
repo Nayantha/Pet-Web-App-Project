@@ -3,7 +3,7 @@ import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react';
 export default function ShelterListItem({ shelter }: { shelter: Shelter }) {
     return (
         <>
-            <Card align="center" justify="center" size="sm" className="pet-list-item"
+            <Card align="center" justify="center" size="sm" className="list-item"
                   maxW={ { base: "100%", md: "300px", lg: "400px", xx: "500px" } }>
 
                 <CardBody>

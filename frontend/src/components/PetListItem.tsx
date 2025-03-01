@@ -17,7 +17,7 @@ import { Link as RouterLink } from 'react-router-dom';
 export default function PetListItem({pet}: { pet: Pet }) {
     return (
         <>
-            <Card align="center" justify="center" size="sm" className="pet-list-item"
+            <Card align="center" justify="center" size="sm" className="list-item"
                   maxW={ { base: "100%", md: "300px", lg: "400px", xx: "500px" } }>
                 <CardHeader>
                     <Heading size={ 'sm' }>{ pet.name }</Heading>
