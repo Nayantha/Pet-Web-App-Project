@@ -12,14 +12,10 @@ export default function ShelterPage() {
     let shelterId = location.state?.id;
     const currentPath = location.pathname;
 
-    console.log(location.state);
-
     if (!shelterId) {
         const searchParams = new URLSearchParams(location.search);
         shelterId = searchParams.get("id");
     }
-
-    console.log(shelterId, currentPath);
 
     const {
         data: shelter,
