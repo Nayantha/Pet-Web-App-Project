@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import PetShelterList from "./pages/Shelters.tsx";
+import PetShelterList from "./pages/shelter/Shelters.tsx";
 
 const CenteredSpinner = lazy(() => import("components/CenteredSpinner.tsx"));
 const AdminLogin = lazy(() => import("pages/AdminLogin.tsx"));

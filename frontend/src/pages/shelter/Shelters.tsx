@@ -2,8 +2,8 @@ import { useLocation } from "react-router-dom";
 import "assets/PetList.css";
 import ListWithPagination from "components/ListWithPagination.tsx";
 import CenteredSpinner from "components/CenteredSpinner.tsx";
-import useShelters from "../hooks/useShelters.ts";
-import ShelterListItem from "../components/ShelterListItem.tsx";
+import useShelters from "../../hooks/useShelters.ts";
+import ShelterListItem from "../../components/ShelterListItem.tsx";
 
 export default function PetShelterList() {
     // auto-injected into the request query parameter finding function
