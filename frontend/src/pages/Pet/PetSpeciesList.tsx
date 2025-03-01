@@ -4,6 +4,7 @@ import "assets/PetList.css";
 import Pet from "../../models/Pet.ts";
 import ListWithPagination from "../../components/ListWithPagination.tsx";
 import PetListItem from "../../components/PetListItem.tsx";
+import CenteredSpinner from "../../components/CenteredSpinner.tsx";
 
 export default function PetSpeciesList() {
     const { species } = useParams();
@@ -14,7 +15,7 @@ export default function PetSpeciesList() {
     useLocation();
     const { data, isError, isLoading, error } = usePetSpecies();
 
-    if (isLoading) return <div>Loading post...</div>;
+    if (isLoading) return <CenteredSpinner/>;
     if (isError) { // @ts-ignore
         return <div>Error: { error.message }</div>;
     }
