@@ -29,10 +29,11 @@ export default function PetSpeciesList() {
             totalItems: 0,
             totalPages: 0,
             perPage: 0,
-            page: 0,
-            baseURL: "/pets"
+            page: 0
         }
     };
+
+    transformedData.listMetadata.baseURL = `/pets/species/${ petSpecies }`;
 
     return (
         <>

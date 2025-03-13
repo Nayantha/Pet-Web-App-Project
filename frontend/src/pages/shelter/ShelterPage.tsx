@@ -50,6 +50,8 @@ export default function ShelterPage() {
         }
     };
 
+    transformedData.listMetadata.baseURL = currentPath;
+
     return (
         <>
             <ShelterComponent shelter={ shelter ?? {} as Shelter }/>

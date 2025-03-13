@@ -22,10 +22,11 @@ export default function PetShelterList() {
             totalItems: 0,
             totalPages: 0,
             perPage: 0,
-            page: 0,
-            baseURL: "/shelters"
+            page: 0
         }
     };
+
+    transformedData.listMetadata.baseURL = "/shelters";
 
     return (
         <>
