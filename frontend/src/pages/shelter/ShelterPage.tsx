@@ -23,6 +23,7 @@ export default function ShelterPage() {
         isLoading: isFetchingShelterLoading,
         error: fetchingShelterError
     } = useShelter(shelterId);
+
     const {
         data,
         isError: isPetsOfShelterDataFetchError,
@@ -45,12 +46,13 @@ export default function ShelterPage() {
             totalItems: 0,
             totalPages: 0,
             perPage: 0,
-            page: 0,
-            baseURL: currentPath
+            page: 0
         }
     };
 
-    transformedData.listMetadata.baseURL = currentPath;
+    transformedData.listMetadata.baseURL = `${ currentPath }?id=${ shelterId }`;
+
+    console.log(`${ currentPath }?id=${ shelterId }`);
 
     return (
         <>
