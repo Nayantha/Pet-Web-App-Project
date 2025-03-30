@@ -3,7 +3,7 @@ import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import dogImage from './Assest/dogImage1.png';
 import findPetImg from './Assest/find a pet.png';
-import listPetImg from './Assest/List a Pet.png';
+import daycare from './Assest/daycare.png';
 import findToyImg from './Assest/Find a toy.png';
 import findVetImg from './Assest/find a vet.png';
 import addServiceImg from './Assest/Add a service.png';
@@ -48,15 +48,15 @@ function App() {
             </div>
           </div>
           <div className="grid-item">
-            <img src={listPetImg} alt="List A Pet" />
+            <img src={daycare} alt="Find a Daycare" />
             <div className="name-section">
-              <h3>List a Pet</h3>
+              <h3>Find a Daycare</h3>
             </div>
           </div>
           <div className="grid-item">
             <img src={findToyImg} alt="Find A Toy" />
             <div className="name-section">
-              <h3>Find a Toy</h3>
+              <h3>Find a Accessories</h3>
             </div>
           </div>
           <div className="grid-item">
