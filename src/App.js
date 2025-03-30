@@ -43,23 +43,38 @@ function App() {
         <div className="grid-container">
           <div className="grid-item">
             <img src={findPetImg} alt="Find A Pet" />
-            <p>Find A Pet</p>
+            <div className="name-section">
+              <p>Find A Pet</p>
+            </div>
           </div>
           <div className="grid-item">
             <img src={listPetImg} alt="List A Pet" />
-            <p>List A Pet</p>
+            <div className="name-section">
+              <p>List A Pet</p>
+            </div>
           </div>
           <div className="grid-item">
             <img src={findToyImg} alt="Find A Toy" />
-            <p>Find A Toy</p>
+            <div className="name-section">
+              <p>Find A Toy</p>
+            </div>
           </div>
           <div className="grid-item">
             <img src={findVetImg} alt="Find A Vet" />
-            <p>Find A Vet</p>
+            <div className="name-section">
+              <p>Find A Vet</p>
+            </div>
           </div>
           <div className="grid-item large-item">
-            <img src={addServiceImg} alt="Add Service" />
-            <p>Add Service</p>
+            <div className="split-box">
+              <div className="split-item">
+                <img src={addServiceImg} alt="Add Service" />
+                <div className="name-section">
+                  <p>Add Service</p>
+                </div>
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>
