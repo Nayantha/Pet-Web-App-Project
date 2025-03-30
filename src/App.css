@@ -17,7 +17,6 @@
 .profile-section {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .profile-icon {
@@ -26,8 +25,7 @@
 }
 
 .greeting {
-  display: flex;
-  flex-direction: column;
+  flex-grow: 1;
 }
 
 .chat-icon {
@@ -51,17 +49,15 @@
   border-radius: 50px;
 }
 
-
-
 .part2 {
-  flex: 0 0 10%; /* 10% of the height */
+  flex: 0 0 10%;
   background-color: #e9ecef;
   padding: 20px;
   border-bottom: 1px solid #ccc;
 }
 
 .part3 {
-  flex: 0 0 70%; /* 70% of the height */
+  flex: 0 0 70%;
   background-color: #dee2e6;
   padding: 20px;
   border-bottom: 1px solid #ccc;
