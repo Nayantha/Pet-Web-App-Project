@@ -15,6 +15,11 @@ function App() {
           </div>
           <i className="fas fa-comments chat-icon"></i>
         </div>
+
+        <div className="search-section">
+          <i className="fas fa-search search-icon"></i>
+          <input type="text" className="search-input" placeholder="Search here" />
+        </div>
        
       </div>
       <div className="part2">
