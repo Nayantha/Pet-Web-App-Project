@@ -41,31 +41,31 @@ function App() {
       </div>
       <div className="part3">
         <div className="grid-container">
-          <div className="grid-item">
+          <a href="#" className="grid-item">  
             <img src={findPetImg} alt="Find A Pet" />
             <div className="name-section">
               <h3>Find a Pet</h3>
             </div>
-          </div>
-          <div className="grid-item">
+          </a>
+          <a href="#" className="grid-item">
             <img src={daycare} alt="Find a Daycare" />
             <div className="name-section">
               <h3>Find a Daycare</h3>
             </div>
-          </div>
-          <div className="grid-item">
+          </a>
+          <a href="#" className="grid-item">
             <img src={findToyImg} alt="Find A Toy" />
             <div className="name-section">
               <h3>Find a Accessories</h3>
             </div>
-          </div>
-          <div className="grid-item">
+          </a>
+          <a href="#" className="grid-item">
             <img src={findVetImg} alt="Find A Vet" />
             <div className="name-section">
               <h3>Find a Vet</h3>
             </div>
-          </div>
-          <div className="grid-item large-item">
+          </a>
+          <a href="#" className="grid-item large-item">
             <div className="split-box">
               <div className="split-item">
                 <img src={addServiceImg} alt="Add Service" />
@@ -75,7 +75,7 @@ function App() {
               </div>
               
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
