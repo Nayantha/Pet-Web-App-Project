@@ -2,6 +2,11 @@ import React from 'react';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import dogImage from './Assest/dogImage1.png';
+import findPetImg from './Assest/find a pet.png';
+import listPetImg from './Assest/List a Pet.png';
+import findToyImg from './Assest/Find a toy.png';
+import findVetImg from './Assest/find a vet.png';
+import addServiceImg from './Assest/Add a service.png';
 
 
 function App() {
@@ -36,12 +41,26 @@ function App() {
       </div>
       <div className="part3">
         <div className="grid-container">
-          <div className="grid-item">Find A Pet</div>
-          <div className="grid-item">List A Pet</div>
-          <div className="grid-item">Find A Toy</div>
-          <div className="grid-item">Find A Vet</div>
-          <div className="grid-item">Find A Daycare</div>
-          <div className="grid-item">Add A Service</div>
+          <div className="grid-item">
+            <img src={findPetImg} alt="Find A Pet" />
+            <p>Find A Pet</p>
+          </div>
+          <div className="grid-item">
+            <img src={listPetImg} alt="List A Pet" />
+            <p>List A Pet</p>
+          </div>
+          <div className="grid-item">
+            <img src={findToyImg} alt="Find A Toy" />
+            <p>Find A Toy</p>
+          </div>
+          <div className="grid-item">
+            <img src={findVetImg} alt="Find A Vet" />
+            <p>Find A Vet</p>
+          </div>
+          <div className="grid-item large-item">
+            <img src={addServiceImg} alt="Add Service" />
+            <p>Add Service</p>
+          </div>
         </div>
       </div>
     </div>
