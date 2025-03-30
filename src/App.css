@@ -49,13 +49,50 @@
   border-radius: 50px;
 }
 
+
 .part2 {
   flex: 0 0 10%;
-  background-color: #e9ecef;
+  background-color: #fff;
   padding: 20px;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.card {
+  background-color: #6c63ff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.dog-image {
+  width: 50px;
+  height: auto;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.indicator.active {
+  background-color: #6c63ff;
+}
 .part3 {
   flex: 0 0 70%;
   background-color: #dee2e6;

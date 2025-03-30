@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import dogImage from './Assest/dogImage1.png';
 
 
 function App() {
@@ -23,8 +24,15 @@ function App() {
        
       </div>
       <div className="part2">
-        {/* Part 2: Let's Find Your New Friend */}
-        <h2>Let's Find Your New Friend</h2>
+        <div className="card">
+          <p>Let's Find your New Friend</p>
+          <img src={dogImage} alt="Dog" className="dogImage" />
+        </div>
+        <div className="indicators">
+          <span className="indicator active"></span>
+          <span className="indicator"></span>
+          <span className="indicator"></span>
+        </div>
       </div>
       <div className="part3">
         {/* Part 3: Add Box */}
