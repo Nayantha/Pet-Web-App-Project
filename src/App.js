@@ -25,7 +25,7 @@ function App() {
       </div>
       <div className="part2">
         <div className="card">
-          <p>Let's Find your New Friend</p>
+          <h1>Let's Find your New Friend</h1>
           <img src={dogImage} alt="Dog" className="dogImage" />
         </div>
         <div className="indicators">
