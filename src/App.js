@@ -1,15 +1,21 @@
 import React from 'react';
 import './App.css';
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 function App() {
   return (
     <div className="container">
-      <div className="part1">
-        {/* Part 1: Name and Search Field */}
-        <h1>Your Name</h1>
-        <input type="text" placeholder="Search..." />
+       <div className="part1">
+        <div className="profile-section">
+          <i className="fas fa-user-circle profile-icon"></i>
+          <div className="greeting">
+            <p>Hello!</p>
+            <h3>John William</h3>
+          </div>
+          
+        </div>
+       
       </div>
       <div className="part2">
         {/* Part 2: Let's Find Your New Friend */}

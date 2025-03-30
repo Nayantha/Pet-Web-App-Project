@@ -5,11 +5,33 @@
 }
 
 .part1 {
-  flex: 0 0 20%; /* 20% of the height */
+  flex: 0 0 20%;
   background-color: #f8f9fa;
   padding: 20px;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-icon {
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 
 .part2 {
   flex: 0 0 10%; /* 10% of the height */
