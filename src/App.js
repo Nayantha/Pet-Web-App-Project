@@ -13,7 +13,7 @@ function App() {
             <p>Hello!</p>
             <h3>John William</h3>
           </div>
-          
+          <i className="fas fa-comments chat-icon"></i>
         </div>
        
       </div>
