@@ -35,8 +35,14 @@ function App() {
         </div>
       </div>
       <div className="part3">
-        {/* Part 3: Add Box */}
-        <h2>Add Box</h2>
+        <div className="grid-container">
+          <div className="grid-item">Find A Pet</div>
+          <div className="grid-item">List A Pet</div>
+          <div className="grid-item">Find A Toy</div>
+          <div className="grid-item">Find A Vet</div>
+          <div className="grid-item">Find A Daycare</div>
+          <div className="grid-item">Add A Service</div>
+        </div>
       </div>
     </div>
   );

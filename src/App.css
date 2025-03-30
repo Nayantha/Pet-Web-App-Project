@@ -97,5 +97,22 @@
   flex: 0 0 70%;
   background-color: #dee2e6;
   padding: 20px;
-  border-bottom: 1px solid #ccc;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.grid-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100px;
 }
